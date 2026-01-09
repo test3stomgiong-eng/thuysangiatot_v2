@@ -1,0 +1,10 @@
+:root {
+    /* Màu xanh đậm giống hình mẫu */
+    --primary-color: #0f62f9; 
+    --primary-dark: #0046b5;
+    --text-white: #ffffff;
+    --text-black: #333333;
+    --bg-gray: #f5f5fa; /* Màu nền xám nhạt toàn trang */
+    --border-color: #e0e0e0;
+    --container-width: 1240px; /* Rộng hơn chút cho giống các trang TMĐT hiện đại */
+}

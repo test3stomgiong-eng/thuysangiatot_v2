@@ -1,0 +1,586 @@
+/* =========================================================
+   FILE: css/core/global.css
+   STRUCTURE:
+   1. VARIABLES & RESET
+   2. GLOBAL & ANIMATIONS
+   3. DESKTOP HEADER SECTION
+   4. MEGA MENU STYLE
+   5. MOBILE COMPONENTS (Drawer, Bottom Nav)
+   6. MOBILE HEADER LAYOUT (Responsive)
+   7. SITE FOOTER STYLE
+   8. UTILITIES (Hide Price Mode)
+   ========================================================= */
+
+/* =========================================
+   1. VARIABLES & RESET
+   ========================================= */
+:root {
+    --primary-blue: #0056b3; /* Màu xanh đậm thương hiệu */
+    --text-dark: #333;
+    --text-gray: #666;
+    --bg-light: #f4f6f9;
+    --color-sale: #d0021b; /* Màu đỏ giảm giá */
+    --color-success: #4caf50; /* Màu xanh lá thành công */
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Be Vietnam Pro", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 14px;
+    background: #ffffff;
+    color: var(--text-dark);
+    line-height: 1.5;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* =========================================
+   2. GLOBAL & ANIMATIONS
+   ========================================= */
+.container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 15px;
+    width: 100%;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================================
+   3. DESKTOP HEADER SECTION
+   ========================================= */
+
+/* --- 3.1. Top Bar --- */
+.top-bar {
+    background: #eef1f6;
+    padding: 6px 0;
+    font-size: 12px;
+    color: var(--text-dark);
+}
+
+.top-bar-inner {
+    display: flex; justify-content: space-between; align-items: center;
+}
+
+.top-bar a {
+    margin-left: 20px; display: inline-flex; align-items: center; gap: 5px;
+}
+.top-bar .top-left a { margin-left: 0; }
+
+.tag-new span {
+    background: var(--color-success); color: white;
+    padding: 1px 4px; border-radius: 3px;
+    font-size: 10px; font-weight: bold; margin-left: 3px;
+}
+
+/* --- 3.2. Main Header (Blue) --- */
+.blue-header-wrapper {
+    background-color: var(--primary-blue);
+    padding-top: 15px; padding-bottom: 0; color: white;
+}
+
+.header-main-row {
+    display: flex; align-items: flex-start; gap: 30px; margin-bottom: 10px;
+}
+
+/* Logo */
+.logo {
+    flex-shrink: 0; width: 160px; height: 60px;
+    padding-top: 5px; display: flex; align-items: center;
+    text-decoration: none; margin-right: 30px;
+}
+.logo .img-logo {
+    height: 100%; width: auto; max-width: 200px; object-fit: contain;
+}
+.logo-text-wrapper {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; line-height: 1;
+}
+.logo-line-small {
+    color: rgba(255, 255, 255, 0.9); font-size: 11px; font-weight: bold;
+    text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px;
+}
+.logo-line-big {
+    font-size: 24px; font-weight: 800; text-transform: uppercase;
+}
+.logo-line-big .text-green { color: #00ff55; }
+.logo-line-big .text-white { color: #ffffff; }
+
+/* Search Box */
+.search-section { flex-grow: 1; }
+
+.search-form {
+    background: white; border-radius: 4px; display: flex;
+    align-items: center; padding: 8px 15px;
+}
+.search-icon { color: #999; margin-right: 10px; }
+.search-form input { border: none; outline: none; width: 100%; font-size: 14px; }
+
+.search-keywords {
+    margin-top: 8px; font-size: 12px; display: flex; gap: 15px; opacity: 0.9;
+}
+.search-keywords a:hover { text-decoration: underline; }
+
+/* Actions (Cart, Login) */
+.header-actions {
+    display: flex; align-items: center; gap: 15px; padding-top: 5px;
+}
+.icon-btn { font-size: 20px; position: relative; }
+.cart-btn .badge {
+    position: absolute; top: -8px; right: -8px;
+    background: #ff5722; font-size: 10px; padding: 2px 5px; border-radius: 50%;
+}
+.divider { width: 1px; height: 25px; background: rgba(255, 255, 255, 0.3); }
+
+.btn-login-pill {
+    background: white; color: var(--text-dark);
+    padding: 6px 15px; border-radius: 20px; font-weight: 600;
+    display: flex; align-items: center; gap: 8px; font-size: 13px;
+}
+
+/* --- 3.3. Navigation Row --- */
+.header-nav-row {
+    display: flex; align-items: center; gap: 30px; padding-bottom: 10px;
+}
+.category-dropdown-btn {
+    background: white; color: var(--text-dark);
+    padding: 10px 15px; border-radius: 6px 6px 0 0;
+    font-weight: bold; display: flex; align-items: center;
+    gap: 10px; width: 220px; cursor: pointer;
+}
+.ml-auto { margin-left: auto; }
+
+.main-nav-links { display: flex; gap: 25px; align-items: center; }
+.main-nav-links a { font-weight: 500; font-size: 14px; white-space: nowrap; }
+.main-nav-links a:hover { opacity: 0.8; }
+.label-hot {
+    background: #ff5722; color: white; padding: 1px 4px;
+    border-radius: 3px; font-size: 10px; font-weight: bold;
+    margin-left: 3px; vertical-align: text-top;
+}
+
+/* =========================================
+   4. MEGA MENU STYLE
+   ========================================= */
+.category-wrapper { position: relative; }
+
+.mega-menu {
+    display: none; position: absolute; top: 100%; left: 0;
+    width: 1210px; height: 400px; background: white;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    z-index: 9999; border-radius: 0 0 8px 8px; border: 1px solid #ddd;
+}
+.mega-menu.show { display: flex; }
+
+/* Sidebar */
+.menu-sidebar {
+    width: 250px; background: #f8f9fa; border-right: 1px solid #eee;
+    list-style: none; margin: 0; padding: 10px 0; flex-shrink: 0;
+}
+.menu-sidebar li a {
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 20px; color: #333; font-weight: 500;
+    font-size: 14px; transition: all 0.2s;
+}
+.menu-sidebar li a i { width: 20px; color: #999; text-align: center; }
+.menu-sidebar li:hover a, .menu-sidebar li.active a {
+    background: white; color: var(--primary-blue); font-weight: bold;
+}
+.menu-sidebar li:hover a i, .menu-sidebar li.active a i {
+    color: var(--primary-blue);
+}
+
+/* Content */
+.menu-content { flex-grow: 1; padding: 20px; display: flex; background: white; }
+.content-grid {
+    flex-grow: 1; display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 20px; align-content: start;
+}
+.sub-cat-item {
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; gap: 10px; padding: 10px; border-radius: 8px;
+}
+.sub-cat-item:hover { box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); }
+.sub-cat-item img { width: 60px; height: 60px; object-fit: contain; }
+.sub-cat-item span { font-size: 13px; color: #333; }
+
+.circle-arrow {
+    width: 50px; height: 50px; border-radius: 50%; border: 1px solid #ddd;
+    display: flex; align-items: center; justify-content: center; color: #999;
+}
+.menu-banner {
+    width: 280px; margin-left: 20px; border-radius: 8px; overflow: hidden;
+}
+.menu-banner img { width: 100%; height: 100%; object-fit: cover; }
+
+/* =========================================
+   5. MOBILE COMPONENTS (UI Elements)
+   ========================================= */
+
+/* --- Mobile Drawer Menu --- */
+.mobile-menu-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6); z-index: 10000;
+    opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s;
+}
+.mobile-menu-overlay.active { opacity: 1; visibility: visible; }
+
+.mobile-menu-drawer {
+    position: fixed; top: 0; left: 0; width: 300px; max-width: 85%;
+    height: 100%; background: white; z-index: 10001;
+    transform: translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto; box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+}
+.mobile-menu-drawer.active { transform: translateX(0); }
+
+/* Drawer Content */
+.drawer-header {
+    background: var(--primary-blue); padding: 15px;
+    display: flex; justify-content: space-between; align-items: center; color: white;
+}
+.drawer-login {
+    color: white; font-weight: bold; font-size: 14px;
+    text-decoration: none; display: flex; align-items: center; gap: 8px;
+}
+.drawer-close-btn {
+    background: none; border: none; color: white; font-size: 20px; cursor: pointer;
+}
+.drawer-promo {
+    padding: 15px; background: #f5f7fa; border-bottom: 1px solid #eee;
+}
+.drawer-promo p {
+    font-size: 13px; margin-bottom: 10px; color: #333; line-height: 1.4;
+}
+.btn-download-app {
+    display: inline-block; background: var(--primary-blue);
+    color: white; padding: 6px 15px; border-radius: 4px;
+    font-size: 13px; font-weight: bold; text-decoration: none;
+}
+
+/* Drawer List */
+.drawer-list { list-style: none; padding: 0; margin: 0; }
+.drawer-item { border-bottom: 1px solid #f0f0f0; }
+.drawer-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px; cursor: pointer; text-decoration: none;
+    transition: background 0.2s; color: #333;
+}
+.drawer-row:hover { background: #f9f9f9; }
+.drawer-text { font-size: 14px; font-weight: 700; }
+.drawer-row .arrow {
+    color: #999; font-size: 12px; transition: transform 0.3s ease;
+}
+.drawer-item.active .arrow {
+    transform: rotate(180deg); color: var(--primary-blue);
+}
+
+.drawer-submenu {
+    display: none; background-color: #f5f7fa; padding: 0; list-style: none;
+}
+.drawer-submenu li a {
+    display: block; padding: 12px 15px 12px 30px;
+    color: #555; font-size: 13px; text-decoration: none;
+    border-top: 1px solid #eaeaea;
+}
+.drawer-submenu li a:hover { color: var(--primary-blue); }
+.drawer-item.active .drawer-submenu {
+    display: block; animation: fadeIn 0.3s ease;
+}
+.drawer-footer {
+    padding: 15px; font-size: 13px; color: #666; text-align: center;
+}
+
+/* --- Bottom Navigation (Mobile Only) --- */
+.bottom-nav {
+    position: fixed; bottom: 0; left: 0; width: 100%; height: 60px;
+    background: white; box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    display: none; /* Chỉ hiện mobile */
+    justify-content: space-between; align-items: flex-end;
+    padding: 0 5px; z-index: 9990;
+}
+.nav-item {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; height: 60px;
+    color: #888; text-decoration: none; font-size: 10px; font-weight: 600;
+}
+.nav-item i { font-size: 20px; margin-bottom: 4px; }
+.nav-item.active { color: #0056b3; }
+
+/* Nút Tư vấn nổi */
+.nav-center-wrapper {
+    flex: 1; position: relative; display: flex;
+    flex-direction: column; align-items: center;
+    justify-content: flex-end; height: 60px; padding-bottom: 6px;
+}
+.nav-center-wrapper span { font-size: 10px; color: #0056b3; font-weight: bold; }
+.nav-center-btn {
+    position: absolute; top: -20px; width: 50px; height: 50px;
+    background: #0056b3; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 22px; border: 4px solid white;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================
+   6. MOBILE HEADER LAYOUT (< 991px)
+   ========================================= */
+
+/* Mặc định trên PC */
+.mobile-header, .m-search-scroll { display: none; }
+
+@media (max-width: 991px) {
+    /* Ẩn Header Desktop */
+    #site-header { display: none !important; }
+
+    /* Cấu trúc Mobile Header */
+    .mobile-header {
+        display: block !important; background-color: var(--primary-blue);
+        width: 100vw; max-width: 100%; overflow-x: hidden; padding-bottom: 15px;
+    }
+
+    /* Sticky Header */
+    .mobile-header.header-pinned {
+        position: fixed; top: 0; left: 0; width: 100%; z-index: 9999;
+        padding-bottom: 5px; box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        animation: slideDown 0.3s ease;
+    }
+
+    /* Biến hình: Ẩn Logo & Banner -> Hiện Search nhỏ */
+    .header-pinned .mobile-banner,
+    .header-pinned .mobile-search,
+    .header-pinned .m-logo { display: none !important; }
+
+    .header-pinned .m-search-scroll {
+        display: flex; align-items: center; background: white;
+        height: 36px; border-radius: 18px; padding: 0 10px;
+        margin-left: 10px; flex-grow: 1; color: #333;
+    }
+    .header-pinned .m-search-scroll input {
+        border: none; outline: none; width: 100%;
+        margin-left: 8px; font-size: 13px;
+    }
+    .header-pinned .m-left { flex-grow: 1; margin-right: 10px; }
+
+    /* Mobile Grid & Layout */
+    .mobile-row {
+        width: 100%; padding-left: 15px; padding-right: 15px;
+        margin-bottom: 10px; clear: both;
+    }
+    .mobile-top {
+        display: flex; justify-content: space-between;
+        align-items: center; padding-top: 15px;
+    }
+
+    .m-left { display: flex; align-items: center; gap: 10px; }
+    .m-btn-menu {
+        background: none; border: none; color: white;
+        font-size: 22px; padding: 0; cursor: pointer;
+    }
+    .m-logo { text-decoration: none; line-height: 1; }
+    .m-logo .top { font-size: 9px; color: white; }
+    .m-logo .bottom { font-size: 16px; font-weight: 800; color: white; }
+
+    .m-right { display: flex; gap: 10px; }
+    .m-icon {
+        width: 32px; height: 32px; background: white; border-radius: 50%;
+        display: flex; align-items: center; justify-content: center;
+        color: #333; text-decoration: none; position: relative;
+    }
+    .m-icon.cart .num {
+        position: absolute; top: -5px; right: -5px;
+        background: #ff5722; color: white; font-size: 9px;
+        padding: 2px 4px; border-radius: 10px; border: 2px solid var(--primary-blue);
+    }
+
+    /* Banner & Search To */
+    .banner-box img {
+        width: 100%; height: auto; border-radius: 4px; display: block;
+    }
+    .search-box-inner {
+        width: 100%; background: white; border-radius: 8px; height: 40px;
+        display: flex; align-items: center; padding: 0 10px;
+    }
+    .search-box-inner button {
+        background: none; border: none; color: #666; font-size: 14px;
+        margin-right: 8px; flex-shrink: 0;
+    }
+    .search-box-inner input {
+        border: none; outline: none; width: 100%; min-width: 0;
+        font-size: 13px; color: #333; background: transparent;
+    }
+
+    /* Show Bottom Nav */
+    .bottom-nav { display: flex; }
+    body { padding-bottom: 70px; } /* Đẩy nội dung tránh bị menu che */
+}
+
+/* =========================================
+   7. SITE FOOTER STYLE
+   ========================================= */
+.site-footer {
+    font-family: "Be Vietnam Pro", sans-serif;
+    background: #f4f6f9; color: #333; margin-top: 50px;
+}
+
+/* 1. USP Bar */
+.footer-usp {
+    background: white; padding: 20px 0;
+    border-top: 4px solid #0056b3; border-bottom: 1px solid #eee;
+}
+.usp-title-mobile { display: none; }
+.usp-row {
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 20px;
+}
+.usp-item {
+    display: flex; align-items: center; gap: 15px; flex: 1; min-width: 220px;
+}
+.usp-icon {
+    width: 40px; height: 40px; display: flex; align-items: center;
+    justify-content: center; font-size: 24px; color: #0056b3;
+}
+.usp-text { display: flex; flex-direction: column; }
+.usp-text strong {
+    font-size: 14px; color: #0056b3; font-weight: 700; margin-bottom: 2px;
+}
+.usp-text span { font-size: 12px; color: #666; }
+
+/* 2. Main Footer */
+.footer-main { padding: 40px 0; background: #f4f6f9; }
+.footer-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 30px;
+}
+.footer-heading {
+    font-size: 14px; font-weight: 700; color: #333;
+    margin-bottom: 15px; text-transform: uppercase;
+}
+.mt-20 { margin-top: 20px; }
+
+.footer-links { list-style: none; padding: 0; margin: 0; }
+.footer-links li { margin-bottom: 8px; }
+.footer-links a {
+    font-size: 13px; color: #555; text-decoration: none; transition: 0.2s;
+}
+.footer-links a:hover { color: #0056b3; text-decoration: underline; }
+
+.hotline-box { margin-bottom: 12px; font-size: 13px; color: #555; }
+.hotline-box span { display: block; margin-bottom: 2px; }
+.hotline-num {
+    font-size: 16px; font-weight: 800; color: #0056b3; text-decoration: none;
+}
+
+.social-links a {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; color: #555; margin-bottom: 8px;
+}
+.social-links i { color: #0056b3; font-size: 16px; width: 20px; }
+.payment-icons { display: flex; gap: 10px; font-size: 24px; color: #666; }
+
+.app-download-box { display: flex; gap: 15px; }
+.qr-code img { width: 80px; height: 80px; border: 1px solid #ddd; }
+.store-btns { display: flex; flex-direction: column; gap: 8px; }
+.store-btns img { height: 36px; width: auto; cursor: pointer; }
+
+/* 3. Footer Bottom */
+.footer-bottom {
+    background: #eef1f6; padding: 20px 0; border-top: 1px solid #e0e0e0;
+    font-size: 12px; color: #666; padding-bottom: 80px;
+}
+.bottom-content { display: flex; justify-content: space-between; gap: 40px; }
+.company-info h4 {
+    font-size: 13px; font-weight: 700; margin-bottom: 8px; color: #333;
+}
+.company-info p, .legal-info p { margin-bottom: 5px; line-height: 1.5; }
+.legal-info { text-align: right; }
+
+/* --- RESPONSIVE FOOTER (MOBILE) --- */
+@media (max-width: 991px) {
+    /* USP Bar: 4 Cột */
+    .usp-title-mobile {
+        display: block; font-size: 16px; font-weight: 700; color: #333; margin-bottom: 15px;
+    }
+    .usp-row {
+        display: grid !important; grid-template-columns: repeat(4, 1fr) !important;
+        gap: 5px; padding-bottom: 0;
+    }
+    .usp-item {
+        flex-direction: column; align-items: center; text-align: center;
+        min-width: 0; border: none; padding: 0;
+    }
+    .usp-icon {
+        width: 40px; height: 40px; font-size: 20px;
+        background: #eef1f6; border-radius: 50%; margin-bottom: 8px;
+    }
+    .usp-text strong {
+        font-size: 11px; color: #0056b3; line-height: 1.3;
+        display: block; height: 30px; overflow: hidden;
+    }
+    .usp-text span { display: none; }
+
+    /* Footer Main */
+    .footer-grid {
+        grid-template-columns: 1fr; gap: 30px;
+    }
+    .bottom-content {
+        flex-direction: column; text-align: left; gap: 20px;
+    }
+    .legal-info { text-align: left; }
+}
+
+/* =========================================================
+   8. UTILITIES: HIDE PRICE MODE (CLEAN ABSOLUTE)
+   (Khi body có class "mode-hide-price", ẩn sạch mọi giá tiền)
+   ========================================================= */
+body.mode-hide-price .price,                /* Giá chung */
+body.mode-hide-price .p-price-box,          /* Giá to trang chi tiết */
+body.mode-hide-price .p-promo-box,          /* Hộp khuyến mãi trang chi tiết */
+body.mode-hide-price .p-badge,              /* Nhãn giảm giá trên ảnh */
+body.mode-hide-price .spi-price,            /* Giá trong Popup Mobile */
+body.mode-hide-price .pc-price,             /* Giá trong thẻ sản phẩm (Home) */
+body.mode-hide-price .old-price,            /* Giá cũ */
+body.mode-hide-price .new-price,            /* Giá mới */
+body.mode-hide-price .cart-price,           /* Giá trong giỏ hàng */
+body.mode-hide-price .cart-total,           /* Tổng tiền giỏ hàng */
+body.mode-hide-price .flash-sale-badge,     /* Nhãn Flash sale */
+body.mode-hide-price .sheet-variants-section /* Phần chọn giá trong popup */
+{
+    display: none !important;
+}
+
+/* =========================================================
+   BỔ SUNG: ẨN GIÁ FLASH SALE & CÁC THẺ CỨNG ĐẦU KHÁC
+   (Dán vào cuối file global.css)
+   ========================================================= */
+
+/* 1. Ẩn giá và nhãn giảm giá trong FLASH SALE */
+body.mode-hide-price .fs-card-price,        /* Giá bán Flash Sale */
+body.mode-hide-price .fs-card-origin-price, /* Giá gốc gạch ngang */
+body.mode-hide-price .fs-card-badge,        /* Nhãn -20% góc ảnh */
+body.mode-hide-price .fs-discount-tag,      /* Các loại nhãn giảm giá khác */
+
+body.mode-hide-price .pc-price,             /* Giá trong slider SP liên quan */
+body.mode-hide-price .pc-badge,             /* Nhãn giảm giá slider */
+body.mode-hide-price .pro-card .new,        /* Giá mới trong thẻ SP thường */
+body.mode-hide-price .pro-card .old         /* Giá cũ trong thẻ SP thường */
+{
+    display: none !important;
+}
+

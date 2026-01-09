@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ hàng - Pharmacity</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="css/core/global.css">
+    <link rel="stylesheet" href="css/pages/cart.css">
+</head>
+
+<body>
+
+    <header id="site-header">
+
+        <div class="top-bar">
+            <div class="container top-bar-inner">
+                <div class="top-left">
+                    <a href="#"><i class="fas fa-qrcode"></i> Tải ứng dụng</a>
+                </div>
+                <div class="top-right">
+                    <a href="#">Hotline: <b>1800 6821</b></a>
+                    <a href="#" class="tag-new">Doanh nghiệp <span>NEW</span></a>
+                    <a href="#">Deal hot tháng 01 <i class="fas fa-fire" style="color:orange"></i></a>
+                    <a href="#" class="tag-new">Tra cứu đơn hàng <span>NEW</span></a>
+                    <a href="#">Góc sức khỏe</a>
+                    <a href="#">Hệ thống nhà thuốc</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="blue-header-wrapper">
+            <div class="container">
+
+                <div class="header-main-row">
+
+                    <!-- <a href="/" class="logo">
+                        <div class="logo-text-wrapper">
+                            <span class="logo-line-small">THỦY SẢN</span>
+                            <div class="logo-line-big">
+                                <span class="text-green">GIÁ</span><span class="text-white">TỐT</span>
+                            </div>
+                        </div>
+                    </a> -->
+
+                    <a href="/" class="logo">
+                        <img src="https://placehold.co/180x50/0056b3/ffffff?text=LOGO+DEMO" alt="Logo Thủy Sản Giá Tốt"
+                            class="img-logo">
+                    </a>
+
+                    <div class="search-section">
+                        <form class="search-form">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" placeholder="Bạn đang tìm gì hôm nay...">
+                        </form>
+                        <div class="search-keywords">
+                            <a href="#">khẩu trang</a>
+                            <a href="#">sữa dinh dưỡng</a>
+                            <a href="#">collagen</a>
+                            <a href="#">lợi khuẩn</a>
+                            <a href="#">men vi sinh</a>
+                        </div>
+                    </div>
+
+                    <div class="header-actions">
+                        <a href="#" class="icon-btn"><i class="far fa-bell"></i></a>
+                        <a href="#" class="icon-btn cart-btn">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge">1</span>
+                        </a>
+                        <div class="divider"></div>
+                        <a href="#" class="btn-login-pill">
+                            <i class="fas fa-user-circle"></i> Đăng nhập/ Đăng ký
+                        </a>
+                    </div>
+                </div>
+
+                <div class="header-nav-row">
+
+                    <div class="category-wrapper">
+
+                        <div class="category-dropdown-btn" id="menu-toggle-btn">
+                            <i class="fas fa-bars"></i> Danh mục <i class="fas fa-chevron-down ml-auto"></i>
+                        </div>
+
+                        <div class="mega-menu" id="mega-menu-box">
+                            <ul class="menu-sidebar">
+                                <li class="active"><a href="#"><i class="fas fa-pills"></i> Thuốc</a></li>
+                                <li><a href="#"><i class="fas fa-stethoscope"></i> Tra cứu bệnh</a></li>
+                                <li><a href="#"><i class="fas fa-leaf"></i> Thực phẩm chức năng</a></li>
+                                <li><a href="#"><i class="fas fa-baby"></i> Mẹ và Bé</a></li>
+                                <li><a href="#"><i class="fas fa-user-nurse"></i> Chăm sóc cá nhân</a></li>
+                                <li><a href="#"><i class="fas fa-spa"></i> Chăm sóc sắc đẹp</a></li>
+                                <li><a href="#"><i class="fas fa-first-aid"></i> Thiết bị y tế</a></li>
+                                <li><a href="#"><i class="fas fa-shopping-basket"></i> Sản phẩm tiện lợi</a></li>
+                            </ul>
+
+                            <div class="menu-content">
+                                <div class="content-grid">
+                                    <a href="#" class="sub-cat-item">
+                                        <img src="https://placehold.co/80x80?text=Thuoc" alt="Thuốc">
+                                        <span>Thuốc không kê đơn</span>
+                                    </a>
+                                    <a href="#" class="sub-cat-item">
+                                        <img src="https://placehold.co/80x80?text=KeDon" alt="Kê đơn">
+                                        <span>Thuốc kê đơn</span>
+                                    </a>
+                                    <a href="#" class="sub-cat-item">
+                                        <img src="https://placehold.co/80x80?text=Vitamin" alt="Vitamin">
+                                        <span>Vitamin & Khoáng chất</span>
+                                    </a>
+                                    <a href="#" class="sub-cat-item">
+                                        <div class="circle-arrow"><i class="fas fa-chevron-right"></i></div>
+                                        <span>Xem tất cả</span>
+                                    </a>
+                                </div>
+
+                                <div class="menu-banner">
+                                    <img src="https://placehold.co/200x350/0056b3/fff?text=Săn+Deal+Cực+Đỉnh"
+                                        alt="Banner Menu">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <nav class="main-nav-links">
+                        <a href="#">Thuốc</a>
+                        <a href="#">Tra cứu bệnh</a>
+                        <a href="#">Thực phẩm bảo vệ sức khỏe</a>
+                        <a href="#">Mẹ và bé</a>
+                        <a href="#">Nhãn hàng Pharmacity <span class="label-hot">HOT</span></a>
+                        <a href="#">Chăm sóc cá nhân</a>
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- Phần mobile -->
+    <div class="mobile-header">
+
+        <div class="mobile-row mobile-top">
+            <div class="m-left">
+                <button class="m-btn-menu"><i class="fas fa-bars"></i></button>
+
+                <a href="/" class="m-logo">
+                    <div class="top">NHÀ THUỐC</div>
+                    <div class="bottom">
+                        <span style="color:#00ff55">Pharma</span><span style="color:white">city</span>
+                    </div>
+                </a>
+
+                <div class="m-search-scroll">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Bạn đang tìm gì hôm nay...">
+                </div>
+            </div>
+
+            <div class="m-right">
+                <a href="#" class="m-icon"><i class="far fa-bell"></i></a>
+                <a href="#" class="m-icon cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="num">1</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="mobile-row mobile-banner">
+            <div class="banner-box">
+                <img src="https://placehold.co/600x60/ffc107/333?text=GIAO+THUỐC+SIÊU+TỐC" alt="Promo">
+            </div>
+        </div>
+
+        <div class="mobile-row mobile-search">
+            <form class="search-box-inner">
+                <button type="submit"><i class="fas fa-search"></i></button>
+                <input type="text" placeholder="Tìm tên thuốc, bệnh, thực phẩm chức năng...">
+            </form>
+        </div>
+
+    </div>
+
+    <div class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <i class="fas fa-home"></i><span>Trang chủ</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-th-large"></i><span>Danh mục</span>
+        </a>
+        <div class="nav-center-wrapper">
+            <a href="#" class="nav-center-btn"><i class="fas fa-headset"></i></a>
+            <span>Tư vấn</span>
+        </div>
+        <a href="#" class="nav-item">
+            <i class="fas fa-file-invoice"></i><span>Đơn hàng</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-user"></i><span>Tài khoản</span>
+        </a>
+    </div>
+
+
+    <main class="cart-page-content">
+        <div class="container">
+
+            <h1 class="cart-page-title">Giỏ hàng <span id="cartCount">(1)</span></h1>
+
+            <div class="cart-layout">
+
+                <div class="cart-left-col">
+
+                    <div class="free-ship-alert">
+                        Miễn phí vận chuyển cho mọi đơn hàng từ 0đ
+                    </div>
+
+                    <div class="cart-table-header">
+                        <div class="cth-left">
+                            <input type="checkbox" id="checkAll" checked>
+                            <label for="checkAll">Chọn tất cả (1)</label>
+                        </div>
+                        <div class="cth-right">
+                            <span>Đơn giá</span>
+                            <span>Số lượng</span>
+                            <span></span>
+                        </div>
+                    </div>
+
+                    <div class="cart-items-list">
+
+                        <div class="cart-item">
+                            <div class="ci-check">
+                                <input type="checkbox" checked>
+                            </div>
+
+                            <div class="ci-info-box">
+                                <a href="detail.html" class="ci-img">
+                                    <img src="https://placehold.co/100x100?text=Collagen" alt="SP">
+                                </a>
+                                <div class="ci-content">
+                                    <a href="detail.html" class="ci-name">Nước uống bổ sung collagen Nucos Spa...</a>
+
+                                    <div class="ci-variant">
+                                        <span>Phân loại: Hộp</span> <i class="fas fa-chevron-down"></i>
+                                    </div>
+
+                                    <div class="ci-tags">
+                                        <span class="tag-yellow">Deal Giảm 15%</span>
+                                    </div>
+
+                                    <div class="gift-box-wrapper">
+                                        <div class="gift-header">
+                                            <i class="fas fa-gift"></i> Quà tặng kèm (Mua 2 tặng 1)
+                                        </div>
+
+                                        <div class="gift-product">
+                                            <img src="https://placehold.co/40x40?text=Gift" alt="Quà">
+                                            <div class="gift-info">
+                                                <span class="g-name">Bông tẩy trang Silcot (Hộp mini 8 miếng)</span>
+                                                <div class="g-meta">
+                                                    <span class="g-price">0đ</span>
+                                                    <span class="g-old-price">25.000đ</span>
+                                                    <span class="g-qty">x1</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="ci-price-box">
+                                <div class="old-price">2.150.000 ₫</div>
+                                <div class="new-price cart-price">1.827.500 ₫</div>
+                            </div>
+
+                            <div class="ci-qty-box">
+                                <button onclick="changeCartQty(this, -1)">-</button>
+                                <input type="number" value="1" readonly>
+                                <button onclick="changeCartQty(this, 1)">+</button>
+                            </div>
+
+                            <div class="ci-remove">
+                                <button onclick="removeCartItem(this)"><i class="far fa-trash-alt"></i></button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="cart-right-col">
+                    <div class="cart-summary-box">
+
+                        <div class="summary-coupon">
+                            <div class="sc-icon"><i class="fas fa-ticket-alt"></i> Khuyến mãi</div>
+                            <a href="#" class="sc-link">Chọn mã</a>
+                        </div>
+
+                        <div class="divider-dashed"></div>
+
+                        <div class="summary-row">
+                            <span>Tạm tính</span>
+                            <span class="cart-price">2.150.000 ₫</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Giảm giá ưu đãi</span>
+                            <span>-</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Giảm giá sản phẩm</span>
+                            <span class="cart-price">-322.500 ₫</span>
+                        </div>
+
+                        <div class="divider-solid"></div>
+
+                        <div class="summary-total">
+                            <span>Tổng tiền</span>
+                            <div class="total-val cart-total">1.827.500 ₫</div>
+                        </div>
+
+                        <button class="btn-checkout">Mua hàng (1)</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div class="mobile-cart-footer">
+        <div class="mcf-left">
+            <div class="mcf-check">
+                <input type="checkbox" checked> <span>Tất cả</span>
+            </div>
+            <div class="mcf-total">
+                <span>Tổng tiền:</span>
+                <div class="val cart-total">1.827.500 ₫</div>
+            </div>
+        </div>
+        <button class="btn-mcf-buy">Mua hàng (1)</button>
+    </div>
+
+
+    <!-- Menu modal cho nút 3 gạch -->
+    <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
+
+    <div class="mobile-menu-drawer" id="mobile-menu-drawer">
+
+        <div class="drawer-header">
+            <a href="#" class="drawer-login">
+                <i class="fas fa-user-circle"></i> Đăng nhập/ Đăng ký
+            </a>
+            <button class="drawer-close-btn" id="close-menu-btn">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+
+        <div class="drawer-promo">
+            <p>Tải ứng dụng Pharmacity để tận hưởng trải nghiệm tốt hơn và nhận nhiều ưu đãi hấp dẫn</p>
+            <a href="#" class="btn-download-app"><i class="fas fa-cloud-download-alt"></i> Tải ngay</a>
+        </div>
+
+        <ul class="drawer-list">
+
+            <li class="drawer-item has-child">
+                <div class="drawer-row">
+                    <span class="drawer-text">Thuốc</span>
+                    <i class="fas fa-chevron-down arrow"></i>
+                </div>
+                <ul class="drawer-submenu">
+                    <li><a href="#">Thuốc không kê đơn</a></li>
+                    <li><a href="#">Thuốc kê đơn</a></li>
+                    <li><a href="#">Thuốc khác</a></li>
+                    <li><a href="#">Vitamin & Khoáng chất</a></li>
+                </ul>
+            </li>
+
+            <li class="drawer-item">
+                <a href="#" class="drawer-row">
+                    <span class="drawer-text">Tra cứu bệnh</span>
+                </a>
+            </li>
+
+            <li class="drawer-item has-child">
+                <div class="drawer-row">
+                    <span class="drawer-text">Thực phẩm bảo vệ sức khỏe</span>
+                    <i class="fas fa-chevron-down arrow"></i>
+                </div>
+                <ul class="drawer-submenu">
+                    <li><a href="#">Vitamin</a></li>
+                    <li><a href="#">Khoáng chất</a></li>
+                    <li><a href="#">Dinh dưỡng</a></li>
+                </ul>
+            </li>
+
+            <li class="drawer-item has-child">
+                <div class="drawer-row">
+                    <span class="drawer-text">Chăm sóc cá nhân</span>
+                    <i class="fas fa-chevron-down arrow"></i>
+                </div>
+                <ul class="drawer-submenu">
+                    <li><a href="#">Chăm sóc tóc</a></li>
+                    <li><a href="#">Chăm sóc da</a></li>
+                </ul>
+            </li>
+
+            <li class="drawer-item has-child">
+                <div class="drawer-row">
+                    <span class="drawer-text">Mẹ và Bé</span>
+                    <i class="fas fa-chevron-down arrow"></i>
+                </div>
+                <ul class="drawer-submenu">
+                    <li><a href="#">Sữa & Dinh dưỡng</a></li>
+                    <li><a href="#">Tã & Bỉm</a></li>
+                </ul>
+            </li>
+
+        </ul>
+
+        <div class="drawer-footer">
+            Hotline: <span style="color: #0056b3; font-weight: bold;">1800 6821</span> (Miễn phí)
+        </div>
+    </div>
+
+    <footer class="site-footer">
+
+        <div class="footer-usp">
+            <div class="container">
+                <h3 class="usp-title-mobile">Lý do chọn Pharmacity</h3>
+
+                <div class="usp-row">
+                    <div class="usp-item">
+                        <div class="usp-icon"><i class="fas fa-shipping-fast"></i></div>
+                        <div class="usp-text">
+                            <strong>Giao hàng siêu tốc</strong>
+                            <span>Giao tận nhà hoặc nhận tại nhà thuốc</span>
+                        </div>
+                    </div>
+                    <div class="usp-item">
+                        <div class="usp-icon"><i class="fas fa-prescription-bottle-medical"></i></div>
+                        <div class="usp-text">
+                            <strong>Đủ thuốc chuẩn</strong>
+                            <span>Thuốc chất lượng, phục vụ tận tình</span>
+                        </div>
+                    </div>
+                    <div class="usp-item">
+                        <div class="usp-icon"><i class="fas fa-truck"></i></div>
+                        <div class="usp-text">
+                            <strong>Miễn phí vận chuyển</strong>
+                            <span>Cho mọi đơn hàng toàn quốc</span>
+                        </div>
+                    </div>
+                    <div class="usp-item">
+                        <div class="usp-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="usp-text">
+                            <strong>Nhà thuốc gần bạn</strong>
+                            <span>Dễ dàng tìm nhà thuốc gần bạn</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-grid">
+
+                    <div class="footer-col">
+                        <h3 class="footer-heading">Về Pharmacity</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Giới thiệu</a></li>
+                            <li><a href="#">Hệ thống cửa hàng</a></li>
+                            <li><a href="#">Giấy phép kinh doanh</a></li>
+                            <li><a href="#">Quy chế hoạt động</a></li>
+                            <li><a href="#">Chính sách đổi trả</a></li>
+                            <li><a href="#">Chính sách giao hàng</a></li>
+                            <li><a href="#">Chính sách bảo mật</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <h3 class="footer-heading">Danh mục</h3>
+                        <ul class="footer-links">
+                            <li><a href="#">Thuốc</a></li>
+                            <li><a href="#">Tra cứu bệnh</a></li>
+                            <li><a href="#">Thực phẩm chức năng</a></li>
+                            <li><a href="#">Chăm sóc cá nhân</a></li>
+                            <li><a href="#">Mẹ và Bé</a></li>
+                            <li><a href="#">Thiết bị y tế</a></li>
+                            <li><a href="#">Góc sức khỏe</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-col">
+                        <h3 class="footer-heading">Tổng đài miễn cước</h3>
+                        <div class="hotline-box">
+                            <span>Hỗ trợ đặt hàng</span>
+                            <a href="tel:18006821" class="hotline-num">1800 6821</a><span>(Nhánh 1)</span>
+                        </div>
+                        <div class="hotline-box">
+                            <span>Tư vấn thuốc</span>
+                            <a href="tel:18006821" class="hotline-num">1800 6821</a><span>(Nhánh 2)</span>
+                        </div>
+                        <div class="hotline-box">
+                            <span>Khiếu nại, góp ý</span>
+                            <a href="tel:18006821" class="hotline-num">1800 6821</a><span>(Nhánh 3)</span>
+                        </div>
+                    </div>
+
+                    <div class="footer-col">
+                        <h3 class="footer-heading">Theo dõi chúng tôi trên</h3>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook"></i> Facebook</a>
+                            <a href="#"><i class="fab fa-youtube"></i> Youtube</a>
+                            <a href="#"><i class="fas fa-comment-dots"></i> Zalo</a>
+                        </div>
+
+                        <h3 class="footer-heading mt-20">Hỗ trợ thanh toán</h3>
+                        <div class="payment-icons">
+                            <i class="fas fa-money-bill-wave" title="COD"></i>
+                            <i class="fab fa-cc-visa" title="VISA"></i>
+                            <i class="fab fa-cc-mastercard" title="MasterCard"></i>
+                            <i class="fas fa-wallet" title="Momo"></i>
+                        </div>
+
+                        <div class="cert-badges mt-20">
+                            <img src="https://placehold.co/120x40?text=Bo+Cong+Thuong" alt="BCT">
+                        </div>
+                    </div>
+
+                    <div class="footer-col">
+                        <h3 class="footer-heading">Tải ứng dụng ngay</h3>
+                        <div class="app-download-box">
+                            <div class="qr-code">
+                                <img src="https://placehold.co/100x100?text=QR+Code" alt="QR">
+                            </div>
+                            <div class="store-btns">
+                                <img src="https://placehold.co/120x40?text=App+Store" alt="App Store">
+                                <img src="https://placehold.co/120x40?text=Google+Play" alt="Google Play">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="bottom-content">
+                    <div class="company-info">
+                        <h4>Công Ty Cổ Phần Dược Phẩm Pharmacity</h4>
+                        <p>Trụ sở: 248A Nơ Trang Long, Phường Bình Thạnh, TP. Hồ Chí Minh</p>
+                        <p>Điện thoại: 1800 6821 - Email: cskh@pharmacity.vn</p>
+                    </div>
+                    <div class="legal-info">
+                        <p>GCNDKDN: 0311770883 do sở KH & ĐT TP.HCM cấp lần đầu ngày 05/05/2012.</p>
+                        <p>Giấy phép kinh doanh số: 6782/ĐKKDDD-Đnai ngày cấp 26/4/2022 Sở Y Tế Tỉnh Đồng Nai.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="js/core/common.js"></script>
+    <script src="js/pages/cart.js"></script>
+</body>
+
+</html>
