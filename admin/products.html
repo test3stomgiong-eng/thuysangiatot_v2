@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý sản phẩm - Admin CP</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jodit/3.24.4/jodit.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jodit/3.24.4/jodit.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="stylesheet" href="css/admin-style.css">
+
+    <style>
+        .jodit-container {
+            z-index: 2005 !important;
+        }
+
+        .jodit-popup {
+            z-index: 2010 !important;
+        }
+
+        .jodit-dialog {
+            z-index: 2020 !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <div class="brand">
+            <i class="fas fa-leaf"></i> <span>ADMIN CP</span>
+        </div>
+
+        <ul class="side-menu">
+            <li><a href="index.html"><i class="fas fa-th-large"></i> Tổng quan</a></li>
+
+            <li class="dropdown active" id="prod-menu">
+                <a href="javascript:void(0)" class="dropdown-btn" onclick="toggleDropdown('prod-menu')">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <i class="fas fa-box"></i> <span>QL Sản phẩm</span>
+                    </div>
+                    <i class="fas fa-chevron-right arrow-icon"></i>
+                </a>
+                <ul class="sub-menu">
+                    <li class="active-sub"><a href="products.html">◦ Danh sách sản phẩm</a></li>
+                    <li><a href="categories.html">◦ Danh mục</a></li>
+                </ul>
+            </li>
+
+            <li><a href="orders.html"><i class="fas fa-shopping-cart"></i> Đơn hàng <span class="badge">3</span></a>
+            </li>
+            <li><a href="customers.html"><i class="fas fa-users"></i> Khách hàng</a></li>
+            <li><a href="settings.html"><i class="fas fa-cog"></i> Cấu hình</a></li>
+        </ul>
+
+        <div class="logout-box">
+            <a href="../index.html"><i class="fas fa-sign-out-alt"></i> Về trang chủ</a>
+        </div>
+    </aside>
+
+    <div class="main-content">
+        <header class="top-header">
+            <div class="menu-toggle" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <div class="header-user" style="margin-left: auto;">
+                <div class="notif-btn"><i class="fas fa-bell"></i><span class="dot"></span></div>
+                <div class="user-info">
+                    <img src="https://placehold.co/40x40" alt="Admin">
+                    <span><strong>Admin</strong></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            <div class="page-header-group">
+                <h2>Danh sách sản phẩm</h2>
+                <p>Quản lý kho thuốc và thực phẩm chức năng</p>
+            </div>
+
+            <div class="toolbar">
+                <div class="filter-group">
+                    <div class="input-icon-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" class="custom-input" placeholder="Tìm tên thuốc, SKU...">
+                    </div>
+
+                    <select class="custom-select">
+                        <option value="">Tất cả danh mục</option>
+                        <option>Thuốc kê đơn</option>
+                        <option>Thực phẩm chức năng</option>
+                    </select>
+
+                    <select class="custom-select">
+                        <option value="">Trạng thái kho</option>
+                        <option>Còn hàng</option>
+                        <option>Sắp hết</option>
+                    </select>
+                </div>
+
+                <button class="btn-add" onclick="openProductModal()">
+                    <i class="fas fa-plus"></i> Thêm mới
+                </button>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="40%">Tên sản phẩm</th>
+                            <th>Danh mục</th>
+                            <th>Giá bán</th>
+                            <th>Tồn kho</th>
+                            <th>Hạn dùng</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="product-cell">
+                                    <img src="https://placehold.co/50x50" alt="Img">
+                                    <div class="product-info">
+                                        <h4>Panadol Extra (Hộp 10 vỉ)</h4>
+                                        <span>Mã: SP001</span>
+                                        <div class="mobile-category-tag">Thuốc không kê đơn</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>Thuốc không kê đơn</td>
+                            <td class="price-text">250.000đ</td>
+                            <td><span class="stock-status in-stock">Còn 500</span></td>
+                            <td>20/12/2026</td>
+                            <td>
+                                <button class="action-btn btn-edit" onclick="openProductModal()"><i
+                                        class="fas fa-pen"></i></button>
+                                <button class="action-btn btn-delete" onclick="deleteProduct()"><i
+                                        class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="product-cell">
+                                    <img src="https://placehold.co/50x50" alt="Img">
+                                    <div class="product-info">
+                                        <h4>Vitamin C 500mg</h4>
+                                        <span>Mã: SP002</span>
+                                        <div class="mobile-category-tag">TPCN</div>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>TPCN</td>
+                            <td class="price-text">120.000đ</td>
+                            <td><span class="stock-status low-stock">Còn 5</span></td>
+                            <td>15/05/2025</td>
+                            <td>
+                                <button class="action-btn btn-edit" onclick="openProductModal()"><i
+                                        class="fas fa-pen"></i></button>
+                                <button class="action-btn btn-delete" onclick="deleteProduct()"><i
+                                        class="fas fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="pagination">
+                    <button class="page-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="overlay" onclick="closeProductModal()"></div>
+
+    <div class="modal-box" id="productModal">
+        <div class="modal-header">
+            <h3>Thông tin sản phẩm</h3>
+            <span onclick="closeProductModal()" style="font-size:24px; cursor:pointer;">&times;</span>
+        </div>
+
+        <form onsubmit="event.preventDefault(); saveProduct();">
+            <div class="form-grid">
+                <div class="form-group full-width">
+                    <label>Tên sản phẩm</label>
+                    <input type="text" class="form-input" placeholder="VD: Panadol Extra...">
+                </div>
+
+                <div class="form-group">
+                    <label>Mã sản phẩm (SKU)</label>
+                    <input type="text" class="form-input" placeholder="VD: SP001">
+                </div>
+
+                <div class="form-group">
+                    <label>Danh mục</label>
+                    <select class="custom-select" style="width:100%; margin-top:5px;">
+                        <option>Thuốc không kê đơn</option>
+                        <option>Thực phẩm chức năng</option>
+                        <option>Dụng cụ y tế</option>
+                    </select>
+                </div>
+
+                <div class="form-group full-width variant-section">
+                    <div class="variant-header">
+                        <div style="display:flex; gap:15px; align-items:center;">
+                            <label style="margin:0;">Quy cách đóng gói:</label>
+                            <select id="unitType" class="custom-select" style="width:150px;"
+                                onchange="changeUnitType()">
+                                <option value="bottle">Dạng Chai/Lọ (ml/lít)</option>
+                                <option value="packet">Dạng Gói/Bao (g/kg)</option>
+                            </select>
+                        </div>
+                        <button type="button" class="btn-add-variant" onclick="addVariantRow()">+ Thêm phân
+                            loại</button>
+                    </div>
+
+                    <table class="variant-table">
+                        <thead>
+                            <tr>
+                                <th width="25%" id="sizeLabel">Dung tích</th>
+                                <th width="25%">Giá bán (VNĐ)</th>
+                                <th width="25%">Giá gốc (VNĐ)</th>
+                                <th width="20%">Tồn kho</th>
+                                <th width="5%"></th>
+                            </tr>
+                        </thead>
+                        <tbody id="variantContainer">
+                            <tr class="variant-row">
+                                <td><input type="text" class="form-input size-input" placeholder="VD: 100ml"></td>
+                                <td><input type="number" class="form-input price-input" placeholder="0"></td>
+                                <td><input type="number" class="form-input original-price-input" placeholder="Lãi/Lỗ">
+                                </td>
+                                <td><input type="number" class="form-input stock-input" value="100"></td>
+                                <td><span class="btn-remove-row" onclick="removeVariantRow(this)"><i
+                                            class="fas fa-trash-alt"></i></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="form-group">
+                    <label>Hạn sử dụng</label>
+                    <input type="date" class="form-input">
+                </div>
+
+                <div class="form-group full-width">
+                    <label style="margin-bottom:10px; display:block;">Thông tin chi tiết sản phẩm</label>
+
+                    <div class="product-tabs">
+                        <div class="tab-item active" onclick="switchTab('tab_thanhphan', this)">Thành phần</div>
+                        <div class="tab-item" onclick="switchTab('tab_congdung', this)">Công dụng</div>
+                        <div class="tab-item" onclick="switchTab('tab_cachdung', this)">Cách sử dụng</div>
+                        <div class="tab-item" onclick="switchTab('tab_luuy', this)">Lưu ý</div>
+                    </div>
+
+                    <div class="tab-content active" id="tab_thanhphan">
+                        <textarea id="editor_thanhphan" class="form-input"></textarea>
+                    </div>
+                    <div class="tab-content" id="tab_congdung">
+                        <textarea id="editor_congdung" class="form-input"></textarea>
+                    </div>
+                    <div class="tab-content" id="tab_cachdung">
+                        <textarea id="editor_cachdung" class="form-input"></textarea>
+                    </div>
+                    <div class="tab-content" id="tab_luuy">
+                        <textarea id="editor_luuy" class="form-input"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group full-width">
+                    <label>Hình ảnh sản phẩm</label>
+                    <div class="upload-container">
+                        <div class="upload-section main-section">
+                            <label class="upload-label">Ảnh đại diện</label>
+                            <div class="image-preview-box" id="mainPreviewBox"
+                                onclick="document.getElementById('mainImageInput').click()">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <p>Chọn ảnh chính</p>
+                                <img id="mainImgShow" src="" style="display:none;">
+                                <span class="btn-remove-img" id="btnRemoveMain" style="display:none;"
+                                    onclick="removeMainImage(event)">
+                                    <i class="fas fa-times"></i>
+                                </span>
+                            </div>
+                            <input type="file" id="mainImageInput" accept="image/*" hidden
+                                onchange="previewMainImage(this)">
+                        </div>
+
+                        <div class="upload-section sub-section">
+                            <label class="upload-label">Ảnh chi tiết (Album)</label>
+                            <div class="sub-images-grid">
+                                <div class="add-sub-image" onclick="document.getElementById('subImageInput').click()">
+                                    <i class="fas fa-plus"></i>
+                                </div>
+                                <input type="file" id="subImageInput" accept="image/*" multiple hidden
+                                    onchange="handleSubImageSelect(this)">
+                                <div id="subImagesContainer" class="sub-preview-list"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-submit">Lưu sản phẩm</button>
+        </form>
+    </div>
+
+    <script src="js/admin-script.js"></script>
+
+    <script>
+        // --- 1. QUẢN LÝ 4 EDITOR (JODIT) ---
+        let editors = {};
+
+        const joditConfig = {
+            height: 300,
+            width: '100%',
+            zIndex: 2005,
+            buttons: ['source', '|', 'bold', 'italic', 'underline', '|', 'ul', 'ol', '|', 'font', 'fontsize', 'brush', '|', 'image', 'table', 'link', '|', 'left', 'center', 'right', 'justify', '|', 'undo', 'redo', '|', 'eraser', 'fullsize'],
+            uploader: { insertImageAsBase64URI: true },
+            toolbarAdaptive: false,
+            showCharsCounter: false,
+            showWordsCounter: false,
+            showXPathInStatusbar: false,
+            placeholder: 'Nhập nội dung...'
+        };
+
+        // --- 2. QUẢN LÝ ẢNH (ALBUM) ---
+        let albumFiles = [];
+
+        // --- 3. HÀM MỞ MODAL ---
+        function openProductModal() {
+            openModal('productModal');
+
+            // Khởi tạo 4 ô soạn thảo nếu chưa có
+            if (!editors['thanhphan']) {
+                editors['thanhphan'] = Jodit.make('#editor_thanhphan', joditConfig);
+                editors['congdung'] = Jodit.make('#editor_congdung', joditConfig);
+                editors['cachdung'] = Jodit.make('#editor_cachdung', joditConfig);
+                editors['luuy'] = Jodit.make('#editor_luuy', joditConfig);
+            } else {
+                // Xóa trắng nội dung nếu mở lại
+                Object.values(editors).forEach(ed => ed.value = '');
+            }
+
+            // Reset Tab về đầu tiên
+            document.querySelector('.tab-item').click();
+
+            // Reset Album ảnh và Ảnh đại diện
+            albumFiles = [];
+            renderAlbum();
+            removeMainImage({ stopPropagation: function () { } });
+        }
+
+        // --- 4. HÀM ĐÓNG MODAL ---
+        function closeProductModal() {
+            closeModal('productModal');
+        }
+
+        // --- 5. HÀM CHUYỂN TAB ---
+        function switchTab(tabId, element) {
+            document.querySelectorAll('.tab-item').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+
+            element.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        }
+
+        // --- 6. XỬ LÝ ẢNH ĐẠI DIỆN ---
+        function previewMainImage(input) {
+            const previewBox = document.getElementById('mainImgShow');
+            const iconBox = document.querySelector('.image-preview-box i');
+            const textBox = document.querySelector('.image-preview-box p');
+            const btnRemove = document.getElementById('btnRemoveMain');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    previewBox.src = e.target.result;
+                    previewBox.style.display = 'block';
+                    btnRemove.style.display = 'flex';
+                    iconBox.style.display = 'none';
+                    textBox.style.display = 'none';
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        function removeMainImage(event) {
+            if (event) event.stopPropagation();
+            document.getElementById('mainImgShow').src = "";
+            document.getElementById('mainImgShow').style.display = 'none';
+            document.getElementById('btnRemoveMain').style.display = 'none';
+            document.getElementById('mainImageInput').value = "";
+            document.querySelector('.image-preview-box i').style.display = 'block';
+            document.querySelector('.image-preview-box p').style.display = 'block';
+        }
+
+        // --- 7. XỬ LÝ ALBUM ẢNH ---
+        function handleSubImageSelect(input) {
+            if (input.files) {
+                const newFiles = Array.from(input.files);
+                albumFiles = albumFiles.concat(newFiles);
+                renderAlbum();
+            }
+            input.value = "";
+        }
+
+        function renderAlbum() {
+            const container = document.getElementById('subImagesContainer');
+            container.innerHTML = '';
+            albumFiles.forEach((file, index) => {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const div = document.createElement('div');
+                    div.className = 'sub-img-box';
+
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+
+                    const btn = document.createElement('span');
+                    btn.className = 'btn-remove-img';
+                    btn.innerHTML = '<i class="fas fa-times"></i>';
+                    btn.onclick = function () { removeSubImage(index); };
+
+                    div.appendChild(img);
+                    div.appendChild(btn);
+                    container.appendChild(div);
+                }
+                reader.readAsDataURL(file);
+            });
+        }
+
+        function removeSubImage(index) {
+            albumFiles.splice(index, 1);
+            renderAlbum();
+        }
+
+        // --- 8. HÀM LƯU SẢN PHẨM ---
+        function saveProduct() {
+            const data = {
+                thanhphan: editors['thanhphan'].value,
+                congdung: editors['congdung'].value,
+                cachdung: editors['cachdung'].value,
+                luuy: editors['luuy'].value,
+                // Bạn có thể lấy thêm thông tin ảnh từ biến albumFiles ở đây
+            };
+
+            console.log("Dữ liệu chi tiết:", data);
+
+            closeProductModal();
+            Swal.fire({
+                icon: 'success',
+                title: 'Thành công',
+                text: 'Đã lưu thông tin sản phẩm (4 tab)!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+
+        // --- 9. HÀM XÓA SẢN PHẨM ---
+        function deleteProduct() {
+            Swal.fire({
+                title: 'Xóa sản phẩm này?',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Xóa',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire('Đã xóa!', '', 'success');
+                }
+            })
+        }
+    </script>
+
+    <script>
+        // ... (Các code cũ giữ nguyên) ...
+
+        // --- 1. XỬ LÝ THAY ĐỔI ĐƠN VỊ (CHAI vs GÓI) ---
+        function changeUnitType() {
+            const type = document.getElementById('unitType').value;
+            const label = document.getElementById('sizeLabel');
+            const inputs = document.querySelectorAll('.size-input');
+
+            if (type === 'bottle') {
+                label.innerText = 'Dung tích (ml/lít)';
+                inputs.forEach(input => input.placeholder = 'VD: 500ml');
+            } else {
+                label.innerText = 'Khối lượng (g/kg)';
+                inputs.forEach(input => input.placeholder = 'VD: 1kg');
+            }
+        }
+
+        // --- 2. THÊM DÒNG BIẾN THỂ MỚI ---
+        function addVariantRow() {
+            const container = document.getElementById('variantContainer');
+            const type = document.getElementById('unitType').value;
+            const placeholder = (type === 'bottle') ? 'VD: 500ml' : 'VD: 1kg';
+
+            const tr = document.createElement('tr');
+            tr.className = 'variant-row';
+            tr.innerHTML = `
+                <td><input type="text" class="form-input size-input" placeholder="${placeholder}"></td>
+                <td><input type="number" class="form-input price-input" placeholder="0"></td>
+                <td><input type="number" class="form-input original-price-input" placeholder="Lãi/Lỗ"></td>
+                <td><input type="number" class="form-input stock-input" value="0"></td>
+                <td><span class="btn-remove-row" onclick="removeVariantRow(this)"><i class="fas fa-trash-alt"></i></span></td>
+            `;
+            container.appendChild(tr);
+        }
+
+        // --- 3. XÓA DÒNG BIẾN THỂ ---
+        function removeVariantRow(btn) {
+            const row = btn.closest('tr');
+            const rowCount = document.querySelectorAll('.variant-row').length;
+
+            // Giữ lại ít nhất 1 dòng, không cho xóa hết
+            if (rowCount > 1) {
+                row.remove();
+            } else {
+                Swal.fire('Lỗi', 'Sản phẩm phải có ít nhất 1 quy cách đóng gói!', 'error');
+            }
+        }
+
+        // --- 4. CẬP NHẬT HÀM SAVE PRODUCT (LẤY DỮ LIỆU BIẾN THỂ) ---
+        function saveProduct() {
+            // Lấy thông tin chung
+            const unitType = document.getElementById('unitType').value;
+
+            // Lấy danh sách các biến thể
+            const variants = [];
+            document.querySelectorAll('.variant-row').forEach(row => {
+                variants.push({
+                    size: row.querySelector('.size-input').value,
+                    price: row.querySelector('.price-input').value,
+                    original_price: row.querySelector('.original-price-input').value,
+                    stock: row.querySelector('.stock-input').value
+                });
+            });
+
+            // Lấy mô tả Jodit
+            // ... (Code cũ) ...
+
+            // Log thử dữ liệu ra xem chơi
+            console.log("Loại:", unitType);
+            console.log("Danh sách biến thể:", variants);
+
+            closeProductModal();
+            Swal.fire({
+                icon: 'success',
+                title: 'Thành công',
+                text: 'Đã lưu sản phẩm với ' + variants.length + ' phiên bản!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+    </script>
+</body>
+
+</html>

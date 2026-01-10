@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang quản trị - Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <link rel="stylesheet" href="css/admin-style.css">
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <div class="brand">
+            <i class="fas fa-leaf"></i> <span>ADMIN CP</span>
+        </div>
+
+        <ul class="side-menu">
+            <li><a href="index.html"><i class="fas fa-th-large"></i> Tổng quan</a></li>
+
+            <li class="dropdown" id="prod-menu">
+                <a href="javascript:void(0)" class="dropdown-btn" onclick="toggleDropdown('prod-menu')">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <i class="fas fa-box"></i> <span>QL Sản phẩm</span>
+                    </div>
+                    <i class="fas fa-chevron-right arrow-icon"></i>
+                </a>
+                <ul class="sub-menu">
+                    <li><a href="products.html">◦ Danh sách sản phẩm</a></li>
+                    <li><a href="categories.html">◦ Danh mục</a></li>
+                </ul>
+            </li>
+
+            <li><a href="orders.html"><i class="fas fa-shopping-cart"></i> Đơn hàng <span class="badge">3</span></a>
+            </li>
+
+            <li><a href="customers.html"><i class="fas fa-users"></i> Khách hàng</a></li>
+
+            <li><a href="settings.html"><i class="fas fa-cog"></i> Cấu hình</a></li>
+        </ul>
+
+        <div class="logout-box">
+            <a href="../index.html"><i class="fas fa-sign-out-alt"></i> Về trang chủ</a>
+        </div>
+    </aside>
+
+    <div class="main-content">
+
+        <header class="top-header">
+            <div class="menu-toggle" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="header-title">
+                <h2>Tổng quan kinh doanh</h2>
+                <p>Thứ 7, 10/01/2026</p>
+            </div>
+            <div class="header-user">
+                <div class="notif-btn"><i class="fas fa-bell"></i><span class="dot"></span></div>
+                <div class="user-info">
+                    <img src="https://placehold.co/40x40" alt="Admin">
+                    <span>Xin chào, <strong>Admin</strong></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+
+            <div class="stats-grid">
+                <div class="stat-card blue">
+                    <div class="stat-icon"><i class="fas fa-shopping-bag"></i></div>
+                    <div class="stat-info">
+                        <h3>150</h3>
+                        <p>Đơn hàng mới</p>
+                    </div>
+                </div>
+                <div class="stat-card green">
+                    <div class="stat-icon"><i class="fas fa-dollar-sign"></i></div>
+                    <div class="stat-info">
+                        <h3>54.000.000đ</h3>
+                        <p>Doanh thu tháng</p>
+                    </div>
+                </div>
+                <div class="stat-card orange">
+                    <div class="stat-icon"><i class="fas fa-box-open"></i></div>
+                    <div class="stat-info">
+                        <h3>530</h3>
+                        <p>Sản phẩm kho</p>
+                    </div>
+                </div>
+                <div class="stat-card red">
+                    <div class="stat-icon"><i class="fas fa-user-plus"></i></div>
+                    <div class="stat-info">
+                        <h3>24</h3>
+                        <p>Khách mới</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="charts-row">
+                <div class="chart-box" style="flex: 2;">
+                    <div class="box-header">
+                        <h3>Biểu đồ doanh thu</h3>
+                    </div>
+
+                    <div class="chart-scroll-wrapper">
+                        <div class="chart-container-inner">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-box" style="flex: 1;">
+                    <div class="box-header">
+                        <h3>Đơn hàng mới</h3>
+                        <a href="orders.html">Xem tất cả</a>
+                    </div>
+                    <ul class="recent-orders">
+                        <li>
+                            <a href="orders.html" class="order-id">#DH10239</a>
+                            <span class="order-name">Nguyễn Văn An</span>
+                            <span class="order-date">10/01</span>
+                            <span class="order-price">137.800đ</span>
+                            <span class="status pending">Mới</span>
+                        </li>
+                        <li>
+                            <a href="orders.html" class="order-id">#DH10238</a>
+                            <span class="order-name">Trần Thị Thu Hường (Khách VIP)</span>
+                            <span class="order-date">09/01</span>
+                            <span class="order-price">500.000đ</span>
+                            <span class="status shipping">Đang giao</span>
+                        </li>
+                        <li>
+                            <a href="orders.html" class="order-id">#DH10237</a>
+                            <span class="order-name">Lê Văn C</span>
+                            <span class="order-date">08/01</span>
+                            <span class="order-price">250.000đ</span>
+                            <span class="status done">Hoàn tất</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="margin: 30px 0 15px; font-size: 16px; color: #666; text-transform: uppercase; font-weight: 700;">
+                <i class="fab fa-google"></i> Google Analytics
+            </h3>
+
+            <div class="charts-row">
+                <div class="chart-box" style="flex: 2;">
+                    <div class="box-header">
+                        <h3>Lưu lượng truy cập (7 ngày qua)</h3>
+                        <select style="border:1px solid #ddd; padding: 4px; border-radius:4px; font-size:12px;">
+                            <option>7 ngày</option>
+                            <option>30 ngày</option>
+                        </select>
+                    </div>
+                    <div class="chart-scroll-wrapper">
+                        <div class="chart-container-inner">
+                            <canvas id="trafficChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-box" style="flex: 1;">
+                    <div class="box-header">
+                        <h3>Nguồn truy cập</h3>
+                    </div>
+                    <div style="position: relative; height: 200px; display:flex; justify-content:center;">
+                        <canvas id="sourceChart"></canvas>
+                    </div>
+                    <ul class="analytics-info" style="margin-top: 15px;">
+                        <li><span style="font-weight:700; color:#4285F4;">● Google Search</span> <span
+                                style="font-weight:600;">60%</span></li>
+                        <li><span style="font-weight:700; color:#DB4437;">● Quảng cáo (Ads)</span> <span
+                                style="font-weight:600;">15%</span></li>
+                        <li><span style="font-weight:700; color:#F4B400;">● Facebook/Social</span> <span
+                                style="font-weight:600;">10%</span></li>
+                        <li><span style="font-weight:700; color:#0F9D58;">● Trực tiếp</span> <span
+                                style="font-weight:600;">15%</span></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="js/admin-script.js"></script>
+
+    <script>
+        // --- 1. BIỂU ĐỒ DOANH THU (Cột) ---
+        const ctxRev = document.getElementById('revenueChart').getContext('2d');
+        new Chart(ctxRev, {
+            type: 'bar',
+            data: {
+                labels: ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'],
+                datasets: [{
+                    label: 'Doanh thu (VNĐ)',
+                    data: [1200000, 1900000, 3000000, 5000000, 2000000, 3000000, 4500000],
+                    backgroundColor: '#0056b3',
+                    borderRadius: 4,
+                    barThickness: 30, // FIX LỖI: Giới hạn độ rộng cột
+                    maxBarThickness: 40
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: { y: { beginAtZero: true } }
+            }
+        });
+
+        // --- 2. BIỂU ĐỒ TRAFFIC (Đường) ---
+        const ctxTraffic = document.getElementById('trafficChart').getContext('2d');
+        new Chart(ctxTraffic, {
+            type: 'line',
+            data: {
+                labels: ['T2', 'T3', 'T4', 'T5', 'T6', 'T7', 'CN'],
+                datasets: [
+                    {
+                        label: 'Lượt xem trang (Pageviews)',
+                        data: [150, 230, 180, 320, 290, 400, 380],
+                        borderColor: '#4285F4', backgroundColor: 'rgba(66, 133, 244, 0.1)', fill: true, tension: 0.4
+                    },
+                    {
+                        label: 'Người dùng (Users)',
+                        data: [80, 120, 100, 200, 150, 250, 210],
+                        borderColor: '#34a853', borderDash: [5, 5], tension: 0.4
+                    }
+                ]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: { legend: { position: 'top' } }
+            }
+        });
+
+        // --- 3. BIỂU ĐỒ NGUỒN KHÁCH (Tròn) ---
+        const ctxSource = document.getElementById('sourceChart').getContext('2d');
+        new Chart(ctxSource, {
+            type: 'doughnut',
+            data: {
+                labels: ['Google Search', 'Quảng cáo', 'Social', 'Trực tiếp'],
+                datasets: [{
+                    data: [60, 15, 10, 15],
+                    backgroundColor: ['#4285F4', '#DB4437', '#F4B400', '#0F9D58'],
+                    borderWidth: 0
+                }]
+            },
+            options: {
+                responsive: true, maintainAspectRatio: false,
+                plugins: { legend: { display: false } }
+            }
+        });
+    </script>
+</body>
+
+</html>
