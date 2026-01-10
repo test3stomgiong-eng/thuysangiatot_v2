@@ -1442,3 +1442,145 @@ body.mode-hide-price .pro-card .old         /* Giá cũ trong thẻ SP thường
     display: none;
   }
 }
+
+/* =========================================
+   MODAL POPUP STRUCTURE (KHUNG POPUP CHUNG)
+   ========================================= */
+.modal-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  display: none; /* Mặc định ẩn */
+  align-items: center; /* Căn giữa dọc */
+  justify-content: center; /* Căn giữa ngang */
+}
+
+.modal-container.open {
+  display: flex; /* Khi có class .open thì hiện lên */
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Lớp nền đen mờ */
+}
+
+.modal-content-box {
+  position: relative;
+  z-index: 2;
+  background: white;
+  width: 450px; /* Độ rộng mặc định */
+  max-width: 90%; /* Không quá to trên mobile */
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  animation: zoomIn 0.3s ease; /* Hiệu ứng hiện ra */
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+}
+.modal-header h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: #333;
+}
+
+.close-btn {
+  font-size: 28px;
+  cursor: pointer;
+  color: #999;
+  line-height: 1;
+  border: none;
+  background: none;
+}
+.close-btn:hover {
+  color: #d0021b;
+}
+
+.modal-body {
+  padding: 20px;
+  max-height: 70vh;
+  overflow-y: auto; /* Cho phép cuộn nếu nội dung dài */
+}
+
+.modal-footer {
+  padding: 15px 20px;
+  border-top: 1px solid #eee;
+  background: #f9f9f9;
+  text-align: right;
+}
+
+/* Hiệu ứng phóng to khi xuất hiện */
+@keyframes zoomIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Mobile: Popup trượt từ dưới lên */
+@media (max-width: 768px) {
+  .modal-container {
+    align-items: flex-end;
+  }
+  .modal-content-box {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 16px 16px 0 0; /* Bo tròn góc trên */
+    animation: slideUp 0.3s ease;
+  }
+  @keyframes slideUp {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+}
+/* --- STYLE CHO Ô INPUT TRONG MODAL --- */
+.modal-body .form-control {
+  width: 100% !important; /* Bắt buộc rộng full */
+  height: 45px; /* Cao hơn cho dễ nhập */
+  padding: 10px 15px; /* Khoảng cách chữ */
+  border: 1px solid #ccc; /* Viền xám rõ ràng */
+  border-radius: 6px; /* Bo góc mềm mại */
+  font-size: 15px; /* Chữ to hơn xíu */
+  color: #333;
+  outline: none;
+  background: #fff;
+  box-sizing: border-box; /* Đảm bảo không bị tràn lề */
+  margin-top: 8px; /* Cách tiêu đề bên trên ra */
+}
+
+/* Hiệu ứng khi bấm vào nhập (Focus) */
+.modal-body .form-control:focus {
+  border-color: #0056b3; /* Đổi viền xanh */
+  box-shadow: 0 0 0 4px rgba(0, 86, 179, 0.1); /* Hào quang xanh nhạt */
+}
+
+/* Chỉnh lại Label (Tiêu đề "Địa chỉ Email mới") cho đậm lên */
+.modal-body label {
+  font-weight: 700;
+  color: #333;
+  font-size: 14px;
+}

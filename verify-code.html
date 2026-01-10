@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xác thực OTP - Pharmacity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/core/global.css">
+    <link rel="stylesheet" href="css/pages/login.css">
+    <style>
+        /* CSS riêng cho ô nhập OTP */
+        .otp-group { display: flex; gap: 10px; justify-content: center; margin: 30px 0; }
+        .otp-input {
+            width: 50px; height: 50px; text-align: center; font-size: 24px;
+            border: 1px solid #ddd; border-radius: 8px; outline: none; font-weight: 700;
+        }
+        .otp-input:focus { border-color: #0056b3; box-shadow: 0 0 0 3px rgba(0,86,179,0.1); }
+    </style>
+</head>
+<body>
+    <main class="page-content">
+        <div class="auth-container">
+            <div class="auth-box">
+                <div class="auth-form active" style="padding-top: 40px; text-align: center;">
+                    <h3 class="auth-title">Nhập mã xác nhận</h3>
+                    <p class="auth-desc">Mã OTP gồm 4 số đã được gửi đến <b>0912***678</b></p>
+
+                    <form onsubmit="event.preventDefault(); alert('Xác thực thành công!'); window.location.href='index.html';">
+                        <div class="otp-group">
+                            <input type="text" class="otp-input" maxlength="1" autofocus>
+                            <input type="text" class="otp-input" maxlength="1">
+                            <input type="text" class="otp-input" maxlength="1">
+                            <input type="text" class="otp-input" maxlength="1">
+                        </div>
+
+                        <button class="btn-auth">XÁC NHẬN</button>
+
+                        <p style="margin-top: 20px; font-size: 13px; color: #666;">
+                            Chưa nhận được mã? <a href="#" class="forgot-link">Gửi lại (30s)</a>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        const inputs = document.querySelectorAll('.otp-input');
+        inputs.forEach((input, index) => {
+            input.addEventListener('keyup', (e) => {
+                if (e.target.value.length === 1 && index < inputs.length - 1) {
+                    inputs[index + 1].focus();
+                }
+                if (e.key === 'Backspace' && index > 0) {
+                    inputs[index - 1].focus();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

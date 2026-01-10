@@ -1,2 +1,2 @@
 # thuysangiatot_v2
-SRC code web thuỷ sản
+# Giao dien client https://gemini.google.com/share/bcf3445416e7

@@ -1,0 +1,948 @@
+.breadcrumb-area {
+  background: #f4f6f9;
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+.breadcrumb {
+  display: flex;
+  list-style: none;
+  font-size: 13px;
+  color: #666;
+}
+.breadcrumb li::after {
+  content: "/";
+  margin: 0 5px;
+}
+.breadcrumb li:last-child::after {
+  display: none;
+}
+.breadcrumb a {
+  text-decoration: none;
+  color: #666;
+}
+
+.account-layout {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 50px;
+}
+
+/* Sidebar */
+.acc-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+}
+.user-brief {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eee;
+}
+.user-avatar {
+  width: 50px;
+  height: 50px;
+  background: #e1effe;
+  color: #0056b3;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 18px;
+}
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+.user-info small {
+  color: #666;
+}
+
+.acc-menu {
+  list-style: none;
+  padding: 0;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.acc-menu li a {
+  display: block;
+  padding: 12px 20px;
+  border-bottom: 1px solid #f5f5f5;
+  text-decoration: none;
+  color: #333;
+  font-size: 14px;
+  transition: 0.2s;
+}
+.acc-menu li a:hover {
+  background: #f9f9f9;
+  color: #0056b3;
+}
+.acc-menu li.active a {
+  background: #eef7ff;
+  color: #0056b3;
+  font-weight: 600;
+  border-left: 3px solid #0056b3;
+}
+.acc-menu li a i {
+  width: 25px;
+  color: #999;
+}
+
+/* Content */
+.acc-content {
+  flex: 1;
+}
+.acc-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.order-card {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  background: white;
+}
+.oc-header {
+  background: #f8f9fa;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+}
+.oc-id {
+  font-weight: 600;
+  color: #333;
+}
+.oc-status {
+  font-size: 13px;
+  font-weight: 600;
+}
+.oc-status.pending {
+  color: #ff9800;
+}
+.oc-status.success {
+  color: #28a745;
+}
+
+.oc-body {
+  padding: 20px;
+}
+.oc-item {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+.oc-item:last-child {
+  margin-bottom: 0;
+}
+.oc-item img {
+  width: 60px;
+  height: 60px;
+  border: 1px solid #eee;
+  border-radius: 4px;
+}
+.oc-info h4 {
+  font-size: 14px;
+  margin: 0 0 5px;
+  color: #333;
+}
+.oc-info span {
+  font-size: 13px;
+  color: #666;
+}
+
+.oc-footer {
+  padding: 15px 20px;
+  border-top: 1px dashed #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.oc-total {
+  font-size: 14px;
+}
+.oc-total strong {
+  color: #d0021b;
+  font-size: 16px;
+}
+
+.oc-actions {
+  display: flex;
+  gap: 10px;
+}
+.oc-actions button {
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.btn-outline {
+  background: white;
+  border: 1px solid #ddd;
+  color: #555;
+}
+.btn-primary {
+  background: #0056b3;
+  border: 1px solid #0056b3;
+  color: white;
+}
+
+/* Mobile */
+@media (max-width: 991px) {
+  .account-layout {
+    flex-direction: column;
+  }
+  .acc-sidebar {
+    width: 100%;
+  }
+  .oc-footer {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+  }
+}
+
+/* --- TAB LOGIC --- */
+.tab-content {
+  display: none; /* Mặc định ẩn */
+  animation: fadeIn 0.3s ease;
+}
+.tab-content.active {
+  display: block; /* Class active sẽ hiện ra */
+}
+
+/* --- PROFILE FORM LAYOUT --- */
+.profile-card {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 30px;
+  display: flex; /* Chia 2 cột: Form & Ảnh */
+  gap: 40px;
+}
+
+.profile-form {
+  flex: 1; /* Form chiếm phần lớn diện tích */
+  border-right: 1px solid #eee; /* Đường kẻ ngăn cách */
+  padding-right: 40px;
+}
+
+/* Dòng nhập liệu: Label bên trái, Input bên phải */
+.form-group-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+.form-group-row label {
+  width: 140px; /* Độ rộng nhãn cố định */
+  color: #555;
+  font-weight: 600;
+  text-align: right;
+  margin-right: 20px;
+}
+
+/* Input Styles */
+.form-control {
+  flex: 1;
+  height: 40px;
+  padding: 0 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s;
+}
+.form-control:focus {
+  border-color: #0056b3;
+  box-shadow: 0 0 0 3px rgba(0, 86, 179, 0.1);
+}
+.input-static {
+  font-weight: bold;
+  padding-top: 8px; /* Căn chỉnh với label */
+}
+
+/* Input có nút "Thay đổi" bên cạnh */
+.input-with-link {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.input-with-link a {
+  color: #0056b3;
+  text-decoration: underline;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* Radio giới tính */
+.radio-group {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  height: 40px;
+}
+.radio-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+/* Ngày sinh */
+.dob-group {
+  display: flex;
+  gap: 10px;
+  flex: 1;
+}
+
+/* Nút Lưu */
+.btn-save-profile {
+  background: #0056b3;
+  color: white;
+  border: none;
+  height: 40px;
+  padding: 0 25px;
+  border-radius: 4px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+.btn-save-profile:hover {
+  background: #004494;
+}
+
+/* --- CỘT UPLOAD ẢNH --- */
+.avatar-upload-col {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.avatar-big-preview img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #eee;
+  margin-bottom: 20px;
+}
+.btn-outline-upload {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 8px 15px;
+  border-radius: 4px;
+  color: #555;
+  cursor: pointer;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+.btn-outline-upload:hover {
+  background: #f9f9f9;
+  border-color: #aaa;
+}
+.upload-note {
+  font-size: 12px;
+  color: #999;
+  text-align: center;
+  line-height: 1.4;
+}
+
+/* RESPONSIVE: Trên mobile thì xếp chồng lên */
+@media (max-width: 768px) {
+  .profile-card {
+    flex-direction: column-reverse; /* Đưa ảnh lên đầu */
+    gap: 20px;
+    padding: 15px;
+  }
+  .profile-form {
+    border-right: none;
+    padding-right: 0;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+  }
+  .form-group-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .form-group-row label {
+    width: 100%;
+    text-align: left;
+  }
+  .btn-save-profile {
+    width: 100%;
+  }
+}
+
+/* --- FIX LỖI AVATAR BỊ DÍNH/TO QUÁ KHỔ --- */
+.user-avatar {
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0; /* Không bị méo khi màn hình nhỏ */
+  border-radius: 50%;
+  overflow: hidden; /* Cắt bỏ phần thừa để ảnh luôn tròn */
+  border: 1px solid #eee;
+}
+
+.user-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Đảm bảo ảnh luôn lấp đầy khung tròn */
+  display: block;
+}
+
+/* --- SỔ ĐỊA CHỈ --- */
+.address-card {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.addr-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.addr-name {
+  font-weight: 700;
+  color: #333;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.badge-default {
+  background: #eef7ff;
+  color: #0056b3;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.addr-actions a {
+  font-size: 13px;
+  color: #0056b3;
+  text-decoration: none;
+  margin-left: 15px;
+}
+.addr-actions a:hover {
+  text-decoration: underline;
+}
+
+.addr-body p {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #555;
+}
+.addr-body strong {
+  color: #333;
+}
+.addr-footer {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px dashed #eee;
+}
+
+/* Nút "Thiết lập mặc định" */
+.btn-outline-small {
+  background: white;
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.btn-outline-small:hover:not(:disabled) {
+  background: #f9f9f9;
+  border-color: #999;
+}
+.btn-outline-small:disabled {
+  opacity: 0.6;
+  cursor: default;
+  background: #f5f5f5;
+}
+
+/* --- SẢN PHẨM YÊU THÍCH (Grid Layout) --- */
+.wishlist-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cột */
+  gap: 20px;
+}
+
+.wish-card {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+  position: relative;
+  transition: 0.2s;
+}
+.wish-card:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.w-img {
+  position: relative;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f9f9f9;
+}
+.w-img img {
+  max-width: 80%;
+  max-height: 80%;
+}
+
+/* Nút xóa dấu X */
+.btn-remove-wish {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.8);
+  border: none;
+  cursor: pointer;
+  color: #999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn-remove-wish:hover {
+  background: #d0021b;
+  color: white;
+}
+
+.w-info {
+  padding: 15px;
+  text-align: center;
+}
+.w-name {
+  font-size: 13px;
+  color: #333;
+  margin-bottom: 8px;
+  height: 36px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+.w-price {
+  color: #d0021b;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.btn-add-cart-mini {
+  width: 100%;
+  background: white;
+  border: 1px solid #0056b3;
+  color: #0056b3;
+  padding: 6px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.btn-add-cart-mini:hover {
+  background: #0056b3;
+  color: white;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .wishlist-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+}
+
+/* --- TAB THÔNG BÁO --- */
+.noti-list {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.noti-item {
+  display: flex;
+  gap: 15px;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+  transition: 0.2s;
+  cursor: pointer;
+}
+.noti-item:last-child {
+  border-bottom: none;
+}
+.noti-item:hover {
+  background: #f9f9f9;
+}
+
+/* Màu nền cho tin chưa đọc */
+.noti-item.unread {
+  background: #eef7ff; /* Xanh rất nhạt */
+}
+
+/* Icon tròn bên trái */
+.noti-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 20px;
+  color: white;
+}
+.noti-icon.sale {
+  background: #ff9800;
+} /* Cam: Khuyến mãi */
+.noti-icon.order {
+  background: #0056b3;
+} /* Xanh: Đơn hàng */
+.noti-icon.system {
+  background: #28a745;
+} /* Lá: Hệ thống */
+
+/* Nội dung chữ */
+.noti-content h4 {
+  font-size: 15px;
+  margin: 0 0 5px;
+  color: #333;
+}
+.noti-content p {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 5px;
+  line-height: 1.4;
+}
+.noti-time {
+  font-size: 12px;
+  color: #999;
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+  .noti-item {
+    padding: 15px;
+  }
+  .noti-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+  .noti-content h4 {
+    font-size: 14px;
+  }
+}
+
+/* --- TAB XỬ LÝ YÊU CẦU --- */
+.req-card {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  overflow: hidden;
+}
+
+.req-header {
+  background: #f8f9fa;
+  padding: 12px 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #666;
+  border-bottom: 1px solid #eee;
+}
+.req-header strong {
+  color: #333;
+}
+
+.req-body {
+  padding: 20px;
+}
+.req-subject {
+  font-size: 15px;
+  margin: 0 0 8px;
+  color: #0056b3;
+  font-weight: 700;
+}
+.req-desc {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.req-footer {
+  padding: 12px 20px;
+  border-top: 1px dashed #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Trạng thái */
+.req-status {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+.req-status.pending {
+  background: #fff3cd;
+  color: #856404;
+} /* Vàng: Chờ xử lý */
+.req-status.processing {
+  background: #cce5ff;
+  color: #004085;
+} /* Xanh dương: Đang làm */
+.req-status.success {
+  background: #d4edda;
+  color: #155724;
+} /* Xanh lá: Xong */
+.req-status.closed {
+  background: #e2e3e5;
+  color: #383d41;
+} /* Xám: Đóng */
+
+.req-link {
+  font-size: 13px;
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* --- STYLE NÚT GỬI YÊU CẦU --- */
+.btn-new-request {
+  background-color: #0056b3; /* Màu xanh chủ đạo */
+  color: white; /* Chữ trắng */
+  border: none;
+  padding: 10px 20px; /* Tạo độ dày cho nút */
+  border-radius: 6px; /* Bo góc mềm mại */
+  font-weight: 700; /* Chữ đậm */
+  font-size: 14px;
+  cursor: pointer;
+  display: inline-flex; /* Để icon và chữ nằm ngang */
+  align-items: center; /* Căn giữa dọc */
+  gap: 8px; /* Khoảng cách giữa icon và chữ */
+  transition: all 0.2s ease; /* Hiệu ứng mượt */
+  box-shadow: 0 4px 6px rgba(0, 86, 179, 0.2); /* Đổ bóng nhẹ cho nổi */
+}
+
+.btn-new-request:hover {
+  background-color: #004494; /* Đậm hơn khi di chuột vào */
+  transform: translateY(-2px); /* Nẩy lên nhẹ 1 chút */
+  box-shadow: 0 6px 12px rgba(0, 86, 179, 0.3);
+}
+
+.btn-new-request i {
+  font-size: 16px; /* Icon to hơn chữ 1 chút */
+}
+
+/* Responsive Mobile: Nút nhỏ lại xíu cho vừa màn hình */
+@media (max-width: 768px) {
+  .btn-new-request {
+    padding: 8px 15px;
+    font-size: 13px;
+  }
+}
+/* --- KHUNG HỘI THOẠI YÊU CẦU --- */
+.req-conversation {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Tin nhắn chung */
+.req-msg {
+    max-width: 85%;
+    padding: 15px;
+    border-radius: 8px;
+    position: relative;
+    font-size: 14px;
+    line-height: 1.5;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+/* Tin nhắn của Khách (User) - Nằm bên phải */
+.req-msg.user {
+    align-self: flex-end;
+    background: #eef7ff;
+    border: 1px solid #cce5ff;
+    color: #004085;
+    border-top-right-radius: 0; /* Bo góc nhọn */
+}
+.req-msg.user::before {
+    content: "Bạn hỏi:";
+    display: block; font-size: 11px; font-weight: 700; color: #0056b3; margin-bottom: 5px;
+}
+
+/* Tin nhắn của Admin - Nằm bên trái */
+.req-msg.admin {
+    align-self: flex-start;
+    background: white;
+    border: 1px solid #ddd;
+    color: #333;
+    border-top-left-radius: 0;
+}
+.req-msg.admin::before {
+    content: "CSKH Phản hồi:";
+    display: block; font-size: 11px; font-weight: 700; color: #d0021b; margin-bottom: 5px;
+}
+
+/* Ngày giờ tin nhắn */
+.msg-time {
+    display: block; text-align: right; font-size: 11px; color: #999; margin-top: 5px;
+}
+
+/* --- FIX LỖI FORM ĐỔI MẬT KHẨU TRÊN MOBILE --- */
+@media (max-width: 768px) {
+    /* 1. Ẩn cái nhãn rỗng (Label dùng để căn lề trên PC) */
+    .password-form .form-group-row label:empty {
+        display: none;
+    }
+
+    /* 2. Căn chỉnh lại hàng chứa nút bấm */
+    .password-form .form-group-row:last-child {
+        flex-direction: column; /* Xếp dọc */
+        align-items: center;    /* Căn giữa */
+        gap: 15px;              /* Khoảng cách giữa Nút và Link */
+    }
+
+    /* 3. Nút "Xác nhận đổi" full chiều rộng */
+    .password-form .btn-save-profile {
+        width: 100%;
+        margin: 0;
+    }
+
+    /* 4. Link "Quên mật khẩu" bỏ lề trái cũ, thêm lề trên */
+    .password-form a {
+        margin-left: 0 !important; /* Ghi đè style inline */
+        display: block;
+        text-align: center;
+        width: 100%;
+        padding: 5px;
+    }
+
+    /* 5. Giảm padding của khung cho đỡ chật */
+    .profile-card {
+        padding: 15px;
+    }
+}
+/* --- FIX LỖI Ô NHẬP MẬT KHẨU BÉ XÍU TRÊN MOBILE --- */
+@media (max-width: 768px) {
+    .password-form .form-group-row {
+        width: 100%;       /* Dòng chứa phải rộng 100% */
+        display: block;    /* Bỏ flex, chuyển sang dạng khối */
+        margin-bottom: 15px;
+    }
+
+    .password-form label {
+        display: block;    /* Nhãn nằm dòng riêng */
+        margin-bottom: 8px; /* Cách ô nhập liệu 1 chút */
+        width: 100%;
+        text-align: left;
+    }
+
+    .password-form .form-control {
+        width: 100% !important; /* BẮT BUỘC: Ép ô nhập rộng 100% */
+        height: 45px;      /* Cao hơn chút cho dễ bấm */
+        flex: none;        /* Tắt tính năng co giãn của flex */
+        box-sizing: border-box; /* Tính cả viền vào độ rộng để không bị tràn */
+    }
+}
+
+/* --- FIX LỖI TOÀN BỘ Ô NHẬP LIỆU TRÊN MOBILE --- */
+@media (max-width: 768px) {
+    /* 1. Áp dụng cho cả Form Hồ sơ & Form Mật khẩu */
+    .profile-form .form-group-row,
+    .password-form .form-group-row {
+        display: block;      /* Xếp chồng dọc */
+        width: 100%;
+        margin-bottom: 15px;
+    }
+
+    /* 2. Nhãn tiêu đề (Label) nằm riêng 1 dòng */
+    .profile-form label,
+    .password-form label {
+        display: block;
+        width: 100%;
+        text-align: left;
+        margin-bottom: 8px;  /* Cách ô nhập 1 đoạn */
+    }
+
+    /* 3. Ô nhập liệu (Input) phải rộng 100% */
+    .profile-form .form-control,
+    .password-form .form-control {
+        width: 100% !important; /* Quan trọng: Ép rộng full */
+        box-sizing: border-box; /* Không bị tràn lề */
+        height: 40px;
+    }
+
+    /* 4. Fix riêng cho các ô có link "Thay đổi" bên cạnh (Email/SĐT) */
+    .input-with-link {
+        width: 100%;
+        display: flex;
+        gap: 10px;
+    }
+    .input-with-link .form-control {
+        flex: 1; /* Tự chiếm hết chỗ trống, chừa lại chỗ cho nút Thay đổi */
+        width: auto !important; /* Reset lại width để flex hoạt động */
+    }
+}
+
+/* --- FIX RIÊNG CHO BỘ CHỌN NGÀY SINH TRÊN MOBILE --- */
+@media (max-width: 768px) {
+    .dob-group {
+        display: flex !important; /* Bắt buộc xếp ngang */
+        gap: 10px;
+        width: 100%;
+    }
+
+    /* Ghi đè cái width 100% lúc nãy */
+    .dob-group .form-control {
+        width: auto !important; 
+        flex: 1;            /* Chia đều 3 cột bằng nhau */
+        padding: 0 5px;     /* Giảm padding để chữ không bị che */
+        text-align: center; /* Canh giữa số cho đẹp */
+        height: 40px;
+    }
+}
+
+/* --- FIX LỖI NGÀY SINH TRÀN MÀN HÌNH --- */
+@media (max-width: 768px) {
+    .dob-group {
+        display: flex !important;
+        gap: 5px;       /* Giảm khoảng cách giữa các ô xuống 5px */
+        width: 100%;
+    }
+
+    .dob-group .form-control {
+        flex: 1;        /* Chia đều 3 phần */
+        width: 0 !important; /* [QUAN TRỌNG] Reset width để nó tự co giãn theo flex */
+        min-width: 0;   /* [QUAN TRỌNG] Cho phép co nhỏ hơn nội dung bên trong */
+        padding: 0 2px; /* Giảm lề trong tối đa */
+        text-align: center;
+        font-size: 13px; /* Giảm cỡ chữ xuống xíu cho vừa vặn */
+        height: 40px;
+    }
+}

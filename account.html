@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tài khoản của tôi - Pharmacity</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="stylesheet" href="css/core/global.css">
+    <link rel="stylesheet" href="css/pages/account.css">
+</head>
+
+<body>
+
+    <header id="site-header">
+        <div class="container">
+            <div style="padding:15px; font-weight:bold; color:#0056b3;">PHARMACITY HEADER</div>
+        </div>
+    </header>
+
+    <div class="breadcrumb-area">
+        <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li class="active">Tài khoản</li>
+            </ul>
+        </div>
+    </div>
+
+    <main class="page-content">
+        <div class="container">
+            <div class="account-layout">
+
+                <div class="acc-sidebar">
+                    <div class="user-brief">
+                        <div class="user-avatar">
+                            <img src="https://placehold.co/100x100/0056b3/fff?text=NV" id="avatar-preview-small">
+                        </div>
+                        <div class="user-info">
+                            <strong>Nguyễn Văn A</strong>
+                            <small>Thành viên Bạc</small>
+                        </div>
+                    </div>
+
+                    <ul class="acc-menu">
+                        <li class="active" onclick="openTab(event, 'tab-info')">
+                            <a href="javascript:void(0)"><i class="fas fa-user"></i> Thông tin tài khoản</a>
+                        </li>
+                        <li onclick="openTab(event, 'tab-orders')">
+                            <a href="javascript:void(0)"><i class="fas fa-file-invoice"></i> Lịch sử đơn hàng</a>
+                        </li>
+                        <li onclick="openTab(event, 'tab-addresses')">
+                            <a href="javascript:void(0)"><i class="fas fa-map-marker-alt"></i> Sổ địa chỉ</a>
+                        </li>
+                        <li onclick="openTab(event, 'tab-wishlist')">
+                            <a href="javascript:void(0)"><i class="fas fa-heart"></i> Sản phẩm yêu thích</a>
+                        </li>
+                        <li onclick="openTab(event, 'tab-notifications')">
+                            <a href="javascript:void(0)"><i class="fas fa-bell"></i> Thông báo</a>
+                        </li>
+                        <li onclick="openTab(event, 'tab-password')">
+                            <a href="javascript:void(0)"><i class="fas fa-lock"></i> Đổi mật khẩu</a>
+                        </li>
+                        <li onclick="openTab(event, 'tab-requests')">
+                            <a href="javascript:void(0)"><i class="fas fa-headset"></i> Xử lý yêu cầu</a>
+                        </li>
+                        <li>
+                            <a href="login.html" style="color: #d0021b;"><i class="fas fa-sign-out-alt"></i> Đăng
+                                xuất</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="acc-content">
+
+                    <div id="tab-info" class="tab-content active">
+                        <h2 class="acc-title">Hồ sơ của tôi</h2>
+                        <p style="margin-bottom: 20px; color: #666;">Quản lý thông tin hồ sơ để bảo mật tài khoản</p>
+
+                        <div class="profile-card">
+                            <form class="profile-form">
+                                <div class="form-group-row">
+                                    <label>Tên đăng nhập</label>
+                                    <div class="input-static">nguyenvana123</div>
+                                </div>
+
+                                <div class="form-group-row">
+                                    <label>Tên hiển thị</label>
+                                    <input type="text" value="Nguyễn Văn A" class="form-control">
+                                </div>
+
+                                <div class="form-group-row">
+                                    <label>Email</label>
+                                    <div class="input-with-link">
+                                        <input type="email" value="nguyenvana@gmail.com" class="form-control"
+                                            id="display-email" readonly>
+                                        <a href="javascript:void(0)" onclick="openUpdateModal('email')">Thay đổi</a>
+                                    </div>
+                                </div>
+
+                                <div class="form-group-row">
+                                    <label>Số điện thoại</label>
+                                    <div class="input-with-link">
+                                        <input type="text" value="*******678" class="form-control" id="display-phone"
+                                            disabled style="background: #f9f9f9;">
+                                        <a href="javascript:void(0)" onclick="openUpdateModal('phone')">Thay đổi</a>
+                                    </div>
+                                </div>
+
+                                <div class="form-group-row">
+                                    <label>Giới tính</label>
+                                    <div class="radio-group">
+                                        <label class="radio-item"><input type="radio" name="gender" checked> Nam</label>
+                                        <label class="radio-item"><input type="radio" name="gender"> Nữ</label>
+                                        <label class="radio-item"><input type="radio" name="gender"> Khác</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group-row">
+                                    <label>Ngày sinh</label>
+                                    <div class="dob-group">
+                                        <select class="form-control" id="dob-day">
+                                            <option value="">Ngày</option>
+                                        </select>
+                                        <select class="form-control" id="dob-month">
+                                            <option value="">Tháng</option>
+                                        </select>
+                                        <input type="number" class="form-control" id="dob-year" placeholder="Năm">
+                                    </div>
+                                </div>
+
+                                <div class="form-group-row">
+                                    <label></label>
+                                    <button class="btn-save-profile">Lưu thay đổi</button>
+                                </div>
+                            </form>
+
+                            <div class="avatar-upload-col">
+                                <div class="avatar-big-preview">
+                                    <img src="https://placehold.co/150x150/0056b3/fff?text=NV" alt="Avatar">
+                                </div>
+                                <button class="btn-outline-upload">Chọn ảnh</button>
+                                <div class="upload-note">
+                                    Dụng lượng file tối đa 1 MB<br>Định dạng: .JPEG, .PNG
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-orders" class="tab-content">
+                        <h2 class="acc-title">Lịch sử đơn hàng</h2>
+                        <div class="order-list">
+                            <div class="order-card">
+                                <div class="oc-header">
+                                    <span class="oc-id">Đơn hàng #DH10239</span>
+                                    <span class="oc-status pending">Đang xử lý</span>
+                                </div>
+                                <div class="oc-body">
+                                    <div class="oc-item">
+                                        <img src="https://placehold.co/60x60" alt="SP">
+                                        <div class="oc-info">
+                                            <h4>Khẩu trang y tế 4D Pharmacity</h4>
+                                            <span>x2 • 26.400đ</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="oc-footer">
+                                    <div class="oc-total">Tổng tiền: <strong>52.800đ</strong></div>
+                                    <div class="oc-actions">
+                                        <button class="btn-primary">Mua lại</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-addresses" class="tab-content">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h2 class="acc-title" style="margin:0;">Địa chỉ của tôi</h2>
+                            <button class="btn-primary" style="padding: 8px 15px;">+ Thêm địa chỉ mới</button>
+                        </div>
+                        <div class="address-list">
+                            <div class="address-card">
+                                <div class="addr-header">
+                                    <div class="addr-name">
+                                        Nguyễn Văn A
+                                        <span class="badge-default"><i class="fas fa-check-circle"></i> Mặc định</span>
+                                    </div>
+                                    <div class="addr-actions">
+                                        <a href="#">Cập nhật</a>
+                                    </div>
+                                </div>
+                                <div class="addr-body">
+                                    <p class="phone">Số điện thoại: <strong>0912 345 678</strong></p>
+                                    <p class="detail">Số 123, Đường Nguyễn Văn Linh, Phường Tân Phong, Quận 7, TP. Hồ
+                                        Chí Minh</p>
+                                </div>
+                                <div class="addr-footer">
+                                    <button class="btn-outline-small" disabled>Thiết lập mặc định</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-wishlist" class="tab-content">
+                        <h2 class="acc-title">Sản phẩm yêu thích</h2>
+                        <div class="wishlist-grid">
+                            <div class="wish-card">
+                                <div class="w-img">
+                                    <img src="https://placehold.co/150x150?text=Cocoon" alt="SP">
+                                    <button class="btn-remove-wish"><i class="fas fa-times"></i></button>
+                                </div>
+                                <div class="w-info">
+                                    <h3 class="w-name">Mặt Nạ Nghệ Hưng Yên Cocoon Giảm Mụn</h3>
+                                    <div class="w-price">130.500đ</div>
+                                    <button class="btn-add-cart-mini">Thêm vào giỏ</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-notifications" class="tab-content">
+                        <h2 class="acc-title">Thông báo</h2>
+                        <div class="noti-list">
+                            <div class="noti-item unread"
+                                onclick="viewNoti(this, 'Săn sale đón Tết - Giảm đến 50%', 'Chương trình khuyến mãi lớn nhất năm đã bắt đầu. Hàng ngàn voucher giảm giá 50%, freeship 0đ đang chờ bạn. Nhanh tay mua ngay các sản phẩm bảo vệ sức khỏe cho gia đình!', '10:30 Hôm nay')">
+                                <div class="noti-icon sale"><i class="fas fa-tags"></i></div>
+                                <div class="noti-content">
+                                    <h4>Săn sale đón Tết - Giảm đến 50%</h4>
+                                    <p>Chương trình khuyến mãi lớn nhất năm đã bắt đầu...</p>
+                                    <span class="noti-time">10:30 Hôm nay</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="tab-password" class="tab-content">
+                        <h2 class="acc-title">Đổi mật khẩu</h2>
+                        <p style="margin-bottom: 20px; color: #666;">Để bảo mật tài khoản, vui lòng không chia sẻ mật
+                            khẩu cho người khác.</p>
+                        <div class="profile-card" style="display: block;">
+                            <form class="password-form" onsubmit="event.preventDefault(); handleChangePassword();">
+                                <div class="form-group-row">
+                                    <label>Mật khẩu hiện tại</label>
+                                    <input type="password" id="pass-current" placeholder="Nhập mật khẩu đang dùng"
+                                        class="form-control">
+                                </div>
+                                <div class="form-group-row">
+                                    <label>Mật khẩu mới</label>
+                                    <input type="password" id="pass-new" placeholder="Nhập mật khẩu mới"
+                                        class="form-control">
+                                </div>
+                                <div class="form-group-row">
+                                    <label>Xác nhận mật khẩu</label>
+                                    <input type="password" id="pass-confirm" placeholder="Nhập lại mật khẩu mới"
+                                        class="form-control">
+                                </div>
+                                <div class="form-group-row">
+                                    <label></label>
+                                    <button class="btn-save-profile">Xác nhận đổi</button>
+                                    <a href="#" style="margin-left: 20px; color: #0056b3; font-size: 13px;">Quên mật
+                                        khẩu?</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div id="tab-requests" class="tab-content">
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                            <h2 class="acc-title" style="margin:0;">Yêu cầu hỗ trợ</h2>
+                            <button class="btn-new-request" onclick="openRequestModal()">
+                                <i class="fas fa-plus-circle"></i> Gửi yêu cầu mới
+                            </button>
+                        </div>
+                        <div class="request-list">
+                            <div class="req-card">
+                                <div class="req-header">
+                                    <span class="req-id">Mã phiếu: <strong>#YC-0092</strong></span>
+                                    <span class="req-date">10:30 10/01/2026</span>
+                                </div>
+                                <div class="req-body">
+                                    <h4 class="req-subject">Yêu cầu đổi trả sản phẩm đơn #DH10239</h4>
+                                    <p class="req-desc">Sản phẩm tôi nhận được bị móp hộp, tôi muốn đổi sang hộp mới...
+                                    </p>
+                                </div>
+                                <div class="req-footer">
+                                    <span class="req-status pending">Đang xử lý</span>
+                                    <a href="javascript:void(0)" class="req-link"
+                                        onclick="viewRequestDetail('YC-0092')">Xem phản hồi</a>
+                                </div>
+                            </div>
+                            <div class="req-card">
+                                <div class="req-header">
+                                    <span class="req-id">Mã phiếu: <strong>#YC-0081</strong></span>
+                                    <span class="req-date">08/01/2026</span>
+                                </div>
+                                <div class="req-body">
+                                    <h4 class="req-subject">Hỏi về cách sử dụng thuốc A</h4>
+                                    <p class="req-desc">Cho tôi hỏi thuốc này uống trước hay sau ăn?</p>
+                                </div>
+                                <div class="req-footer">
+                                    <span class="req-status success">Đã giải quyết</span>
+                                    <a href="javascript:void(0)" class="req-link"
+                                        onclick="viewRequestDetail('YC-0081')">Xem chi tiết</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer style="margin-top:50px; background:#eee; padding:20px; text-align:center;">Footer Demo</footer>
+
+    <div id="notiModal" class="modal-container">
+        <div class="modal-overlay" onclick="closeNotiModal()"></div>
+        <div class="modal-content-box" style="width: 500px;">
+            <div class="modal-header">
+                <h3 style="display:flex; align-items:center; gap:10px;">
+                    <i class="fas fa-bell" style="color:#0056b3;"></i>
+                    Chi tiết thông báo
+                </h3>
+                <span class="close-btn" onclick="closeNotiModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <h4 id="noti-title-detail" style="font-size:16px; margin-bottom:10px; color:#333;"></h4>
+                <p id="noti-time-detail"
+                    style="font-size:12px; color:#999; margin-bottom:15px; border-bottom:1px solid #eee; padding-bottom:10px;">
+                </p>
+                <div id="noti-content-detail" style="font-size:14px; line-height:1.6; color:#555;"></div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal-submit" onclick="closeNotiModal()"
+                    style="margin-top:0; width:auto; padding: 8px 25px; margin-left:auto;">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="updateModal" class="modal-container">
+        <div class="modal-overlay" onclick="closeUpdateModal()"></div>
+        <div class="modal-content-box" style="width: 400px;">
+            <div class="modal-header">
+                <h3 id="modal-title">Cập nhật thông tin</h3>
+                <span class="close-btn" onclick="closeUpdateModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p style="margin-bottom: 15px; font-size: 13px; color: #666;">
+                    Để bảo mật, vui lòng nhập thông tin mới chính xác.
+                </p>
+                <div class="form-group-row" style="flex-direction: column; align-items: start; gap: 5px;">
+                    <label id="modal-label" style="text-align: left; width: 100%;">Nhập mới</label>
+                    <input type="text" id="modal-input" class="form-control" style="width: 100%;">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal-submit" onclick="saveUpdateInfo()">Xác nhận thay đổi</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="requestModal" class="modal-container">
+        <div class="modal-overlay" onclick="closeRequestModal()"></div>
+        <div class="modal-content-box" style="width: 500px;">
+            <div class="modal-header">
+                <h3>Gửi yêu cầu hỗ trợ</h3>
+                <span class="close-btn" onclick="closeRequestModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form class="request-form">
+                    <div class="form-group-row" style="flex-direction: column; align-items: start; gap: 5px;">
+                        <label style="text-align: left; width: 100%;">Vấn đề cần hỗ trợ</label>
+                        <select class="form-control" style="width: 100%;">
+                            <option>Đổi trả/Hoàn tiền</option>
+                            <option>Khiếu nại sản phẩm</option>
+                            <option>Tư vấn sản phẩm</option>
+                            <option>Vấn đề khác</option>
+                        </select>
+                    </div>
+                    <div class="form-group-row" style="flex-direction: column; align-items: start; gap: 5px;">
+                        <label style="text-align: left; width: 100%;">Tiêu đề</label>
+                        <input type="text" class="form-control" placeholder="Tóm tắt vấn đề..." style="width: 100%;">
+                    </div>
+                    <div class="form-group-row" style="flex-direction: column; align-items: start; gap: 5px;">
+                        <label style="text-align: left; width: 100%;">Nội dung chi tiết</label>
+                        <textarea class="form-control" rows="4" placeholder="Mô tả chi tiết vấn đề của bạn..."
+                            style="width: 100%; height: auto;"></textarea>
+                    </div>
+                    <div class="form-group-row" style="flex-direction: column; align-items: start; gap: 5px;">
+                        <label style="text-align: left; width: 100%;">Hình ảnh đính kèm (nếu có)</label>
+                        <input type="file" class="form-control" style="padding: 10px;">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-modal-submit" onclick="submitRequest()">Gửi yêu cầu</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="requestDetailModal" class="modal-container">
+        <div class="modal-overlay" onclick="closeRequestDetailModal()"></div>
+        <div class="modal-content-box" style="width: 600px;">
+            <div class="modal-header">
+                <div>
+                    <h3 id="rd-ticket-id" style="color: #0056b3;">#YC-0000</h3>
+                    <span id="rd-status" class="req-status pending" style="margin-left: 0;">Trạng thái</span>
+                </div>
+                <span class="close-btn" onclick="closeRequestDetailModal()">&times;</span>
+            </div>
+            <div class="modal-body" style="background: #f5f7fa; padding: 0;">
+                <div id="rd-conversation" class="req-conversation">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="text" class="form-control" placeholder="Nhập phản hồi thêm..."
+                    style="margin-top:0; height: 40px;">
+                <button class="btn-primary" style="margin-left: 10px; height: 40px; padding: 0 20px;">Gửi</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // === 1. NAVIGATION & TABS LOGIC ===
+        function openTab(evt, tabName) {
+            // Ẩn tất cả tab nội dung
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            // Xóa class active ở tất cả menu
+            tablinks = document.querySelectorAll(".acc-menu li");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            // Hiện tab được chọn
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        // === 2. UPDATE INFO LOGIC (EMAIL/PHONE) ===
+        let currentEditType = '';
+
+        function openUpdateModal(type) {
+            currentEditType = type;
+            const modal = document.getElementById('updateModal');
+            const title = document.getElementById('modal-title');
+            const label = document.getElementById('modal-label');
+            const input = document.getElementById('modal-input');
+
+            if (type === 'email') {
+                title.innerText = "Cập nhật Email";
+                label.innerText = "Địa chỉ Email mới";
+                input.type = "email";
+                input.placeholder = "Ví dụ: abc@gmail.com";
+            } else {
+                title.innerText = "Cập nhật Số điện thoại";
+                label.innerText = "Số điện thoại mới";
+                input.type = "tel";
+                input.placeholder = "Ví dụ: 0912345678";
+            }
+
+            input.value = '';
+            modal.classList.add('open');
+            input.focus();
+        }
+
+        function closeUpdateModal() {
+            document.getElementById('updateModal').classList.remove('open');
+        }
+
+        function saveUpdateInfo() {
+            const inputVal = document.getElementById('modal-input').value;
+            if (inputVal.trim() === "") {
+                alert("Vui lòng nhập thông tin!");
+                return;
+            }
+            if (currentEditType === 'email') {
+                document.getElementById('display-email').value = inputVal;
+            } else {
+                let hiddenPhone = inputVal.substring(0, inputVal.length - 3).replace(/\d/g, '*') + inputVal.substring(inputVal.length - 3);
+                document.getElementById('display-phone').value = hiddenPhone;
+            }
+            alert("Cập nhật thành công!");
+            closeUpdateModal();
+        }
+
+        // === 3. NOTIFICATION LOGIC ===
+        function viewNoti(element, title, content, time) {
+            if (element.classList.contains('unread')) {
+                element.classList.remove('unread');
+            }
+            document.getElementById('noti-title-detail').innerText = title;
+            document.getElementById('noti-content-detail').innerText = content;
+            document.getElementById('noti-time-detail').innerText = time;
+            document.getElementById('notiModal').classList.add('open');
+        }
+
+        function closeNotiModal() {
+            document.getElementById('notiModal').classList.remove('open');
+        }
+
+        // === 4. SUPPORT TICKET LOGIC ===
+        // -- Modal Gửi yêu cầu mới --
+        function openRequestModal() {
+            document.getElementById('requestModal').classList.add('open');
+        }
+
+        function closeRequestModal() {
+            document.getElementById('requestModal').classList.remove('open');
+        }
+
+        function submitRequest() {
+            closeRequestModal();
+            let timerInterval;
+            Swal.fire({
+                title: 'Đang gửi yêu cầu...',
+                html: 'Vui lòng chờ trong giây lát.',
+                timer: 1000,
+                timerProgressBar: true,
+                didOpen: () => { Swal.showLoading(); },
+            }).then((result) => {
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    Swal.fire({
+                        title: 'Gửi thành công!',
+                        text: 'Mã phiếu #YC-' + Math.floor(Math.random() * 10000) + ' đã được tạo. Chúng tôi sẽ phản hồi sớm nhất.',
+                        icon: 'success',
+                        confirmButtonColor: '#0056b3',
+                        confirmButtonText: 'Hoàn tất'
+                    });
+                }
+            });
+        }
+
+        // -- Modal Xem chi tiết (Chat) --
+        const requestDB = {
+            'YC-0092': {
+                status: 'pending', statusText: 'Đang xử lý',
+                messages: [
+                    { type: 'user', content: 'Sản phẩm tôi nhận được bị móp hộp, tôi muốn đổi sang hộp mới. Mã đơn hàng là #DH10239.', time: '10:30 10/01/2026' },
+                    { type: 'admin', content: 'Chào bạn, Pharmacity rất xin lỗi về sự cố này. Bạn vui lòng gửi giúp mình hình ảnh sản phẩm bị móp để bên mình kiểm tra và hỗ trợ đổi trả ngay nhé.', time: '10:45 10/01/2026' }
+                ]
+            },
+            'YC-0081': {
+                status: 'success', statusText: 'Đã giải quyết',
+                messages: [
+                    { type: 'user', content: 'Cho tôi hỏi thuốc Vitamin C 500mg này uống trước hay sau ăn thì tốt?', time: '09:00 08/01/2026' },
+                    { type: 'admin', content: 'Chào bạn, Vitamin C 500mg nên uống sau bữa ăn sáng hoặc trưa khoảng 30 phút để tránh kích ứng dạ dày và hấp thu tốt nhất nhé ạ.', time: '09:15 08/01/2026' },
+                    { type: 'user', content: 'Cảm ơn shop nhiều!', time: '09:20 08/01/2026' }
+                ]
+            }
+        };
+
+        function viewRequestDetail(ticketId) {
+            const data = requestDB[ticketId];
+            if (!data) return;
+            document.getElementById('rd-ticket-id').innerText = '#' + ticketId;
+            const statusEl = document.getElementById('rd-status');
+            statusEl.className = 'req-status ' + data.status;
+            statusEl.innerText = data.statusText;
+
+            const chatBox = document.getElementById('rd-conversation');
+            chatBox.innerHTML = '';
+            data.messages.forEach(msg => {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = `req-msg ${msg.type}`;
+                msgDiv.innerHTML = `${msg.content} <span class="msg-time">${msg.time}</span>`;
+                chatBox.appendChild(msgDiv);
+            });
+            document.getElementById('requestDetailModal').classList.add('open');
+        }
+
+        function closeRequestDetailModal() {
+            document.getElementById('requestDetailModal').classList.remove('open');
+        }
+
+        // === 5. DATE GENERATOR ===
+        document.addEventListener("DOMContentLoaded", function () {
+            const daySelect = document.getElementById('dob-day');
+            for (let i = 1; i <= 31; i++) {
+                let option = document.createElement('option');
+                option.value = i; option.text = i;
+                daySelect.appendChild(option);
+            }
+            const monthSelect = document.getElementById('dob-month');
+            for (let i = 1; i <= 12; i++) {
+                let option = document.createElement('option');
+                option.value = i; option.text = "Tháng " + i;
+                monthSelect.appendChild(option);
+            }
+        });
+
+        // === 6. CHANGE PASSWORD LOGIC ===
+        function handleChangePassword() {
+            const currentPass = document.getElementById('pass-current').value;
+            const newPass = document.getElementById('pass-new').value;
+            const confirmPass = document.getElementById('pass-confirm').value;
+
+            if (!currentPass || !newPass || !confirmPass) {
+                Swal.fire({ icon: 'error', title: 'Thiếu thông tin', text: 'Vui lòng nhập đầy đủ các ô mật khẩu!', confirmButtonColor: '#d0021b' });
+                return;
+            }
+            if (newPass !== confirmPass) {
+                Swal.fire({ icon: 'error', title: 'Mật khẩu không khớp', text: 'Mật khẩu mới và Xác nhận mật khẩu không giống nhau.', confirmButtonColor: '#d0021b' });
+                return;
+            }
+
+            Swal.fire({
+                title: 'Đang cập nhật...',
+                html: 'Hệ thống đang mã hóa mật khẩu mới.',
+                timer: 1500,
+                timerProgressBar: true,
+                didOpen: () => { Swal.showLoading(); },
+            }).then((result) => {
+                if (result.dismiss === Swal.DismissReason.timer) {
+                    Swal.fire({ icon: 'success', title: 'Đổi mật khẩu thành công!', text: 'Vui lòng sử dụng mật khẩu mới cho lần đăng nhập sau.', confirmButtonColor: '#0056b3', confirmButtonText: 'Đồng ý' });
+                    document.querySelector('.password-form').reset();
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
