@@ -844,161 +844,336 @@
 
 /* === SECTION TIN TỨC (GÓC SỨC KHỎE) === */
 .news-section {
-    padding: 30px 0 50px 0;
-    background: white;
+  padding: 30px 0 50px 0;
+  background: white;
 }
 
 /* 1. THANH DANH MỤC (TAGS) */
 .news-tags-wrapper {
-    position: relative;
-    margin-bottom: 25px;
-    padding: 0 10px;
+  position: relative;
+  margin-bottom: 25px;
+  padding: 0 10px;
 }
 
 .news-tags-scroll {
-    display: flex;
-    gap: 10px;
-    overflow-x: auto;
-    white-space: nowrap;
-    scrollbar-width: none; /* Ẩn thanh cuộn */
-    padding: 5px 0;
-    scroll-behavior: smooth;
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none; /* Ẩn thanh cuộn */
+  padding: 5px 0;
+  scroll-behavior: smooth;
 }
-.news-tags-scroll::-webkit-scrollbar { display: none; }
+.news-tags-scroll::-webkit-scrollbar {
+  display: none;
+}
 
 .tag-pill {
-    display: inline-block;
-    padding: 8px 16px;
-    background: #f0f2f5;
-    color: #555;
-    border-radius: 20px;
-    font-size: 13px; font-weight: 600;
-    text-decoration: none;
-    transition: 0.2s;
+  display: inline-block;
+  padding: 8px 16px;
+  background: #f0f2f5;
+  color: #555;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: 0.2s;
 }
-.tag-pill:hover { background: #e4e6eb; color: #333; }
+.tag-pill:hover {
+  background: #e4e6eb;
+  color: #333;
+}
 .tag-pill.active {
-    background: #0056b3; /* Màu xanh active */
-    color: white;
+  background: #0056b3; /* Màu xanh active */
+  color: white;
 }
 
 /* Mũi tên điều hướng Tags */
 .tag-arrow {
-    position: absolute; top: 50%; transform: translateY(-50%);
-    width: 32px; height: 32px;
-    background: white; border: 1px solid #ddd; border-radius: 50%;
-    cursor: pointer; display: flex; align-items: center; justify-content: center;
-    color: #666; box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 5;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 5;
 }
-.tag-arrow:hover { color: #0056b3; border-color: #0056b3; }
-.tag-arrow.prev { left: -15px; }
-.tag-arrow.next { right: -15px; }
+.tag-arrow:hover {
+  color: #0056b3;
+  border-color: #0056b3;
+}
+.tag-arrow.prev {
+  left: -15px;
+}
+.tag-arrow.next {
+  right: -15px;
+}
 
 /* 2. BỐ CỤC LƯỚI (GRID LAYOUT) */
 .news-grid-layout {
-    display: grid;
-    grid-template-columns: 40% 1fr; /* Cột trái 40%, Cột phải còn lại */
-    gap: 30px;
+  display: grid;
+  grid-template-columns: 40% 1fr; /* Cột trái 40%, Cột phải còn lại */
+  gap: 30px;
 }
 
 /* --- CỘT TRÁI: BÀI BIG --- */
 .news-big-card {
-    display: block; text-decoration: none; color: inherit;
-    transition: 0.3s;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: 0.3s;
 }
-.news-big-card:hover .nb-title { color: #0056b3; }
+.news-big-card:hover .nb-title {
+  color: #0056b3;
+}
 
 .nb-img {
-    border-radius: 8px; overflow: hidden; margin-bottom: 15px;
-    border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 15px;
+  border: 1px solid #eee;
 }
-.nb-img img { width: 100%; height: auto; display: block; transition: 0.3s; }
-.news-big-card:hover .nb-img img { transform: scale(1.05); }
+.nb-img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: 0.3s;
+}
+.news-big-card:hover .nb-img img {
+  transform: scale(1.05);
+}
 
-.nb-info { display: flex; flex-direction: column; gap: 8px; }
-.news-badge {
-    background: #333; color: white;
-    font-size: 10px; font-weight: bold; text-transform: uppercase;
-    padding: 3px 6px; border-radius: 4px; align-self: flex-start;
+.nb-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
-.news-badge.gray { background: #f0f2f5; color: #666; }
+.news-badge {
+  background: #333;
+  color: white;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 3px 6px;
+  border-radius: 4px;
+  align-self: flex-start;
+}
+.news-badge.gray {
+  background: #f0f2f5;
+  color: #666;
+}
 
 .nb-title {
-    font-size: 18px; font-weight: 800; line-height: 1.4; margin: 0;
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  font-size: 18px;
+  font-weight: 800;
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .nb-desc {
-    font-size: 13px; color: #666; line-height: 1.5; margin: 0;
-    display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+  font-size: 13px;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* --- CỘT PHẢI: LƯỚI BÀI NHỎ (2 Cột x 3 Hàng) --- */
 .news-small-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Chia đôi */
-    gap: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Chia đôi */
+  gap: 20px;
 }
 
 .news-small-card {
-    display: flex; gap: 12px;
-    text-decoration: none; color: inherit;
+  display: flex;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
 }
-.news-small-card:hover .ns-title { color: #0056b3; }
+.news-small-card:hover .ns-title {
+  color: #0056b3;
+}
 
 .ns-img {
-    flex-shrink: 0; width: 100px; height: 70px;
-    border-radius: 6px; overflow: hidden;
+  flex-shrink: 0;
+  width: 100px;
+  height: 70px;
+  border-radius: 6px;
+  overflow: hidden;
 }
-.ns-img img { width: 100%; height: 100%; object-fit: cover; }
+.ns-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-.ns-info { display: flex; flex-direction: column; gap: 4px; }
+.ns-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
 .ns-title {
-    font-size: 13px; font-weight: 700; line-height: 1.4; margin: 0;
-    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .ns-desc {
-    font-size: 12px; color: #888; margin: 0;
-    display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;
+  font-size: 12px;
+  color: #888;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 /* --- MOBILE RESPONSIVE --- */
 @media (max-width: 991px) {
-    .tag-arrow { display: none; } /* Ẩn nút mũi tên trên mobile */
-    
-    .news-grid-layout {
-        grid-template-columns: 1fr; /* Về 1 cột dọc */
-        gap: 20px;
-    }
+  .tag-arrow {
+    display: none;
+  } /* Ẩn nút mũi tên trên mobile */
 
-    /* Bài nhỏ cũng xếp dọc 1 cột luôn cho dễ đọc */
-    .news-small-list {
-        grid-template-columns: 1fr;
-    }
-    
-    .news-small-card {
-        padding-bottom: 10px;
-        border-bottom: 1px solid #f9f9f9;
-    }
+  .news-grid-layout {
+    grid-template-columns: 1fr; /* Về 1 cột dọc */
+    gap: 20px;
+  }
 
-    /* --- XỬ LÝ DANH MỤC LINK (CHIA 2 CỘT) --- */
-    .footer-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr) !important; /* Chia 2 cột đều nhau */
-        gap: 30px 15px; /* Khoảng cách: Hàng 30px, Cột 15px */
-    }
+  /* Bài nhỏ cũng xếp dọc 1 cột luôn cho dễ đọc */
+  .news-small-list {
+    grid-template-columns: 1fr;
+  }
 
-    /* Cột cuối cùng (Tải App) cho nằm full chiều rộng và căn giữa cho đẹp */
-    .footer-col:last-child {
-        grid-column: span 2; /* Chiếm trọn 2 cột */
-        text-align: center;
-        background: #eef1f6;
-        padding: 20px;
-        border-radius: 8px;
-        margin-top: 10px;
-    }
-    
-    /* Căn giữa nút tải App */
-    .footer-col:last-child .app-download-box {
-        justify-content: center;
-    }
+  .news-small-card {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f9f9f9;
+  }
+
+  /* --- XỬ LÝ DANH MỤC LINK (CHIA 2 CỘT) --- */
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr) !important; /* Chia 2 cột đều nhau */
+    gap: 30px 15px; /* Khoảng cách: Hàng 30px, Cột 15px */
+  }
+
+  /* Cột cuối cùng (Tải App) cho nằm full chiều rộng và căn giữa cho đẹp */
+  .footer-col:last-child {
+    grid-column: span 2; /* Chiếm trọn 2 cột */
+    text-align: center;
+    background: #eef1f6;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+
+  /* Căn giữa nút tải App */
+  .footer-col:last-child .app-download-box {
+    justify-content: center;
+  }
+}
+
+.product-card {
+  /* --- CÁC DÒNG CẦN THÊM --- */
+  display: flex; /* Giữ layout cũ */
+  flex-direction: column;
+  text-decoration: none; /* Bỏ gạch chân link */
+  color: inherit; /* Giữ màu chữ đen, không bị biến thành xanh */
+  /* ------------------------- */
+
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: 0.2s;
+  height: 100%; /* Để các ô cao bằng nhau */
+}
+
+/* Hiệu ứng khi di chuột vào cả ô lớn */
+.product-card:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Đổ bóng đậm hơn chút */
+  transform: translateY(-3px); /* Nổi lên nhẹ */
+  border-color: #cce5ff;
+}
+
+/* Chỉnh lại tên sản phẩm vì giờ nó không phải thẻ a nữa */
+.pc-name {
+  font-size: 14px;
+  color: #333;
+  line-height: 1.4;
+  margin-bottom: 10px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-weight: 600; /* Đậm lên xíu cho đẹp */
+}
+
+/* Khi di chuột vào ô lớn thì tên sản phẩm đổi màu xanh */
+.product-card:hover .pc-name {
+  color: #0056b3;
+}
+
+/* Style cho cái nút giả (span) để trông vẫn giống nút */
+.btn-add-cart {
+  display: block;
+  width: 100%;
+  background: #0056b3;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  border-radius: 4px;
+  font-weight: 700;
+  margin-top: auto; /* Đẩy nút xuống đáy nếu tên ngắn */
+}
+
+.product-card:hover .btn-add-cart {
+  background: #004494; /* Đổi màu nút khi hover vào ô */
+}
+
+/* Đảm bảo thẻ a của Card hiển thị đúng khối và màu sắc */
+a.pro-card,
+a.fs-new-card {
+  display: block; /* Quan trọng để thẻ a chứa được các div bên trong */
+  text-decoration: none; /* Bỏ gạch chân */
+  color: inherit; /* Giữ màu chữ gốc */
+  cursor: pointer;
+}
+
+/* Chỉnh lại nút "Chọn sản phẩm" (giờ là span) để trông vẫn giống nút */
+.btn-pc-buy,
+.btn-fs-select {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: #0056b3;
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+  font-weight: 700;
+  margin-top: 10px;
+}
+
+/* Hover vào cả khung thì nút đổi màu */
+a.pro-card:hover .btn-pc-buy,
+a.fs-new-card:hover .btn-fs-select {
+  background: #004494;
 }

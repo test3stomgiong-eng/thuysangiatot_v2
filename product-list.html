@@ -4,16 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giỏ hàng - Pharmacity</title>
+    <title>Thực phẩm chức năng - Pharmacity</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <link rel="stylesheet" href="css/core/global.css">
-    <link rel="stylesheet" href="css/pages/cart.css">
+    <link rel="stylesheet" href="css/pages/product-list.css">
 </head>
 
 <body>
@@ -187,157 +185,216 @@
         </div>
 
     </div>
-
-
-    <main class="cart-page-content">
+    <div class="bottom-nav">
+        <a href="#" class="nav-item active">
+            <i class="fas fa-home"></i><span>Trang chủ</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-th-large"></i><span>Danh mục</span>
+        </a>
+        <div class="nav-center-wrapper">
+            <a href="#" class="nav-center-btn"><i class="fas fa-headset"></i></a>
+            <span>Tư vấn</span>
+        </div>
+        <a href="#" class="nav-item">
+            <i class="fas fa-file-invoice"></i><span>Đơn hàng</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fas fa-user"></i><span>Tài khoản</span>
+        </a>
+    </div>
+    <div class="breadcrumb-area">
         <div class="container">
+            <ul class="breadcrumb">
+                <li><a href="index.html">Trang chủ</a></li>
+                <li><a href="#">Thực phẩm chức năng</a></li>
+                <li class="active">Hỗ trợ làm đẹp</li>
+            </ul>
+        </div>
+    </div>
 
-            <h1 class="cart-page-title">Giỏ hàng <span id="cartCount">(1)</span></h1>
+    <main class="page-content">
+        <div class="container">
+            <div class="layout-grid">
 
-            <div class="cart-layout">
+                <aside class="sidebar" id="mobileFilterDrawer">
 
-                <div class="cart-left-col">
-
-                    <div class="free-ship-alert">
-                        Miễn phí vận chuyển cho mọi đơn hàng từ 0đ
+                    <div class="sidebar-header-m">
+                        <h3>Bộ lọc tìm kiếm</h3>
+                        <span class="close-filter" onclick="toggleMobileFilter()"><i class="fas fa-times"></i></span>
                     </div>
 
-                    <div class="cart-table-header">
-                        <div class="cth-left">
-                            <input type="checkbox" id="checkAll" checked>
-                            <label for="checkAll">Chọn tất cả (1)</label>
-                        </div>
-                        <div class="cth-right">
-                            <span>Đơn giá</span>
-                            <span>Số lượng</span>
-                            <span></span>
-                        </div>
-                    </div>
+                    <div class="sidebar-content-scroll">
 
-                    <div class="cart-items-list">
+                        <div class="filter-box">
+                            <h3 class="filter-title">Danh mục</h3>
+                            <ul class="cat-list">
+                                <li><a href="#" class="active">Hỗ trợ làm đẹp</a></li>
+                                <li><a href="#">Vitamin & Khoáng chất</a></li>
+                                <li><a href="#">Sức khỏe tim mạch</a></li>
+                                <li><a href="#">Dinh dưỡng</a></li>
+                            </ul>
+                        </div>
 
-                        <div class="cart-item">
-                            <div class="ci-check">
-                                <input type="checkbox" checked>
+                        <div class="filter-box">
+                            <h3 class="filter-title">Mức giá</h3>
+                            <label class="check-container">
+                                <input type="checkbox"> <span class="checkmark"></span> Dưới 100.000đ
+                            </label>
+                            <label class="check-container">
+                                <input type="checkbox"> <span class="checkmark"></span> 100.000đ - 300.000đ
+                            </label>
+                            <label class="check-container">
+                                <input type="checkbox"> <span class="checkmark"></span> 300.000đ - 500.000đ
+                            </label>
+                            <label class="check-container">
+                                <input type="checkbox"> <span class="checkmark"></span> Trên 500.000đ
+                            </label>
+                        </div>
+
+                        <div class="filter-box">
+                            <h3 class="filter-title">Thương hiệu</h3>
+                            <div class="search-mini">
+                                <input type="text" placeholder="Tìm thương hiệu...">
+                                <i class="fas fa-search"></i>
                             </div>
+                            <div class="brand-list-scroll">
+                                <label class="check-container">
+                                    <input type="checkbox"> <span class="checkmark"></span> Nucos
+                                </label>
+                                <label class="check-container">
+                                    <input type="checkbox"> <span class="checkmark"></span> Blackmores
+                                </label>
+                                <label class="check-container">
+                                    <input type="checkbox"> <span class="checkmark"></span> DHC
+                                </label>
+                                <label class="check-container">
+                                    <input type="checkbox"> <span class="checkmark"></span> Nature's Way
+                                </label>
+                                <label class="check-container">
+                                    <input type="checkbox"> <span class="checkmark"></span> Healthy Care
+                                </label>
+                            </div>
+                        </div>
 
-                            <div class="ci-info-box">
-                                <a href="detail.html" class="ci-img">
-                                    <img src="https://placehold.co/100x100?text=Collagen" alt="SP">
-                                </a>
-                                <div class="ci-content">
-                                    <a href="detail.html" class="ci-name">Nước uống bổ sung collagen Nucos Spa...</a>
+                    </div>
+                    <div class="sidebar-footer-m">
+                        <button class="btn-reset">Thiết lập lại</button>
+                        <button class="btn-apply" onclick="toggleMobileFilter()">Áp dụng</button>
+                    </div>
 
-                                    <div class="variant-dropdown-wrapper">
+                </aside>
 
-                                        <div class="ci-variant" onclick="toggleCartVariant(this)">
-                                            <span class="curr-var">Phân loại: Hộp</span>
-                                            <i class="fas fa-chevron-down"></i>
-                                        </div>
+                <div class="main-content">
 
-                                        <div class="variant-list-dropdown">
-                                            <div class="v-item" onclick="selectCartVariant(this, 'Hộp')">Hộp 10 chai
-                                            </div>
-                                            <div class="v-item" onclick="selectCartVariant(this, 'Thùng')">Thùng 24 chai
-                                            </div>
-                                            <div class="v-item" onclick="selectCartVariant(this, 'Lốc')">Lốc 6 chai
-                                            </div>
-                                        </div>
-                                    </div>
+                    <div class="cat-banner">
+                        <img src="https://placehold.co/900x200?text=Banner+Quang+Cao+Category" alt="Banner">
+                    </div>
 
-                                    <div class="ci-tags">
-                                        <span class="tag-yellow">Deal Giảm 15%</span>
-                                    </div>
+                    <div class="sort-bar">
+                        <h1 class="page-title">Hỗ trợ làm đẹp (125 sản phẩm)</h1>
 
-                                    <div class="gift-box-wrapper">
-                                        <div class="gift-header">
-                                            <i class="fas fa-gift"></i> Quà tặng kèm (Mua 2 tặng 1)
-                                        </div>
+                        <div class="sort-actions">
+                            <button class="btn-filter-mobile" onclick="toggleMobileFilter()">
+                                <i class="fas fa-filter"></i> Lọc
+                            </button>
 
-                                        <div class="gift-product">
-                                            <img src="https://placehold.co/40x40?text=Gift" alt="Quà">
-                                            <div class="gift-info">
-                                                <span class="g-name">Bông tẩy trang Silcot (Hộp mini 8 miếng)</span>
-                                                <div class="g-meta">
-                                                    <span class="g-price">0đ</span>
-                                                    <span class="g-old-price">25.000đ</span>
-                                                    <span class="g-qty">x1</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                            <div class="sort-control">
+                                <span>Sắp xếp theo:</span>
+                                <select>
+                                    <option>Phổ biến nhất</option>
+                                    <option>Bán chạy nhất</option>
+                                    <option>Giá thấp đến cao</option>
+                                    <option>Giá cao đến thấp</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="product-grid">
+
+                        <div class="product-card">
+                            <div class="pc-img">
+                                <a href="detail.html"><img src="https://placehold.co/200x200" alt="SP"></a>
+                                <span class="tag-sale">-15%</span>
+                            </div>
+                            <div class="pc-info">
+                                <a href="detail.html" class="pc-name">Nước uống bổ sung collagen Nucos Spa 13.500</a>
+                                <div class="pc-price-box">
+                                    <span class="curr-price">1.827.500đ</span>
+                                    <span class="old-price">2.150.000đ</span>
                                 </div>
+                                <button class="btn-add-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ</button>
                             </div>
+                        </div>
 
-                            <div class="ci-price-box">
-                                <div class="old-price">2.150.000 ₫</div>
-                                <div class="new-price cart-price">1.827.500 ₫</div>
+                        <div class="product-card">
+                            <div class="pc-img">
+                                <a href="detail.html"><img src="https://placehold.co/200x200" alt="SP"></a>
                             </div>
-
-                            <div class="ci-qty-box">
-                                <button onclick="changeCartQty(this, -1)">-</button>
-                                <input type="number" value="1" readonly>
-                                <button onclick="changeCartQty(this, 1)">+</button>
+                            <div class="pc-info">
+                                <a href="detail.html" class="pc-name">Viên uống DHC Vitamin C Hard Capsule</a>
+                                <div class="pc-price-box">
+                                    <span class="curr-price">95.000đ</span>
+                                </div>
+                                <button class="btn-add-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ</button>
                             </div>
+                        </div>
 
-                            <div class="ci-remove">
-                                <button onclick="removeCartItem(this)"><i class="far fa-trash-alt"></i></button>
+                        <div class="product-card">
+                            <div class="pc-img">
+                                <a href="detail.html"><img src="https://placehold.co/200x200" alt="SP"></a>
+                            </div>
+                            <div class="pc-info">
+                                <a href="detail.html" class="pc-name">Tinh dầu hoa anh thảo Blackmores Evening</a>
+                                <div class="pc-price-box">
+                                    <span class="curr-price">485.000đ</span>
+                                </div>
+                                <button class="btn-add-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ</button>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="pc-img">
+                                <a href="detail.html"><img src="https://placehold.co/200x200" alt="SP"></a>
+                                <span class="tag-sale">-10%</span>
+                            </div>
+                            <div class="pc-info">
+                                <a href="detail.html" class="pc-name">Collagen Youtheory Type 1 2 & 3 (Mỹ)</a>
+                                <div class="pc-price-box">
+                                    <span class="curr-price">650.000đ</span>
+                                    <span class="old-price">720.000đ</span>
+                                </div>
+                                <button class="btn-add-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ</button>
+                            </div>
+                        </div>
+
+                        <div class="product-card">
+                            <div class="pc-img">
+                                <a href="detail.html"><img src="https://placehold.co/200x200" alt="SP"></a>
+                            </div>
+                            <div class="pc-info">
+                                <a href="detail.html" class="pc-name">Viên uống trắng da Ritana Skin Whitening</a>
+                                <div class="pc-price-box">
+                                    <span class="curr-price">650.000đ</span>
+                                </div>
+                                <button class="btn-add-cart"><i class="fas fa-cart-plus"></i> Thêm vào giỏ</button>
                             </div>
                         </div>
 
                     </div>
-                </div>
-                <div class="cart-right-col">
-                    <div class="cart-summary-box">
 
-                        <div class="summary-coupon">
-                            <div class="sc-icon"><i class="fas fa-ticket-alt"></i> Khuyến mãi</div>
-                            <a href="#" class="sc-link">Chọn mã</a>
-                        </div>
-
-                        <div class="divider-dashed"></div>
-
-                        <div class="summary-row">
-                            <span>Tạm tính</span>
-                            <span class="cart-price">2.150.000 ₫</span>
-                        </div>
-                        <div class="summary-row">
-                            <span>Giảm giá ưu đãi</span>
-                            <span>-</span>
-                        </div>
-                        <div class="summary-row">
-                            <span>Giảm giá sản phẩm</span>
-                            <span class="cart-price">-322.500 ₫</span>
-                        </div>
-
-                        <div class="divider-solid"></div>
-
-                        <div class="summary-total">
-                            <span>Tổng tiền</span>
-                            <div class="total-val cart-total">1.827.500 ₫</div>
-                        </div>
-
-                        <button class="btn-checkout">Mua hàng (1)</button>
-
+                    <div class="pagination">
+                        <a href="#" class="active">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#"><i class="fas fa-chevron-right"></i></a>
                     </div>
+
                 </div>
             </div>
         </div>
     </main>
-
-    <div class="mobile-cart-footer">
-        <div class="mcf-left">
-            <div class="mcf-check">
-                <input type="checkbox" checked> <span>Tất cả</span>
-            </div>
-            <div class="mcf-total">
-                <span>Tổng tiền:</span>
-                <div class="val cart-total">1.827.500 ₫</div>
-            </div>
-        </div>
-        <button class="btn-mcf-buy">Mua hàng (1)</button>
-    </div>
-
 
     <!-- Menu modal cho nút 3 gạch -->
     <div class="mobile-menu-overlay" id="mobile-menu-overlay"></div>
@@ -560,7 +617,20 @@
         </div>
     </footer>
 
+    <div class="mobile-filter-overlay" onclick="toggleMobileFilter()"></div>
 
+    <script>
+        function toggleMobileFilter() {
+            // Toggle class active cho Sidebar
+            document.getElementById('mobileFilterDrawer').classList.toggle('active');
+
+            // Toggle class active cho Overlay
+            document.querySelector('.mobile-filter-overlay').classList.toggle('active');
+
+            // Chặn cuộn trang chính khi mở modal
+            document.body.classList.toggle('no-scroll');
+        }
+    </script>
     <script src="js/core/common.js"></script>
     <script src="js/pages/cart.js"></script>
 </body>

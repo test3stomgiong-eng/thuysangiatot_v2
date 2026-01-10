@@ -4,16 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giỏ hàng - Pharmacity</title>
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <title>Thanh toán - Pharmacity</title>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700;800&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
     <link rel="stylesheet" href="css/core/global.css">
-    <link rel="stylesheet" href="css/pages/cart.css">
+    <link rel="stylesheet" href="css/pages/checkout.css">
 </head>
 
 <body>
@@ -188,154 +184,134 @@
 
     </div>
 
-
-    <main class="cart-page-content">
+    <main class="checkout-page">
         <div class="container">
+            <div class="checkout-layout">
 
-            <h1 class="cart-page-title">Giỏ hàng <span id="cartCount">(1)</span></h1>
+                <div class="col-info">
+                    <section class="section-group">
+                        <h3 class="section-title"><i class="fas fa-map-marker-alt"></i> Thông tin giao hàng</h3>
 
-            <div class="cart-layout">
-
-                <div class="cart-left-col">
-
-                    <div class="free-ship-alert">
-                        Miễn phí vận chuyển cho mọi đơn hàng từ 0đ
-                    </div>
-
-                    <div class="cart-table-header">
-                        <div class="cth-left">
-                            <input type="checkbox" id="checkAll" checked>
-                            <label for="checkAll">Chọn tất cả (1)</label>
-                        </div>
-                        <div class="cth-right">
-                            <span>Đơn giá</span>
-                            <span>Số lượng</span>
-                            <span></span>
-                        </div>
-                    </div>
-
-                    <div class="cart-items-list">
-
-                        <div class="cart-item">
-                            <div class="ci-check">
-                                <input type="checkbox" checked>
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label>Họ và tên</label>
+                                <input type="text" placeholder="Ví dụ: Nguyễn Văn A">
                             </div>
+                            <div class="form-group half">
+                                <label>Số điện thoại</label>
+                                <input type="tel" placeholder="Ví dụ: 0912345678">
+                            </div>
+                        </div>
 
-                            <div class="ci-info-box">
-                                <a href="detail.html" class="ci-img">
-                                    <img src="https://placehold.co/100x100?text=Collagen" alt="SP">
-                                </a>
-                                <div class="ci-content">
-                                    <a href="detail.html" class="ci-name">Nước uống bổ sung collagen Nucos Spa...</a>
+                        <div class="form-group">
+                            <label>Địa chỉ cụ thể</label>
+                            <input type="text" placeholder="Số nhà, tên đường...">
+                        </div>
 
-                                    <div class="variant-dropdown-wrapper">
+                        <div class="form-row">
+                            <div class="form-group third">
+                                <select id="province">
+                                    <option value="">Chọn Tỉnh / Thành phố</option>
+                                </select>
+                            </div>
+                            <div class="form-group third">
+                                <select id="district">
+                                    <option value="">Chọn Quận / Huyện</option>
+                                </select>
+                            </div>
+                            <div class="form-group third">
+                                <select id="ward">
+                                    <option value="">Chọn Phường / Xã</option>
+                                </select>
+                            </div>
+                        </div>
 
-                                        <div class="ci-variant" onclick="toggleCartVariant(this)">
-                                            <span class="curr-var">Phân loại: Hộp</span>
-                                            <i class="fas fa-chevron-down"></i>
-                                        </div>
+                        <div class="form-group">
+                            <label>Ghi chú đơn hàng (Tùy chọn)</label>
+                            <textarea rows="2" placeholder="Ví dụ: Giao giờ hành chính..."></textarea>
+                        </div>
+                    </section>
 
-                                        <div class="variant-list-dropdown">
-                                            <div class="v-item" onclick="selectCartVariant(this, 'Hộp')">Hộp 10 chai
-                                            </div>
-                                            <div class="v-item" onclick="selectCartVariant(this, 'Thùng')">Thùng 24 chai
-                                            </div>
-                                            <div class="v-item" onclick="selectCartVariant(this, 'Lốc')">Lốc 6 chai
-                                            </div>
-                                        </div>
-                                    </div>
+                    <section class="section-group payment-section">
+                        <h3 class="section-title"><i class="fas fa-wallet"></i> Phương thức thanh toán</h3>
 
-                                    <div class="ci-tags">
-                                        <span class="tag-yellow">Deal Giảm 15%</span>
-                                    </div>
-
-                                    <div class="gift-box-wrapper">
-                                        <div class="gift-header">
-                                            <i class="fas fa-gift"></i> Quà tặng kèm (Mua 2 tặng 1)
-                                        </div>
-
-                                        <div class="gift-product">
-                                            <img src="https://placehold.co/40x40?text=Gift" alt="Quà">
-                                            <div class="gift-info">
-                                                <span class="g-name">Bông tẩy trang Silcot (Hộp mini 8 miếng)</span>
-                                                <div class="g-meta">
-                                                    <span class="g-price">0đ</span>
-                                                    <span class="g-old-price">25.000đ</span>
-                                                    <span class="g-qty">x1</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                        <div class="payment-methods">
+                            <label class="payment-item">
+                                <input type="radio" name="payment" checked>
+                                <div class="pay-content">
+                                    <span class="pay-name">Thanh toán khi nhận hàng (COD)</span>
+                                    <span class="pay-desc">Bạn chỉ phải thanh toán khi nhận được hàng.</span>
                                 </div>
-                            </div>
+                                <i class="fas fa-money-bill-wave pay-icon"></i>
+                            </label>
 
-                            <div class="ci-price-box">
-                                <div class="old-price">2.150.000 ₫</div>
-                                <div class="new-price cart-price">1.827.500 ₫</div>
-                            </div>
-
-                            <div class="ci-qty-box">
-                                <button onclick="changeCartQty(this, -1)">-</button>
-                                <input type="number" value="1" readonly>
-                                <button onclick="changeCartQty(this, 1)">+</button>
-                            </div>
-
-                            <div class="ci-remove">
-                                <button onclick="removeCartItem(this)"><i class="far fa-trash-alt"></i></button>
-                            </div>
+                            <label class="payment-item">
+                                <input type="radio" name="payment">
+                                <div class="pay-content">
+                                    <span class="pay-name">Chuyển khoản ngân hàng</span>
+                                    <span class="pay-desc">Giảm ngay 5% (Tối đa 50k) khi chuyển khoản trước.</span>
+                                </div>
+                                <i class="fas fa-university pay-icon"></i>
+                            </label>
                         </div>
-
-                    </div>
+                    </section>
                 </div>
-                <div class="cart-right-col">
-                    <div class="cart-summary-box">
 
-                        <div class="summary-coupon">
-                            <div class="sc-icon"><i class="fas fa-ticket-alt"></i> Khuyến mãi</div>
-                            <a href="#" class="sc-link">Chọn mã</a>
+                <div class="col-summary">
+                    <div class="summary-card">
+                        <h3 class="summary-title">Đơn hàng (1 sản phẩm)</h3>
+
+                        <div class="mini-cart-list">
+                            <div class="mini-item">
+                                <div class="mi-img">
+                                    <img src="https://placehold.co/50x50" alt="SP">
+                                    <span class="mi-qty">1</span>
+                                </div>
+                                <div class="mi-info">
+                                    <div class="mi-name">Nước uống bổ sung collagen Nucos Spa 13.500</div>
+                                    <div class="mi-var">Phân loại: Hộp</div>
+                                </div>
+                                <div class="mi-price cart-price">1.827.500₫</div>
+                            </div>
                         </div>
 
-                        <div class="divider-dashed"></div>
+                        <div class="divider"></div>
+
+                        <!-- <div class="coupon-input-group">
+                            <input type="text" placeholder="Nhập mã giảm giá">
+                            <button>Áp dụng</button>
+                        </div> -->
+
+                        <div class="divider"></div>
 
                         <div class="summary-row">
                             <span>Tạm tính</span>
-                            <span class="cart-price">2.150.000 ₫</span>
+                            <span class="cart-price">2.150.000₫</span>
                         </div>
                         <div class="summary-row">
-                            <span>Giảm giá ưu đãi</span>
-                            <span>-</span>
+                            <span>Phí vận chuyển</span>
+                            <span>Miễn phí</span>
                         </div>
-                        <div class="summary-row">
-                            <span>Giảm giá sản phẩm</span>
-                            <span class="cart-price">-322.500 ₫</span>
-                        </div>
-
-                        <div class="divider-solid"></div>
-
-                        <div class="summary-total">
-                            <span>Tổng tiền</span>
-                            <div class="total-val cart-total">1.827.500 ₫</div>
+                        <div class="summary-row total">
+                            <span>Tổng cộng</span>
+                            <span class="total-price cart-total">1.827.500₫</span>
                         </div>
 
-                        <button class="btn-checkout">Mua hàng (1)</button>
-
+                        <button class="btn-place-order" id="btnOrder">ĐẶT HÀNG NGAY</button>
+                        <p class="terms-text">Bằng việc đặt hàng, bạn đồng ý với điều khoản sử dụng của chúng tôi.</p>
                     </div>
                 </div>
+
             </div>
         </div>
     </main>
 
-    <div class="mobile-cart-footer">
-        <div class="mcf-left">
-            <div class="mcf-check">
-                <input type="checkbox" checked> <span>Tất cả</span>
-            </div>
-            <div class="mcf-total">
-                <span>Tổng tiền:</span>
-                <div class="val cart-total">1.827.500 ₫</div>
-            </div>
+    <div class="mobile-checkout-bar">
+        <div class="mcb-info">
+            <span class="mcb-label">Tổng thanh toán:</span>
+            <span class="mcb-price cart-total">1.827.500₫</span>
         </div>
-        <button class="btn-mcf-buy">Mua hàng (1)</button>
+        <button class="btn-place-order-mobile" id="btnOrderMobile">ĐẶT HÀNG</button>
     </div>
 
 
@@ -560,9 +536,9 @@
         </div>
     </footer>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/core/common.js"></script>
-    <script src="js/pages/cart.js"></script>
+    <script src="js/pages/checkout.js"></script>
 </body>
 
 </html>

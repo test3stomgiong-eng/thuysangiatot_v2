@@ -301,8 +301,8 @@
                             <button onclick="updateQty(1)">+</button>
                         </div>
 
-                        <button class="btn-buy-now">Mua ngay</button>
-                        <button class="btn-add-cart">Thêm vào giỏ</button>
+                        <a href="checkout.html" class="btn-msb btn-buy-now">Mua ngay</a>
+                        <button class="btn-add-cart" onclick="openMobileModal()">Thêm vào giỏ</button>
 
                         <div class="buy-usps">
                             <div class="busp-item">
@@ -390,12 +390,12 @@
 
     <div class="mobile-sticky-bar">
         <div class="msb-left">
-            <div class="msb-icon"><i class="fas fa-store"></i><br>Cửa hàng</div>
-            <div class="msb-icon"><i class="fas fa-comment-dots"></i><br>Chat</div>
+            <a href="#" class="msb-icon"><i class="fas fa-store"></i><small>Cửa hàng</small></a>
+            <a href="#" class="msb-icon"><i class="fas fa-comment-dots"></i><small>Chat</small></a>
         </div>
         <div class="msb-right">
-            <button class="btn-msb-cart" onclick="openMobileModal()">Thêm giỏ hàng</button>
-            <button class="btn-msb-buy" onclick="openMobileModal()">Mua ngay</button>
+            <button class="btn-msb btn-msb-cart" onclick="openMobileModal()">Thêm giỏ hàng</button>
+            <a href="checkout.html" class="btn-msb btn-msb-buy">Mua ngay</a>
         </div>
     </div>
 
@@ -670,7 +670,7 @@
             </div>
 
             <div class="sheet-footer">
-                <button class="btn-sheet-confirm">Thêm vào giỏ</button>
+                <a href="checkout.html" class="btn-modal-submit btn-action-add-cart">Thêm vào giỏ</a>
             </div>
         </div>
     </div>
