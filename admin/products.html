@@ -29,6 +29,16 @@
         .jodit-dialog {
             z-index: 2020 !important;
         }
+
+        /* CSS cho chế độ disabled của Jodit */
+        .jodit_disabled .jodit-toolbar__box {
+            display: none !important;
+        }
+
+        .jodit_disabled {
+            border: 1px solid #ddd !important;
+            background: #f9f9f9;
+        }
     </style>
 </head>
 
@@ -141,10 +151,20 @@
                             <td><span class="stock-status in-stock">Còn 500</span></td>
                             <td>20/12/2026</td>
                             <td>
-                                <button class="action-btn btn-edit" onclick="openProductModal()"><i
-                                        class="fas fa-pen"></i></button>
-                                <button class="action-btn btn-delete" onclick="deleteProduct()"><i
-                                        class="fas fa-trash"></i></button>
+                                <a href="javascript:void(0)" class="action-btn btn-view"
+                                    onclick="openProductModal('view')" title="Xem chi tiết">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+
+                                <a href="javascript:void(0)" class="action-btn btn-edit"
+                                    onclick="openProductModal('edit')" title="Sửa">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+
+                                <a href="javascript:void(0)" class="action-btn btn-delete" onclick="deleteProduct()"
+                                    title="Xóa">
+                                    <i class="fas fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
 
@@ -164,10 +184,20 @@
                             <td><span class="stock-status low-stock">Còn 5</span></td>
                             <td>15/05/2025</td>
                             <td>
-                                <button class="action-btn btn-edit" onclick="openProductModal()"><i
-                                        class="fas fa-pen"></i></button>
-                                <button class="action-btn btn-delete" onclick="deleteProduct()"><i
-                                        class="fas fa-trash"></i></button>
+                                <a href="javascript:void(0)" class="action-btn btn-view"
+                                    onclick="openProductModal('view')" title="Xem chi tiết">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+
+                                <a href="javascript:void(0)" class="action-btn btn-edit"
+                                    onclick="openProductModal('edit')" title="Sửa">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+
+                                <a href="javascript:void(0)" class="action-btn btn-delete" onclick="deleteProduct()"
+                                    title="Xóa">
+                                    <i class="fas fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
                     </tbody>
@@ -222,8 +252,8 @@
                                 <option value="packet">Dạng Gói/Bao (g/kg)</option>
                             </select>
                         </div>
-                        <button type="button" class="btn-add-variant" onclick="addVariantRow()">+ Thêm phân
-                            loại</button>
+                        <button type="button" class="btn-add-variant" id="btnAddClassify" onclick="addVariantRow()">+
+                            Thêm phân loại</button>
                     </div>
 
                     <table class="variant-table">
@@ -313,16 +343,24 @@
                 </div>
             </div>
 
-            <button class="btn-submit">Lưu sản phẩm</button>
+            <div class="modal-footer-actions">
+                <button class="btn-submit">Lưu sản phẩm</button>
+
+                <button type="button" class="btn-switch-edit" onclick="switchToEditMode()" style="display:none;">
+                    <i class="fas fa-edit"></i> Sửa sản phẩm này
+                </button>
+            </div>
         </form>
     </div>
 
     <script src="js/admin-script.js"></script>
 
     <script>
-        // --- 1. QUẢN LÝ 4 EDITOR (JODIT) ---
+        // --- 1. KHAI BÁO BIẾN TOÀN CỤC ---
         let editors = {};
+        let albumFiles = [];
 
+        // Cấu hình Jodit Editor
         const joditConfig = {
             height: 300,
             width: '100%',
@@ -336,48 +374,176 @@
             placeholder: 'Nhập nội dung...'
         };
 
-        // --- 2. QUẢN LÝ ẢNH (ALBUM) ---
-        let albumFiles = [];
-
-        // --- 3. HÀM MỞ MODAL ---
-        function openProductModal() {
+        // --- 2. HÀM MỞ MODAL (QUAN TRỌNG NHẤT) ---
+        function openProductModal(mode = 'edit') {
             openModal('productModal');
 
-            // Khởi tạo 4 ô soạn thảo nếu chưa có
+            const isViewMode = (mode === 'view');
+
+            // --- XỬ LÝ GIAO DIỆN (TIÊU ĐỀ & NÚT) ---
+            const modalTitle = document.querySelector('.modal-header h3');
+            const btnSave = document.querySelector('.btn-submit');
+            const btnSwitchEdit = document.querySelector('.btn-switch-edit');
+            const btnAddClassify = document.getElementById('btnAddClassify'); // Nút thêm phân loại
+
+            if (isViewMode) {
+                modalTitle.innerText = "Chi tiết sản phẩm (Chỉ xem)";
+                btnSave.style.display = 'none';         // Ẩn nút Lưu
+                btnSwitchEdit.style.display = 'flex';   // Hiện nút "Sửa sản phẩm này"
+                if (btnAddClassify) btnAddClassify.style.display = 'none'; // Ẩn nút Thêm phân loại
+            } else {
+                modalTitle.innerText = mode === 'edit' ? "Cập nhật sản phẩm" : "Thêm mới sản phẩm";
+                btnSave.style.display = 'block';        // Hiện nút Lưu
+                btnSwitchEdit.style.display = 'none';   // Ẩn nút chuyển đổi
+                if (btnAddClassify) btnAddClassify.style.display = 'block'; // Hiện nút Thêm phân loại
+            }
+
+            // --- KHÓA/MỞ KHÓA FORM ---
+            toggleFormState(isViewMode);
+
+            // --- KHỞI TẠO JODIT ---
+            initJoditEditors(isViewMode);
+
+            // --- RESET CÁC PHẦN KHÁC ---
+            document.querySelector('.tab-item').click(); // Về tab đầu tiên
+
+            if (!isViewMode) {
+                // Reset ảnh nếu không phải xem
+                albumFiles = [];
+                renderAlbum();
+                removeMainImage({ stopPropagation: function () { } });
+            }
+        }
+
+        // --- 3. HÀM ĐÓNG MODAL ---
+        function closeProductModal() {
+            closeModal('productModal');
+        }
+
+        // --- 4. CHUYỂN TỪ "XEM" SANG "SỬA" NGAY LẬP TỨC ---
+        function switchToEditMode() {
+            // Đổi tiêu đề & Nút
+            document.querySelector('.modal-header h3').innerText = "Cập nhật sản phẩm";
+            document.querySelector('.btn-switch-edit').style.display = 'none';
+            document.querySelector('.btn-submit').style.display = 'block';
+
+            const btnAddClassify = document.getElementById('btnAddClassify');
+            if (btnAddClassify) btnAddClassify.style.display = 'block';
+
+            // Mở khóa Form & Editor
+            toggleFormState(false);
+            Object.values(editors).forEach(ed => {
+                ed.setReadOnly(false);
+                ed.container.classList.remove('jodit_disabled');
+            });
+
+            // Thông báo
+            const Toast = Swal.mixin({ toast: true, position: 'top-end', showConfirmButton: false, timer: 3000 });
+            Toast.fire({ icon: 'success', title: 'Đã chuyển sang chế độ sửa!' });
+        }
+
+        // --- 5. HÀM PHỤ TRỢ: KHÓA/MỞ FORM ---
+        function toggleFormState(isLocked) {
+            // Input / Select / Date / Textarea
+            const inputs = document.querySelectorAll('#productModal input, #productModal select, #productModal textarea');
+            inputs.forEach(input => {
+                input.disabled = isLocked;
+            });
+
+            // Các nút điều khiển ảnh/biến thể
+            const controls = document.querySelectorAll('.add-sub-image, .btn-remove-img, .btn-delete-item, .btn-remove-row');
+            controls.forEach(el => {
+                if (isLocked) {
+                    el.style.display = 'none'; // Ẩn hết khi xem
+                } else {
+                    // Khi sửa, hiện lại (trừ nút xóa ảnh nếu chưa có ảnh)
+                    if (el.classList.contains('btn-remove-img')) {
+                        // Không làm gì, để logic render ảnh tự xử lý
+                    } else {
+                        el.style.display = 'flex'; // Hoặc block/inline-block tùy css
+                    }
+                }
+            });
+
+            // Nút xóa ảnh đại diện chỉ hiện khi sửa VÀ có ảnh
+            if (!isLocked && document.getElementById('mainImgShow').src) {
+                document.getElementById('btnRemoveMain').style.display = 'flex';
+            }
+
+            // Pointer event cho hộp chọn ảnh
+            const previewBoxes = document.querySelectorAll('.image-preview-box');
+            previewBoxes.forEach(el => el.style.pointerEvents = isLocked ? 'none' : 'auto');
+        }
+
+        // --- 6. HÀM KHỞI TẠO JODIT ---
+        function initJoditEditors(isViewMode) {
             if (!editors['thanhphan']) {
                 editors['thanhphan'] = Jodit.make('#editor_thanhphan', joditConfig);
                 editors['congdung'] = Jodit.make('#editor_congdung', joditConfig);
                 editors['cachdung'] = Jodit.make('#editor_cachdung', joditConfig);
                 editors['luuy'] = Jodit.make('#editor_luuy', joditConfig);
-            } else {
-                // Xóa trắng nội dung nếu mở lại
+            } else if (!isViewMode) {
+                // Nếu là Sửa/Thêm mới thì xóa trắng nội dung cũ để nhập mới
                 Object.values(editors).forEach(ed => ed.value = '');
             }
 
-            // Reset Tab về đầu tiên
-            document.querySelector('.tab-item').click();
-
-            // Reset Album ảnh và Ảnh đại diện
-            albumFiles = [];
-            renderAlbum();
-            removeMainImage({ stopPropagation: function () { } });
+            Object.values(editors).forEach(ed => {
+                ed.setReadOnly(isViewMode);
+                if (isViewMode) {
+                    ed.container.classList.add('jodit_disabled');
+                } else {
+                    ed.container.classList.remove('jodit_disabled');
+                }
+            });
         }
 
-        // --- 4. HÀM ĐÓNG MODAL ---
-        function closeProductModal() {
-            closeModal('productModal');
-        }
-
-        // --- 5. HÀM CHUYỂN TAB ---
+        // --- 7. XỬ LÝ TAB ---
         function switchTab(tabId, element) {
             document.querySelectorAll('.tab-item').forEach(el => el.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-
             element.classList.add('active');
             document.getElementById(tabId).classList.add('active');
         }
 
-        // --- 6. XỬ LÝ ẢNH ĐẠI DIỆN ---
+        // --- 8. XỬ LÝ BIẾN THỂ (PHÂN LOẠI) ---
+        function changeUnitType() {
+            const type = document.getElementById('unitType').value;
+            const label = document.getElementById('sizeLabel');
+            const inputs = document.querySelectorAll('.size-input');
+            const placeholder = (type === 'bottle') ? 'VD: 500ml' : 'VD: 1kg';
+
+            label.innerText = (type === 'bottle') ? 'Dung tích (ml/lít)' : 'Khối lượng (g/kg)';
+            inputs.forEach(input => input.placeholder = placeholder);
+        }
+
+        function addVariantRow() {
+            const container = document.getElementById('variantContainer');
+            const type = document.getElementById('unitType').value;
+            const placeholder = (type === 'bottle') ? 'VD: 500ml' : 'VD: 1kg';
+
+            const tr = document.createElement('tr');
+            tr.className = 'variant-row';
+            tr.innerHTML = `
+                <td><input type="text" class="form-input size-input" placeholder="${placeholder}"></td>
+                <td><input type="number" class="form-input price-input" placeholder="0"></td>
+                <td><input type="number" class="form-input original-price-input" placeholder="Lãi/Lỗ"></td>
+                <td><input type="number" class="form-input stock-input" value="0"></td>
+                <td><span class="btn-remove-row" onclick="removeVariantRow(this)"><i class="fas fa-trash-alt"></i></span></td>
+            `;
+            container.appendChild(tr);
+        }
+
+        function removeVariantRow(btn) {
+            const row = btn.closest('tr');
+            const rowCount = document.querySelectorAll('.variant-row').length;
+            if (rowCount > 1) {
+                row.remove();
+            } else {
+                Swal.fire('Lỗi', 'Phải có ít nhất 1 quy cách đóng gói!', 'error');
+            }
+        }
+
+        // --- 9. XỬ LÝ ẢNH ---
         function previewMainImage(input) {
             const previewBox = document.getElementById('mainImgShow');
             const iconBox = document.querySelector('.image-preview-box i');
@@ -398,7 +564,7 @@
         }
 
         function removeMainImage(event) {
-            if (event) event.stopPropagation();
+            if (event && event.stopPropagation) event.stopPropagation();
             document.getElementById('mainImgShow').src = "";
             document.getElementById('mainImgShow').style.display = 'none';
             document.getElementById('btnRemoveMain').style.display = 'none';
@@ -407,7 +573,6 @@
             document.querySelector('.image-preview-box p').style.display = 'block';
         }
 
-        // --- 7. XỬ LÝ ALBUM ẢNH ---
         function handleSubImageSelect(input) {
             if (input.files) {
                 const newFiles = Array.from(input.files);
@@ -425,17 +590,10 @@
                 reader.onload = function (e) {
                     const div = document.createElement('div');
                     div.className = 'sub-img-box';
-
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-
-                    const btn = document.createElement('span');
-                    btn.className = 'btn-remove-img';
-                    btn.innerHTML = '<i class="fas fa-times"></i>';
-                    btn.onclick = function () { removeSubImage(index); };
-
-                    div.appendChild(img);
-                    div.appendChild(btn);
+                    div.innerHTML = `
+                        <img src="${e.target.result}">
+                        <span class="btn-remove-img" onclick="removeSubImage(${index})"><i class="fas fa-times"></i></span>
+                    `;
                     container.appendChild(div);
                 }
                 reader.readAsDataURL(file);
@@ -447,29 +605,43 @@
             renderAlbum();
         }
 
-        // --- 8. HÀM LƯU SẢN PHẨM ---
+        // --- 10. HÀM LƯU SẢN PHẨM ---
         function saveProduct() {
+            // Lấy thông tin biến thể
+            const unitType = document.getElementById('unitType').value;
+            const variants = [];
+            document.querySelectorAll('.variant-row').forEach(row => {
+                variants.push({
+                    size: row.querySelector('.size-input').value,
+                    price: row.querySelector('.price-input').value,
+                    original_price: row.querySelector('.original-price-input').value,
+                    stock: row.querySelector('.stock-input').value
+                });
+            });
+
+            // Lấy thông tin text editor
             const data = {
+                unitType: unitType,
+                variants: variants,
                 thanhphan: editors['thanhphan'].value,
                 congdung: editors['congdung'].value,
                 cachdung: editors['cachdung'].value,
                 luuy: editors['luuy'].value,
-                // Bạn có thể lấy thêm thông tin ảnh từ biến albumFiles ở đây
             };
 
-            console.log("Dữ liệu chi tiết:", data);
+            console.log("Dữ liệu lưu:", data);
 
             closeProductModal();
             Swal.fire({
                 icon: 'success',
                 title: 'Thành công',
-                text: 'Đã lưu thông tin sản phẩm (4 tab)!',
+                text: 'Đã lưu sản phẩm với ' + variants.length + ' phiên bản!',
                 showConfirmButton: false,
                 timer: 1500
             });
         }
 
-        // --- 9. HÀM XÓA SẢN PHẨM ---
+        // --- 11. HÀM XÓA SẢN PHẨM ---
         function deleteProduct() {
             Swal.fire({
                 title: 'Xóa sản phẩm này?',
@@ -484,88 +656,11 @@
                 }
             })
         }
-    </script>
 
-    <script>
-        // ... (Các code cũ giữ nguyên) ...
-
-        // --- 1. XỬ LÝ THAY ĐỔI ĐƠN VỊ (CHAI vs GÓI) ---
-        function changeUnitType() {
-            const type = document.getElementById('unitType').value;
-            const label = document.getElementById('sizeLabel');
-            const inputs = document.querySelectorAll('.size-input');
-
-            if (type === 'bottle') {
-                label.innerText = 'Dung tích (ml/lít)';
-                inputs.forEach(input => input.placeholder = 'VD: 500ml');
-            } else {
-                label.innerText = 'Khối lượng (g/kg)';
-                inputs.forEach(input => input.placeholder = 'VD: 1kg');
-            }
-        }
-
-        // --- 2. THÊM DÒNG BIẾN THỂ MỚI ---
-        function addVariantRow() {
-            const container = document.getElementById('variantContainer');
-            const type = document.getElementById('unitType').value;
-            const placeholder = (type === 'bottle') ? 'VD: 500ml' : 'VD: 1kg';
-
-            const tr = document.createElement('tr');
-            tr.className = 'variant-row';
-            tr.innerHTML = `
-                <td><input type="text" class="form-input size-input" placeholder="${placeholder}"></td>
-                <td><input type="number" class="form-input price-input" placeholder="0"></td>
-                <td><input type="number" class="form-input original-price-input" placeholder="Lãi/Lỗ"></td>
-                <td><input type="number" class="form-input stock-input" value="0"></td>
-                <td><span class="btn-remove-row" onclick="removeVariantRow(this)"><i class="fas fa-trash-alt"></i></span></td>
-            `;
-            container.appendChild(tr);
-        }
-
-        // --- 3. XÓA DÒNG BIẾN THỂ ---
-        function removeVariantRow(btn) {
-            const row = btn.closest('tr');
-            const rowCount = document.querySelectorAll('.variant-row').length;
-
-            // Giữ lại ít nhất 1 dòng, không cho xóa hết
-            if (rowCount > 1) {
-                row.remove();
-            } else {
-                Swal.fire('Lỗi', 'Sản phẩm phải có ít nhất 1 quy cách đóng gói!', 'error');
-            }
-        }
-
-        // --- 4. CẬP NHẬT HÀM SAVE PRODUCT (LẤY DỮ LIỆU BIẾN THỂ) ---
-        function saveProduct() {
-            // Lấy thông tin chung
-            const unitType = document.getElementById('unitType').value;
-
-            // Lấy danh sách các biến thể
-            const variants = [];
-            document.querySelectorAll('.variant-row').forEach(row => {
-                variants.push({
-                    size: row.querySelector('.size-input').value,
-                    price: row.querySelector('.price-input').value,
-                    original_price: row.querySelector('.original-price-input').value,
-                    stock: row.querySelector('.stock-input').value
-                });
-            });
-
-            // Lấy mô tả Jodit
-            // ... (Code cũ) ...
-
-            // Log thử dữ liệu ra xem chơi
-            console.log("Loại:", unitType);
-            console.log("Danh sách biến thể:", variants);
-
-            closeProductModal();
-            Swal.fire({
-                icon: 'success',
-                title: 'Thành công',
-                text: 'Đã lưu sản phẩm với ' + variants.length + ' phiên bản!',
-                showConfirmButton: false,
-                timer: 1500
-            });
+        // --- 12. HÀM XEM CHI TIẾT (LINK NGOÀI WEB) ---
+        // (Dự phòng nếu cần dùng lại)
+        function viewProductDetailsLink() {
+            Swal.fire('Đã mở tab mới!', '', 'info');
         }
     </script>
 </body>

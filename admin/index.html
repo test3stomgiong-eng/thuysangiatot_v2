@@ -114,34 +114,62 @@
                     </div>
                 </div>
 
-                <div class="chart-box" style="flex: 1;">
+                <div class="chart-box" style="flex: 1; overflow: hidden;">
                     <div class="box-header">
                         <h3>Đơn hàng mới</h3>
-                        <a href="orders.html">Xem tất cả</a>
+                        <a href="orders.html" style="font-size: 13px; color: var(--primary);">Xem tất cả</a>
                     </div>
-                    <ul class="recent-orders">
-                        <li>
-                            <a href="orders.html" class="order-id">#DH10239</a>
-                            <span class="order-name">Nguyễn Văn An</span>
-                            <span class="order-date">10/01</span>
-                            <span class="order-price">137.800đ</span>
-                            <span class="status pending">Mới</span>
-                        </li>
-                        <li>
-                            <a href="orders.html" class="order-id">#DH10238</a>
-                            <span class="order-name">Trần Thị Thu Hường (Khách VIP)</span>
-                            <span class="order-date">09/01</span>
-                            <span class="order-price">500.000đ</span>
-                            <span class="status shipping">Đang giao</span>
-                        </li>
-                        <li>
-                            <a href="orders.html" class="order-id">#DH10237</a>
-                            <span class="order-name">Lê Văn C</span>
-                            <span class="order-date">08/01</span>
-                            <span class="order-price">250.000đ</span>
-                            <span class="status done">Hoàn tất</span>
-                        </li>
-                    </ul>
+
+                    <div class="table-container" style="box-shadow: none; padding: 0; margin: 0;">
+                        <table style="min-width: 100%;">
+                            <thead>
+                                <tr>
+                                    <th>Mã</th>
+                                    <th>Khách hàng</th>
+                                    <th>Tổng tiền</th>
+                                    <th>TT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><span class="order-id">#ORD-009</span></td>
+                                    <td>
+                                        <strong>Nguyễn Văn A</strong><br>
+                                        <span style="font-size:11px; color:#888;">10 phút trước</span>
+                                    </td>
+                                    <td class="price-text">137.000đ</td>
+                                    <td><span class="badge" style="background:#fff7ed; color:#ea580c;">Mới</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="order-id">#ORD-008</span></td>
+                                    <td>
+                                        <strong>Trần Thị B</strong><br>
+                                        <span style="font-size:11px; color:#888;">30 phút trước</span>
+                                    </td>
+                                    <td class="price-text">500.000đ</td>
+                                    <td><span class="badge" style="background:#eff6ff; color:#2563eb;">Giao</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="order-id">#ORD-007</span></td>
+                                    <td>
+                                        <strong>Lê Văn C</strong><br>
+                                        <span style="font-size:11px; color:#888;">1 giờ trước</span>
+                                    </td>
+                                    <td class="price-text">250.000đ</td>
+                                    <td><span class="badge" style="background:#dcfce7; color:#16a34a;">Xong</span></td>
+                                </tr>
+                                <tr>
+                                    <td><span class="order-id">#ORD-006</span></td>
+                                    <td>
+                                        <strong>Phạm Thị D</strong><br>
+                                        <span style="font-size:11px; color:#888;">2 giờ trước</span>
+                                    </td>
+                                    <td class="price-text">890.000đ</td>
+                                    <td><span class="badge" style="background:#dcfce7; color:#16a34a;">Xong</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
 

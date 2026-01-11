@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Khách hàng - Admin CP</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="css/admin-style.css">
+
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <div class="brand">
+            <i class="fas fa-leaf"></i> <span>ADMIN CP</span>
+        </div>
+
+        <ul class="side-menu">
+            <li><a href="index.html"><i class="fas fa-th-large"></i> Tổng quan</a></li>
+
+            <li class="dropdown" id="prod-menu">
+                <a href="javascript:void(0)" class="dropdown-btn" onclick="toggleDropdown('prod-menu')">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <i class="fas fa-box"></i> <span>QL Sản phẩm</span>
+                    </div>
+                    <i class="fas fa-chevron-right arrow-icon"></i>
+                </a>
+                <ul class="sub-menu">
+                    <li><a href="products.html">◦ Danh sách sản phẩm</a></li>
+                    <li><a href="categories.html">◦ Danh mục</a></li>
+                </ul>
+            </li>
+
+            <li><a href="orders.html"><i class="fas fa-shopping-cart"></i> Đơn hàng <span class="badge">3</span></a>
+            </li>
+            <li class="active"><a href="customers.html"><i class="fas fa-users"></i> Khách hàng</a></li>
+            <li><a href="settings.html"><i class="fas fa-cog"></i> Cấu hình</a></li>
+        </ul>
+
+        <div class="logout-box">
+            <a href="../index.html"><i class="fas fa-sign-out-alt"></i> Về trang chủ</a>
+        </div>
+    </aside>
+
+    <div class="main-content">
+        <header class="top-header">
+            <div class="menu-toggle" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="header-user" style="margin-left: auto;">
+                <div class="notif-btn"><i class="fas fa-bell"></i><span class="dot"></span></div>
+                <div class="user-info">
+                    <img src="https://placehold.co/40x40" alt="Admin">
+                    <span><strong>Admin</strong></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            <div class="page-header-group">
+                <h2>Danh sách khách hàng</h2>
+                <p>Quản lý thông tin và lịch sử mua hàng</p>
+            </div>
+
+            <div class="toolbar">
+                <div class="filter-group">
+                    <div class="input-icon-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" class="custom-input" placeholder="Tìm tên, SĐT, Email...">
+                    </div>
+
+                    <select class="custom-select">
+                        <option value="">Tất cả khách hàng</option>
+                        <option value="vip">Khách VIP (Vàng)</option>
+                        <option value="normal">Khách thường</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="50px">ID</th>
+                            <th>Khách hàng</th>
+                            <th>Liên hệ</th>
+                            <th>Đơn hàng</th>
+                            <th>Chi tiêu</th>
+                            <th>Trạng thái</th>
+                            <th class="text-right">Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#101</td>
+                            <td>
+                                <div style="display:flex; align-items:center; gap:10px;">
+                                    <img src="https://placehold.co/40x40" class="customer-avatar">
+                                    <div>
+                                        <strong>Nguyễn Văn A</strong><br>
+                                        <span class="rank-badge rank-gold">VIP GOLD</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="font-size:13px;">
+                                    <i class="fas fa-phone" style="width:15px; color:#64748b;"></i> 0901234567<br>
+                                    <i class="fas fa-envelope" style="width:15px; color:#64748b;"></i> a@gmail.com
+                                </div>
+                            </td>
+                            <td>12 đơn</td>
+                            <td class="price-text">15.500.000đ</td>
+                            <td><span class="status-badge status-active">Hoạt động</span></td>
+                            <td>
+                                <a href="javascript:void(0)" class="action-btn btn-view" onclick="openCustomerModal()"
+                                    title="Xem hồ sơ"><i class="fas fa-id-card"></i></a>
+                                <a href="javascript:void(0)" class="action-btn btn-delete" onclick="lockCustomer()"
+                                    title="Khóa tài khoản"><i class="fas fa-lock"></i></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>#102</td>
+                            <td>
+                                <div style="display:flex; align-items:center; gap:10px;">
+                                    <img src="https://placehold.co/40x40" class="customer-avatar">
+                                    <div>
+                                        <strong>Trần Thị B</strong><br>
+                                        <span class="rank-badge rank-silver">Thành viên</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div style="font-size:13px;">
+                                    <i class="fas fa-phone" style="width:15px; color:#64748b;"></i> 0987654321<br>
+                                    <i class="fas fa-envelope" style="width:15px; color:#64748b;"></i> b@gmail.com
+                                </div>
+                            </td>
+                            <td>2 đơn</td>
+                            <td class="price-text">850.000đ</td>
+                            <td><span class="status-badge status-active">Hoạt động</span></td>
+                            <td>
+                                <a href="javascript:void(0)" class="action-btn btn-view" onclick="openCustomerModal()"
+                                    title="Xem hồ sơ"><i class="fas fa-id-card"></i></a>
+                                <a href="javascript:void(0)" class="action-btn btn-delete" onclick="lockCustomer()"
+                                    title="Khóa tài khoản"><i class="fas fa-lock"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="pagination">
+                    <button class="page-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="overlay" onclick="closeCustomerModal()"></div>
+
+    <div class="modal-box" id="customerModal" style="max-width: 700px; height: auto;">
+        <div class="modal-header">
+            <h3>Hồ sơ khách hàng</h3>
+            <span onclick="closeCustomerModal()" style="font-size:24px; cursor:pointer;">&times;</span>
+        </div>
+
+        <div style="padding: 25px;">
+            <div class="profile-header">
+                <img src="https://placehold.co/80x80" alt="Avatar">
+                <div style="flex:1;">
+                    <h2 style="margin:0 0 5px 0; font-size:20px;">Nguyễn Văn A</h2>
+                    <p style="color:#64748b; font-size:14px; margin-bottom:10px;">
+                        <i class="fas fa-map-marker-alt"></i> 123 Đường ABC, Phường X, Quận Y, TP.HCM
+                    </p>
+                    <span class="rank-badge rank-gold">VIP GOLD</span>
+                    <span class="status-badge status-active" style="margin-left:5px;">Hoạt động</span>
+                </div>
+            </div>
+
+            <div class="profile-stats">
+                <div class="stat-box">
+                    <h4>15.5tr</h4>
+                    <p>Tổng chi tiêu</p>
+                </div>
+                <div class="stat-box">
+                    <h4>12</h4>
+                    <p>Tổng đơn hàng</p>
+                </div>
+                <div class="stat-box">
+                    <h4>0</h4>
+                    <p>Đơn bom/Hủy</p>
+                </div>
+            </div>
+
+            <h4 style="margin-bottom: 15px; border-left: 4px solid var(--primary); padding-left: 10px;">Đơn hàng gần
+                nhất</h4>
+
+            <div class="table-responsive">
+                <table class="invoice-table">
+                    <thead>
+                        <tr>
+                            <th style="min-width:80px;">Mã đơn</th>
+                            <th style="min-width:100px;">Ngày đặt</th>
+                            <th style="min-width:100px;">Tổng tiền</th>
+                            <th style="min-width:100px;">Trạng thái</th>
+                            <th style="min-width:50px; text-align:right;">Chi tiết</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="order-id">#ORD-001</span></td>
+                            <td>10/01/2026</td>
+                            <td class="price-text">550.000đ</td>
+                            <td><span class="status pending">Chờ xử lý</span></td>
+                            <td style="text-align:right;">
+                                <a href="javascript:void(0)" class="action-btn btn-view"
+                                    onclick="openOrderModal('ORD-001')" title="Xem chi tiết đơn này">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><span class="order-id">#ORD-005</span></td>
+                            <td>01/01/2026</td>
+                            <td class="price-text">2.000.000đ</td>
+                            <td><span class="status done">Hoàn thành</span></td>
+                            <td style="text-align:right;">
+                                <a href="javascript:void(0)" class="action-btn btn-view"
+                                    onclick="openOrderModal('ORD-005')" title="Xem chi tiết đơn này">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="modal-footer-actions">
+                <button type="button" class="btn-switch-edit" style="background:#ef4444; margin-right:auto;"
+                    onclick="lockCustomer()">
+                    <i class="fas fa-ban"></i> Khóa tài khoản
+                </button>
+                <button class="btn-submit" onclick="closeCustomerModal()">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-box" id="orderModal" style="max-width: 800px; height: auto;">
+        <div class="modal-header">
+            <h3>Chi tiết đơn hàng <span id="modalOrderId" style="color:var(--primary);">#ORD-XXX</span></h3>
+            <span onclick="closeOrderModal()" style="font-size:24px; cursor:pointer;">&times;</span>
+        </div>
+
+        <div>
+            <div class="order-info-grid">
+                <div class="info-group">
+                    <label>Khách hàng:</label>
+                    <strong>Nguyễn Văn A</strong>
+                    <p style="font-size:13px; margin-top:3px;">0901234567</p>
+                </div>
+                <div class="info-group">
+                    <label>Địa chỉ giao hàng:</label>
+                    <strong>123 Đường ABC, Phường X, Quận Y, TP.HCM</strong>
+                </div>
+                <div class="info-group">
+                    <label>Ngày đặt:</label>
+                    <strong>10/01/2026 - 14:30</strong>
+                </div>
+                <div class="info-group">
+                    <label>Trạng thái đơn:</label>
+                    <select class="custom-select"
+                        style="height:35px; padding: 0 10px; border-color:#2563eb; color:#2563eb; font-weight:600;">
+                        <option value="pending">Chờ xử lý</option>
+                        <option value="shipping">Đang giao hàng</option>
+                        <option value="done">Hoàn thành</option>
+                        <option value="cancel">Đã hủy</option>
+                    </select>
+                </div>
+            </div>
+
+            <h4 style="margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px;">Sản phẩm đặt mua</h4>
+
+            <div class="table-responsive">
+                <table class="invoice-table">
+                    <thead>
+                        <tr>
+                            <th style="min-width: 40px;">#</th>
+                            <th style="min-width: 250px;">Sản phẩm</th>
+                            <th style="min-width: 100px;">Đơn giá</th>
+                            <th style="min-width: 60px;">SL</th>
+                            <th style="min-width: 100px;" class="text-right">Thành tiền</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>
+                                <strong>Panadol Extra (Hộp 10 vỉ)</strong><br>
+                                <span style="font-size:11px; color:#888;">Quy cách: Hộp</span>
+                            </td>
+                            <td>250.000đ</td>
+                            <td>2</td>
+                            <td class="text-right">500.000đ</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="invoice-total">
+                <div class="total-row">
+                    <span>Tạm tính:</span>
+                    <strong>550.000đ</strong>
+                </div>
+                <div class="total-row">
+                    <span>Phí vận chuyển:</span>
+                    <strong>30.000đ</strong>
+                </div>
+                <div class="total-row" style="margin-top:10px; border-top:1px solid #eee; padding-top:10px;">
+                    <span style="font-size:16px; font-weight:700;">TỔNG CỘNG:</span>
+                    <span class="total-final">580.000đ</span>
+                </div>
+            </div>
+
+            <div class="modal-footer-actions">
+                <button class="btn-submit" onclick="closeOrderModal()">Đóng</button>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="js/admin-script.js"></script>
+
+    <script>
+        function openCustomerModal() {
+            openModal('customerModal');
+        }
+
+        function closeCustomerModal() {
+            closeModal('customerModal');
+        }
+
+        // --- [MỚI] CÁC HÀM XỬ LÝ ĐƠN HÀNG ---
+        function openOrderModal(orderId) {
+            // Hiển thị mã đơn lên tiêu đề
+            document.getElementById('modalOrderId').innerText = '#' + orderId;
+
+            // [QUAN TRỌNG] Vì modal đơn hàng sẽ đè lên modal khách hàng
+            // Nên ta có thể tạm ẩn modal khách hàng đi cho đỡ rối, hoặc để chồng lên cũng được (nhưng nhớ chỉnh z-index nếu cần).
+            // Ở đây mình chọn cách để chồng lên (mặc định của admin-script.js hỗ trợ rồi).
+
+            openModal('orderModal');
+        }
+
+        function closeOrderModal() {
+            closeModal('orderModal');
+        }
+
+        function lockCustomer() {
+            Swal.fire({
+                title: 'Khóa tài khoản này?',
+                text: "Khách hàng sẽ không thể đăng nhập mua hàng được nữa!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Khóa ngay',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire('Đã khóa!', 'Tài khoản đã bị vô hiệu hóa.', 'success');
+                    closeCustomerModal();
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

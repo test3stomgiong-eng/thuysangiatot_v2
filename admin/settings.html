@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cấu hình hệ thống - Admin CP</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="css/admin-style.css">
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <div class="brand">
+            <i class="fas fa-leaf"></i> <span>ADMIN CP</span>
+        </div>
+
+        <ul class="side-menu">
+            <li><a href="index.html"><i class="fas fa-th-large"></i> Tổng quan</a></li>
+
+            <li class="dropdown" id="prod-menu">
+                <a href="javascript:void(0)" class="dropdown-btn" onclick="toggleDropdown('prod-menu')">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <i class="fas fa-box"></i> <span>QL Sản phẩm</span>
+                    </div>
+                    <i class="fas fa-chevron-right arrow-icon"></i>
+                </a>
+                <ul class="sub-menu">
+                    <li><a href="products.html">◦ Danh sách sản phẩm</a></li>
+                    <li><a href="categories.html">◦ Danh mục</a></li>
+                </ul>
+            </li>
+
+            <li><a href="orders.html"><i class="fas fa-shopping-cart"></i> Đơn hàng <span class="badge">3</span></a>
+            </li>
+            <li><a href="customers.html"><i class="fas fa-users"></i> Khách hàng</a></li>
+            <li class="active"><a href="settings.html"><i class="fas fa-cog"></i> Cấu hình</a></li>
+        </ul>
+
+        <div class="logout-box">
+            <a href="../index.html"><i class="fas fa-sign-out-alt"></i> Về trang chủ</a>
+        </div>
+    </aside>
+
+    <div class="main-content">
+        <header class="top-header">
+            <div class="menu-toggle" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div class="header-user" style="margin-left: auto;">
+                <div class="notif-btn"><i class="fas fa-bell"></i><span class="dot"></span></div>
+                <div class="user-info">
+                    <img src="https://placehold.co/40x40" alt="Admin">
+                    <span><strong>Admin</strong></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            <div class="page-header-group">
+                <h2>Cấu hình hệ thống</h2>
+                <p>Thiết lập giao diện và thông tin cửa hàng</p>
+            </div>
+
+            <div class="settings-container">
+                <div class="settings-layout">
+                    <div class="settings-sidebar">
+                        <div class="setting-tab active" onclick="openTab('general', this)">
+                            <i class="fas fa-store"></i> Thông tin chung
+                        </div>
+                        <div class="setting-tab" onclick="openTab('homepage', this)">
+                            <i class="fas fa-home"></i> Cấu hình Trang chủ
+                        </div>
+                        <div class="setting-tab" onclick="openTab('theme_config', this)">
+                            <i class="fas fa-palette"></i> Giao diện & Màu sắc
+                        </div>
+                        <div class="setting-tab" onclick="openTab('payment', this)">
+                            <i class="fas fa-wallet"></i> Thanh toán & Vận chuyển
+                        </div>
+
+                        <div class="setting-tab" onclick="openTab('integration', this)">
+                            <i class="fas fa-globe"></i> Liên hệ & Mã nhúng
+                        </div>
+                        <div class="setting-tab" onclick="openTab('print_config', this)">
+                            <i class="fas fa-print"></i> Cấu hình Máy in & Hóa đơn
+                        </div>
+                        <div class="setting-tab" onclick="openTab('ai_config', this)">
+                            <i class="fas fa-robot"></i> Cấu hình AI (Gemini)
+                        </div>
+                        <div class="setting-tab" onclick="openTab('security', this)">
+                            <i class="fas fa-lock"></i> Đổi mật khẩu
+                        </div>
+                    </div>
+
+                    <div class="settings-content">
+
+                        <div id="general" class="tab-pane active">
+                            <h3 class="section-title">Thông tin chung & Logo</h3>
+                            <form onsubmit="event.preventDefault(); saveSettings();">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Logo Website</label>
+                                        <div class="image-preview-box" style="height: 100px;"
+                                            onclick="document.getElementById('logoInput').click()">
+                                            <img src="https://placehold.co/150x50" style="max-height: 40px;">
+                                            <p style="font-size:11px; margin-top:5px;">Nhấn để đổi logo</p>
+                                        </div>
+                                        <input type="file" id="logoInput" hidden>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Tên cửa hàng</label>
+                                        <input type="text" class="form-input" value="Thủy Sản Giá Tốt">
+                                        <label style="margin-top:10px;">Hotline</label>
+                                        <input type="text" class="form-input" value="1800 6821">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Địa chỉ</label>
+                                    <input type="text" class="form-input"
+                                        value="123 Đường ABC, Quận Ninh Kiều, Cần Thơ">
+                                </div>
+                                <button class="btn-submit" style="width: auto;">
+                                    <i class="fas fa-save"></i> Lưu thông tin
+                                </button>
+                            </form>
+                        </div>
+
+                        <div id="homepage" class="tab-pane">
+                            <form onsubmit="event.preventDefault(); saveSettings();">
+
+                                <h3 class="section-title">Banner Quảng cáo</h3>
+                                <div class="banner-config-grid">
+                                    <div>
+                                        <div>
+                                            <label style="display:flex; justify-content:space-between;">
+                                                Banner Chính (Slider)
+                                                <span style="font-weight:400; color:#888; font-size:12px;">(Kích thước
+                                                    chuẩn: 1200x400px)</span>
+                                            </label>
+
+                                            <div class="banner-slider-container">
+                                                <div class="banner-list" id="mainBannerList">
+
+                                                    <div class="banner-item">
+                                                        <img src="https://placehold.co/120x60?text=Banner+1"
+                                                            class="banner-thumb">
+                                                        <div style="flex:1;">
+                                                            <input type="text" class="form-input"
+                                                                placeholder="Link liên kết (VD: /khuyen-mai)..."
+                                                                style="margin:0;">
+                                                        </div>
+                                                        <button type="button" class="btn-remove-banner"
+                                                            onclick="this.parentElement.remove()">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
+
+                                                    <div class="banner-item">
+                                                        <img src="https://placehold.co/120x60?text=Banner+2"
+                                                            class="banner-thumb">
+                                                        <div style="flex:1;">
+                                                            <input type="text" class="form-input"
+                                                                placeholder="Link liên kết..." style="margin:0;">
+                                                        </div>
+                                                        <button type="button" class="btn-remove-banner"
+                                                            onclick="this.parentElement.remove()">
+                                                            <i class="fas fa-trash"></i>
+                                                        </button>
+                                                    </div>
+
+                                                </div>
+
+                                                <button type="button" class="btn-add-more" onclick="addBannerSlide()">
+                                                    <i class="fas fa-plus-circle"></i> Thêm Banner Mới
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="banner-right-col">
+
+                                        <div class="banner-fixed-box">
+                                            <label>Banner Phụ 1 (Trên)</label>
+
+                                            <button type="button" class="btn-reset-img" title="Gỡ ảnh"
+                                                onclick="resetBanner('subBanner1')">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+
+                                            <div class="image-preview-box" style="height: 100px;"
+                                                onclick="alert('Mở chọn ảnh banner phụ 1...')">
+                                                <img id="subBanner1"
+                                                    src="https://placehold.co/300x150?text=Banner+Phụ+1"
+                                                    style="width:100%; height:100%; object-fit:cover;">
+                                            </div>
+                                            <input type="text" class="form-input" placeholder="Link liên kết..."
+                                                style="margin-top:5px;">
+                                        </div>
+
+                                        <div class="banner-fixed-box">
+                                            <label>Banner Phụ 2 (Dưới)</label>
+
+                                            <button type="button" class="btn-reset-img" title="Gỡ ảnh"
+                                                onclick="resetBanner('subBanner2')">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+
+                                            <div class="image-preview-box" style="height: 100px;"
+                                                onclick="alert('Mở chọn ảnh banner phụ 2...')">
+                                                <img id="subBanner2"
+                                                    src="https://placehold.co/300x150?text=Banner+Phụ+2"
+                                                    style="width:100%; height:100%; object-fit:cover;">
+                                            </div>
+                                            <input type="text" class="form-input" placeholder="Link liên kết..."
+                                                style="margin-top:5px;">
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <h3 class="section-title">8 Danh mục nổi bật (Icon)</h3>
+                                <div class="icon-config-grid">
+
+                                    <div class="icon-item-box">
+                                        <button type="button" class="btn-reset-img" title="Gỡ icon"
+                                            onclick="resetImage('icon1', '40x40')"><i class="fas fa-times"></i></button>
+                                        <img id="icon1" src="https://placehold.co/40x40"
+                                            style="width:40px; margin-bottom:5px;">
+                                        <input type="text" class="form-input" value="Tư vấn mua thuốc"
+                                            style="font-size:12px; text-align:center; margin-bottom:5px;">
+                                        <button type="button" class="btn-switch-edit"
+                                            style="width:100%; justify-content:center; padding:5px; font-size:11px; background:#e2e8f0; color:#333;"
+                                            onclick="alert('Chọn icon 1...')">Đổi Icon</button>
+                                    </div>
+
+                                    <div class="icon-item-box">
+                                        <button type="button" class="btn-reset-img" title="Gỡ icon"
+                                            onclick="resetImage('icon2', '40x40')"><i class="fas fa-times"></i></button>
+                                        <img id="icon2" src="https://placehold.co/40x40"
+                                            style="width:40px; margin-bottom:5px;">
+                                        <input type="text" class="form-input" value="Liên hệ dược sĩ"
+                                            style="font-size:12px; text-align:center; margin-bottom:5px;">
+                                        <button type="button" class="btn-switch-edit"
+                                            style="width:100%; justify-content:center; padding:5px; font-size:11px; background:#e2e8f0; color:#333;"
+                                            onclick="alert('Chọn icon 2...')">Đổi Icon</button>
+                                    </div>
+
+                                    <div class="icon-item-box">
+                                        <button type="button" class="btn-reset-img" title="Gỡ icon"
+                                            onclick="resetImage('icon3', '40x40')"><i class="fas fa-times"></i></button>
+                                        <img id="icon3" src="https://placehold.co/40x40"
+                                            style="width:40px; margin-bottom:5px;">
+                                        <input type="text" class="form-input" value="Hệ thống nhà thuốc"
+                                            style="font-size:12px; text-align:center; margin-bottom:5px;">
+                                        <button type="button" class="btn-switch-edit"
+                                            style="width:100%; justify-content:center; padding:5px; font-size:11px; background:#e2e8f0; color:#333;"
+                                            onclick="alert('Chọn icon 3...')">Đổi Icon</button>
+                                    </div>
+
+                                    <div class="icon-item-box">
+                                        <button type="button" class="btn-reset-img" title="Gỡ icon"
+                                            onclick="resetImage('icon4', '40x40')"><i class="fas fa-times"></i></button>
+                                        <img id="icon4" src="https://placehold.co/40x40"
+                                            style="width:40px; margin-bottom:5px;">
+                                        <input type="text" class="form-input" value="Mã giảm giá"
+                                            style="font-size:12px; text-align:center; margin-bottom:5px;">
+                                        <button type="button" class="btn-switch-edit"
+                                            style="width:100%; justify-content:center; padding:5px; font-size:11px; background:#e2e8f0; color:#333;"
+                                            onclick="alert('Chọn icon 4...')">Đổi Icon</button>
+                                    </div>
+
+                                    <div class="icon-item-box">
+                                        <button type="button" class="btn-reset-img" title="Gỡ icon"
+                                            onclick="resetImage('icon5', '40x40')"><i class="fas fa-times"></i></button>
+                                        <img id="icon5" src="https://placehold.co/40x40"
+                                            style="width:40px; margin-bottom:5px;">
+                                        <input type="text" class="form-input" value="Kiểm tra sức khỏe"
+                                            style="font-size:12px; text-align:center; margin-bottom:5px;">
+                                        <button type="button" class="btn-switch-edit"
+                                            style="width:100%; justify-content:center; padding:5px; font-size:11px; background:#e2e8f0; color:#333;"
+                                            onclick="alert('Chọn icon 5...')">Đổi Icon</button>
+                                    </div>
+
+                                    <div class="icon-item-box">
+                                        <button type="button" class="btn-reset-img" title="Gỡ icon"
+                                            onclick="resetImage('icon6', '40x40')"><i class="fas fa-times"></i></button>
+                                        <img id="icon6" src="https://placehold.co/40x40"
+                                            style="width:40px; margin-bottom:5px;">
+                                        <input type="text" class="form-input" value="Chăm da chuẩn"
+                                            style="font-size:12px; text-align:center; margin-bottom:5px;">
+                                        <button type="button" class="btn-switch-edit"
+                                            style="width:100%; justify-content:center; padding:5px; font-size:11px; background:#e2e8f0; color:#333;"
+                                            onclick="alert('Chọn icon 6...')">Đổi Icon</button>
+                                    </div>
+
+                                    <div class="icon-item-box">
+                                        <button type="button" class="btn-reset-img" title="Gỡ icon"
+                                            onclick="resetImage('icon7', '40x40')"><i class="fas fa-times"></i></button>
+                                        <img id="icon7" src="https://placehold.co/40x40"
+                                            style="width:40px; margin-bottom:5px;">
+                                        <input type="text" class="form-input" value="Nhắc thuốc"
+                                            style="font-size:12px; text-align:center; margin-bottom:5px;">
+                                        <button type="button" class="btn-switch-edit"
+                                            style="width:100%; justify-content:center; padding:5px; font-size:11px; background:#e2e8f0; color:#333;"
+                                            onclick="alert('Chọn icon 7...')">Đổi Icon</button>
+                                    </div>
+
+                                    <div class="icon-item-box">
+                                        <button type="button" class="btn-reset-img" title="Gỡ icon"
+                                            onclick="resetImage('icon8', '40x40')"><i class="fas fa-times"></i></button>
+                                        <img id="icon8" src="https://placehold.co/40x40"
+                                            style="width:40px; margin-bottom:5px;">
+                                        <input type="text" class="form-input" value="Lịch sử đơn"
+                                            style="font-size:12px; text-align:center; margin-bottom:5px;">
+                                        <button type="button" class="btn-switch-edit"
+                                            style="width:100%; justify-content:center; padding:5px; font-size:11px; background:#e2e8f0; color:#333;"
+                                            onclick="alert('Chọn icon 8...')">Đổi Icon</button>
+                                    </div>
+
+                                </div>
+
+                                <button class="btn-submit" style="width: auto; margin-top: 30px;">
+                                    <i class="fas fa-save"></i> Lưu cấu hình trang chủ
+                                </button>
+                            </form>
+                        </div>
+
+                        <div id="payment" class="tab-pane">
+                            <h3 class="section-title">Thông tin Ngân hàng & Phí ship</h3>
+                            <form onsubmit="event.preventDefault(); saveSettings();">
+
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+                                    <div>
+                                        <h4 style="font-size:14px; margin-bottom:15px; color:#64748b;">1. Tài khoản nhận
+                                            tiền</h4>
+                                        <div class="form-group">
+                                            <label>Tên Ngân hàng</label>
+                                            <input type="text" class="form-input" value="MB Bank (Quân Đội)"
+                                                placeholder="VD: Vietcombank">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Số tài khoản</label>
+                                            <input type="text" class="form-input" value="0901234567"
+                                                placeholder="Số tài khoản...">
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Chủ tài khoản</label>
+                                            <input type="text" class="form-input" value="NGUYEN VAN A"
+                                                style="text-transform: uppercase;">
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <h4 style="font-size:14px; margin-bottom:15px; color:#64748b;">2. Ảnh mã QR
+                                            (VietQR)</h4>
+                                        <div class="image-preview-box" style="height: 200px;"
+                                            onclick="document.getElementById('qrInput').click()">
+                                            <img src="https://placehold.co/200x200?text=QR+Code"
+                                                style="height:100%; object-fit:contain;">
+                                            <p style="margin-top:10px; font-size:12px; color:#888;">Nhấn để tải ảnh QR
+                                                lên</p>
+                                        </div>
+                                        <input type="file" id="qrInput" hidden>
+                                    </div>
+                                </div>
+
+                                <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
+
+                                <h4 style="font-size:14px; margin-bottom:15px; color:#64748b;">3. Cấu hình Vận chuyển
+                                </h4>
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label>Phí ship mặc định (đ)</label>
+                                        <input type="number" class="form-input" value="30000">
+                                        <p style="font-size:11px; color:#64748b; margin-top:3px;">Áp dụng cho mọi đơn
+                                            hàng.</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Miễn phí ship cho đơn từ (đ)</label>
+                                        <input type="number" class="form-input" value="500000">
+                                        <p style="font-size:11px; color:#64748b; margin-top:3px;">Đơn trên mức này sẽ
+                                            được FreeShip.</p>
+                                    </div>
+                                </div>
+
+                                <button class="btn-submit" style="width: auto; margin-top: 20px;">
+                                    <i class="fas fa-save"></i> Lưu cấu hình
+                                </button>
+                            </form>
+                        </div>
+
+                        <div id="integration" class="tab-pane">
+                            <h3 class="section-title">Kết nối Mạng xã hội & SEO</h3>
+                            <form onsubmit="event.preventDefault(); saveSettings();">
+
+                                <div class="form-group">
+                                    <label><i class="fas fa-comment-dots" style="color:#0084ff;"></i> Link Facebook
+                                        Messenger</label>
+                                    <input type="text" class="form-input" placeholder="https://m.me/ten-fanpage">
+                                    <p style="font-size:11px; color:#64748b; margin-top:3px;">Dùng để hiện nút chat
+                                        Messenger trên web.</p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label><i class="fas fa-phone-square-alt" style="color:#0068ff;"></i> Link Zalo OA /
+                                        Số điện thoại Zalo</label>
+                                    <input type="text" class="form-input" placeholder="https://zalo.me/0901234567">
+                                    <p style="font-size:11px; color:#64748b; margin-top:3px;">Dùng để hiện nút chat Zalo
+                                        trên web.</p>
+                                </div>
+
+                                <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+
+                                <div class="form-group">
+                                    <label>Mã Google Analytics / Facebook Pixel (Header Script)</label>
+                                    <textarea class="form-input"
+                                        style="height: 120px; font-family: monospace; font-size:12px;"
+                                        placeholder="<script>...</script>"></textarea>
+                                    <p style="font-size:11px; color:#64748b; margin-top:3px;">Dán mã theo dõi quảng cáo
+                                        vào đây (Chỉ dành cho kỹ thuật).</p>
+                                </div>
+
+                                <button class="btn-submit" style="width: auto; margin-top: 20px;">
+                                    <i class="fas fa-save"></i> Lưu kết nối
+                                </button>
+                            </form>
+                        </div>
+
+                        <div id="security" class="tab-pane">
+                            <h3 class="section-title">Đổi mật khẩu Admin</h3>
+                            <form onsubmit="event.preventDefault(); changePassword();">
+                                <div class="form-group">
+                                    <label>Mật khẩu hiện tại</label>
+                                    <input type="password" class="form-input" placeholder="********">
+                                </div>
+                                <div class="form-group">
+                                    <label>Mật khẩu mới</label>
+                                    <input type="password" class="form-input" placeholder="Nhập mật khẩu mới">
+                                </div>
+                                <div class="form-group">
+                                    <label>Xác nhận mật khẩu mới</label>
+                                    <input type="password" class="form-input" placeholder="Nhập lại mật khẩu mới">
+                                </div>
+                                <button class="btn-submit" style="width: auto; margin-top: 20px; background: #dc2626;">
+                                    <i class="fas fa-key"></i> Đổi mật khẩu
+                                </button>
+                            </form>
+                        </div>
+
+                        <div id="ai_config" class="tab-pane">
+                            <h3 class="section-title">Kết nối Trí tuệ nhân tạo (Google Gemini)</h3>
+                            <form onsubmit="event.preventDefault(); saveSettings();">
+
+                                <div class="form-group">
+                                    <label style="display:flex; justify-content:space-between;">
+                                        Gemini API Key
+                                        <a href="https://aistudio.google.com/" target="_blank"
+                                            style="font-size:12px; color:var(--primary);">Lấy Key tại Google AI
+                                            Studio</a>
+                                    </label>
+
+                                    <div class="input-icon-wrapper" style="width: 100%; position: relative;">
+                                        <input type="password" id="apiKeyInput" class="form-input"
+                                            placeholder="Nhập API Key (VD: AIzaSy...)" value="">
+
+                                        <i class="fas fa-eye" onclick="togglePass('apiKeyInput')"
+                                            style="cursor:pointer; position:absolute; right:15px; top:50%; transform:translateY(-50%); color:#999; z-index: 10;">
+                                        </i>
+                                    </div>
+
+                                    <p style="font-size:11px; color:#64748b; margin-top:5px;">
+                                        Key này dùng để kích hoạt các tính năng tự động viết bài, chatbot...
+                                    </p>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Mô hình sử dụng (Model)</label>
+                                    <select class="custom-select">
+                                        <option value="gemini-1.5-flash">Gemini 1.5 Flash (Nhanh & Rẻ)</option>
+                                        <option value="gemini-1.5-pro">Gemini 1.5 Pro (Thông minh nhất)</option>
+                                        <option value="gemini-pro">Gemini 1.0 Pro (Cũ)</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Mức độ sáng tạo (Temperature)</label>
+                                    <div style="display:flex; align-items:center; gap:15px;">
+                                        <input type="range" min="0" max="1" step="0.1" value="0.7" style="flex:1;">
+                                        <span style="font-weight:bold; color:var(--primary);">0.7</span>
+                                    </div>
+                                    <p style="font-size:11px; color:#64748b; margin-top:3px;">0 = Chính xác, 1 = Sáng
+                                        tạo ngẫu nhiên.</p>
+                                </div>
+
+                                <div
+                                    style="background:#f0f9ff; padding:15px; border-radius:8px; border:1px dashed #bae6fd; margin-bottom:20px;">
+                                    <p style="font-size:13px; font-weight:600; color:#0369a1; margin-bottom:10px;">Kiểm
+                                        tra kết nối AI</p>
+                                    <div style="display:flex; gap:10px;">
+                                        <input type="text" class="form-input" placeholder="Nhập thử: 'Chào bạn'..."
+                                            style="margin:0; background:white;">
+                                        <button type="button" class="btn-switch-edit"
+                                            style="background:#0ea5e9; color:white; white-space:nowrap;"
+                                            onclick="testAI()">
+                                            <i class="fas fa-paper-plane"></i> Gửi thử
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <button class="btn-submit" style="width: auto;">
+                                    <i class="fas fa-save"></i> Lưu cấu hình AI
+                                </button>
+                            </form>
+                        </div>
+
+                        <div id="theme_config" class="tab-pane">
+                            <h3 class="section-title">Tùy chỉnh Màu sắc Giao diện</h3>
+                            <form onsubmit="event.preventDefault(); saveSettings();">
+
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+
+                                    <div>
+                                        <h4 style="font-size:14px; margin-bottom:15px; color:#64748b;">1. Chọn tông màu
+                                        </h4>
+
+                                        <div class="form-group">
+                                            <label>Màu chủ đạo (Primary Color)</label>
+                                            <div style="display:flex; align-items:center; gap:10px;">
+                                                <input type="color" id="colorMain" class="form-input" value="#0056b3"
+                                                    style="height:45px; width:60px; padding:2px; cursor:pointer;"
+                                                    oninput="updateThemePreview()">
+                                                <input type="text" id="textMain" class="form-input" value="#0056b3"
+                                                    style="flex:1;" onchange="syncColorInput('main')">
+                                            </div>
+                                            <p style="font-size:11px; color:#64748b; margin-top:3px;">Dùng cho: Header,
+                                                Thanh menu, Tiêu đề lớn.</p>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Màu nút bấm / Nổi bật (Accent Color)</label>
+                                            <div style="display:flex; align-items:center; gap:10px;">
+                                                <input type="color" id="colorBtn" class="form-input" value="#ff9f43"
+                                                    style="height:45px; width:60px; padding:2px; cursor:pointer;"
+                                                    oninput="updateThemePreview()">
+                                                <input type="text" id="textBtn" class="form-input" value="#ff9f43"
+                                                    style="flex:1;" onchange="syncColorInput('btn')">
+                                            </div>
+                                            <p style="font-size:11px; color:#64748b; margin-top:3px;">Dùng cho: Nút Mua
+                                                ngay, Giá khuyến mãi, Flash Sale.</p>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Màu nền website</label>
+                                            <div style="display:flex; align-items:center; gap:10px;">
+                                                <input type="color" id="colorBg" class="form-input" value="#f1f5f9"
+                                                    style="height:45px; width:60px; padding:2px; cursor:pointer;"
+                                                    oninput="updateThemePreview()">
+                                                <input type="text" id="textBg" class="form-input" value="#f1f5f9"
+                                                    style="flex:1;" onchange="syncColorInput('bg')">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <h4 style="font-size:14px; margin-bottom:15px; color:#64748b;">2. Xem trước giao
+                                            diện</h4>
+
+                                        <div id="previewBox"
+                                            style="border:1px solid #e2e8f0; border-radius:8px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.05);">
+
+                                            <div id="prevHeader"
+                                                style="background:#0056b3; padding:15px; color:white; display:flex; justify-content:space-between; align-items:center;">
+                                                <span style="font-weight:bold;">LOGO</span>
+                                                <span style="font-size:12px; opacity:0.8;">Danh mục | Tin tức | Liên
+                                                    hệ</span>
+                                                <i class="fas fa-shopping-cart"></i>
+                                            </div>
+
+                                            <div id="prevBody"
+                                                style="background:#f1f5f9; padding:20px; height:180px; display:flex; flex-direction:column; justify-content:center; align-items:center; gap:15px;">
+                                                <div
+                                                    style="background:white; padding:15px; border-radius:6px; width:100%; text-align:center; box-shadow:0 2px 5px rgba(0,0,0,0.02);">
+                                                    <h5 style="margin:0 0 10px 0; color:#333;">Sản phẩm Demo</h5>
+
+                                                    <button id="prevBtn"
+                                                        style="background:#ff9f43; color:white; border:none; padding:8px 20px; border-radius:4px; font-weight:600;">
+                                                        Mua Ngay
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <p
+                                            style="font-size:12px; color:#22c55e; margin-top:10px; font-weight:600; text-align:center;">
+                                            <i class="fas fa-check-circle"></i> Màu sắc thay đổi ngay lập tức trên hình
+                                            xem trước
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                                <button class="btn-submit" style="width: auto; margin-top:30px;">
+                                    <i class="fas fa-save"></i> Lưu giao diện
+                                </button>
+                            </form>
+                        </div>
+
+                        <div id="print_config" class="tab-pane">
+                            <h3 class="section-title">Định dạng khổ giấy & Mẫu hóa đơn</h3>
+                            <form onsubmit="event.preventDefault(); saveSettings();">
+
+                                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+
+                                    <div>
+                                        <h4 style="font-size:14px; margin-bottom:15px; color:#64748b;">1. Thiết lập máy
+                                            in</h4>
+
+                                        <div class="form-group">
+                                            <label>Khổ giấy mặc định</label>
+                                            <select id="paperSize" class="custom-select"
+                                                onchange="updateReceiptPreview()">
+                                                <option value="k80">Khổ K80 (Máy in nhiệt to - Phổ biến)</option>
+                                                <option value="k57">Khổ K57 (Máy in nhiệt nhỏ/Cầm tay)</option>
+                                                <option value="a5">Khổ A5 (Máy in thường)</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Tùy chọn hiển thị</label>
+                                            <div style="display:flex; gap:20px; margin-top:5px;">
+                                                <label
+                                                    style="font-weight:400; display:flex; align-items:center; gap:5px; cursor:pointer;">
+                                                    <input type="checkbox" id="showLogoCheck" checked
+                                                        onchange="updateReceiptPreview()"> Hiện Logo
+                                                </label>
+                                                <label
+                                                    style="font-weight:400; display:flex; align-items:center; gap:5px; cursor:pointer;">
+                                                    <input type="checkbox" checked> Hiện SĐT cửa hàng
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Lời chào cuối hóa đơn (Footer)</label>
+                                            <textarea id="footerNoteInput" class="form-input" style="height:80px;"
+                                                oninput="updateReceiptPreview()">Cảm ơn quý khách và hẹn gặp lại!
+Wifi: thuysan_free / Pass: 123456</textarea>
+                                            <p style="font-size:11px; color:#64748b; margin-top:3px;">Gợi ý: Thêm pass
+                                                wifi hoặc chính sách đổi trả.</p>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label>Chế độ in</label>
+                                            <select class="custom-select">
+                                                <option value="1">Xem trước rồi mới in (Mặc định)</option>
+                                                <option value="2">Tự động in ngay khi bấm "Hoàn tất đơn"</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <h4 style="font-size:14px; margin-bottom:15px; color:#64748b;">2. Xem trước mẫu
+                                            in</h4>
+
+                                        <div class="receipt-preview-box">
+                                            <div id="receiptPaper" class="receipt-paper paper-k80">
+
+                                                <div class="rec-header">
+                                                    <img src="https://placehold.co/50x50" class="rec-logo" id="recLogo">
+                                                    <div style="font-weight:bold;">THỦY SẢN GIÁ TỐT</div>
+                                                    <div>ĐC: Ninh Kiều, Cần Thơ</div>
+                                                    <div>ĐT: 0901234567</div>
+                                                </div>
+
+                                                <div class="rec-title" style="text-align:center;">HÓA ĐƠN BÁN LẺ</div>
+                                                <div style="text-align:center; margin-bottom:5px;">#ORD-001 | 10/01/2026
+                                                    10:30</div>
+
+                                                <div class="rec-dashed"></div>
+
+                                                <div class="rec-row">
+                                                    <span>Panadol Extra</span>
+                                                    <span>250k</span>
+                                                </div>
+                                                <div class="rec-row" style="color:#666; font-size:11px;">
+                                                    <span>SL: 2 x 125.000</span>
+                                                </div>
+
+                                                <div class="rec-row" style="margin-top:5px;">
+                                                    <span>Vitamin C 500mg</span>
+                                                    <span>50k</span>
+                                                </div>
+                                                <div class="rec-row" style="color:#666; font-size:11px;">
+                                                    <span>SL: 1 x 50.000</span>
+                                                </div>
+
+                                                <div class="rec-dashed"></div>
+
+                                                <div class="rec-row">
+                                                    <span>Tạm tính:</span>
+                                                    <span>300.000</span>
+                                                </div>
+                                                <div class="rec-row">
+                                                    <span>Giảm giá:</span>
+                                                    <span>-0</span>
+                                                </div>
+                                                <div class="rec-row"
+                                                    style="font-weight:bold; font-size:14px; margin-top:5px;">
+                                                    <span>TỔNG CỘNG:</span>
+                                                    <span>300.000đ</span>
+                                                </div>
+
+                                                <div class="rec-dashed"></div>
+
+                                                <div class="rec-footer" id="recFooter">
+                                                    Cảm ơn quý khách và hẹn gặp lại!<br>
+                                                    Wifi: thuysan_free / Pass: 123456
+                                                </div>
+
+                                                <div style="text-align:center; margin-top:10px;">
+                                                    <img src="https://placehold.co/100x30?text=BARCODE"
+                                                        style="height:30px; opacity:0.7;">
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <p
+                                            style="font-size:12px; color:#22c55e; margin-top:10px; font-weight:600; text-align:center;">
+                                            <i class="fas fa-check-circle"></i> Khổ giấy thay đổi ngay khi bạn chọn
+                                        </p>
+                                    </div>
+
+                                </div>
+
+                                <button class="btn-submit" style="width: auto; margin-top: 30px;">
+                                    <i class="fas fa-save"></i> Lưu cấu hình in
+                                </button>
+                            </form>
+                        </div>
+
+
+                        <!-- Phần dán các cái box -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/admin-script.js"></script>
+
+    <script>
+        // Hàm chuyển Tab
+        function openTab(tabName, btn) {
+            document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.setting-tab').forEach(el => el.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        function saveSettings() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Thành công',
+                text: 'Cấu hình đã được lưu lại!',
+                timer: 1500,
+                showConfirmButton: false
+            });
+        }
+
+        function changePassword() {
+            Swal.fire({
+                icon: 'success',
+                title: 'Đã đổi mật khẩu',
+                text: 'Vui lòng đăng nhập lại vào lần sau.',
+                timer: 2000,
+                showConfirmButton: false
+            });
+        }
+
+        // Hàm thêm dòng banner mới
+        function addBannerSlide() {
+            const container = document.getElementById('mainBannerList');
+
+            // Tạo phần tử div mới
+            const div = document.createElement('div');
+            div.className = 'banner-item';
+            div.innerHTML = `
+            <img src="https://placehold.co/120x60?text=New" class="banner-thumb" onclick="alert('Chọn ảnh từ máy...')">
+            <div style="flex:1;">
+                <input type="text" class="form-input" placeholder="Nhập link liên kết..." style="margin:0;">
+            </div>
+            <button type="button" class="btn-remove-banner" onclick="this.parentElement.remove()">
+                <i class="fas fa-trash"></i>
+            </button>
+        `;
+
+            container.appendChild(div);
+        }
+
+        // Hàm đặt lại ảnh về mặc định (Khi lỡ chọn sai)
+        function resetBanner(imgId) {
+            // Tìm thẻ ảnh theo ID
+            const img = document.getElementById(imgId);
+
+            // Trả về ảnh xám (Placeholder)
+            // Lưu ý: Sau này làm backend thật thì chỗ này sẽ set src = '' hoặc ảnh mặt định của server
+            img.src = "https://placehold.co/300x150?text=Chưa+có+ảnh";
+
+            Swal.fire({
+                icon: 'info',
+                title: 'Đã gỡ ảnh',
+                text: 'Bạn hãy bấm vào khung để chọn lại ảnh mới nhé!',
+                timer: 1500,
+                showConfirmButton: false
+            });
+        }
+        // Hàm đặt lại ảnh (Dùng chung cho Banner phụ và Icon)
+        // imgId: ID của thẻ img
+        // size: Kích thước placeholder (VD: '300x150' hoặc '40x40')
+        function resetImage(imgId, size = '300x150') {
+            const img = document.getElementById(imgId);
+            if (img) {
+                // Đặt về ảnh xám với kích thước tương ứng
+                img.src = `https://placehold.co/${size}?text=Trống`;
+
+                // Thông báo nhẹ
+                const Toast = Swal.mixin({
+                    toast: true, position: 'top-end', showConfirmButton: false, timer: 1500, timerProgressBar: true
+                });
+                Toast.fire({ icon: 'info', title: 'Đã gỡ ảnh' });
+            }
+        }
+        // Hàm hiện/ẩn mật khẩu (API Key)
+        function togglePass(inputId) {
+            const input = document.getElementById(inputId);
+            if (input.type === "password") {
+                input.type = "text";
+            } else {
+                input.type = "password";
+            }
+        }
+
+        // Hàm test kết nối AI (Giả lập)
+        function testAI() {
+            const key = document.getElementById('apiKeyInput').value;
+            if (!key) {
+                Swal.fire('Lỗi', 'Bạn chưa nhập API Key!', 'error');
+                return;
+            }
+
+            Swal.fire({
+                title: 'Đang kết nối Gemini...',
+                didOpen: () => {
+                    Swal.showLoading();
+                },
+                timer: 2000
+            }).then(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Kết nối thành công!',
+                    text: 'Gemini trả lời: "Xin chào! Tôi đã sẵn sàng hỗ trợ hệ thống của bạn."'
+                });
+            });
+        }
+
+        // Hàm cập nhật màu xem trước (Live Preview)
+        function updateThemePreview() {
+            // Lấy giá trị từ ô chọn màu
+            const mainColor = document.getElementById('colorMain').value;
+            const btnColor = document.getElementById('colorBtn').value;
+            const bgColor = document.getElementById('colorBg').value;
+
+            // Cập nhật giá trị text bên cạnh (để người dùng thấy mã HEX)
+            document.getElementById('textMain').value = mainColor;
+            document.getElementById('textBtn').value = btnColor;
+            document.getElementById('textBg').value = bgColor;
+
+            // Cập nhật màu cho khung Preview bên phải
+            document.getElementById('prevHeader').style.background = mainColor;
+            document.getElementById('prevBtn').style.background = btnColor;
+            document.getElementById('prevBody').style.background = bgColor;
+        }
+
+        // Hàm đồng bộ ngược (khi nhập mã HEX -> ô màu đổi theo)
+        function syncColorInput(type) {
+            if (type === 'main') {
+                document.getElementById('colorMain').value = document.getElementById('textMain').value;
+            } else if (type === 'btn') {
+                document.getElementById('colorBtn').value = document.getElementById('textBtn').value;
+            } else if (type === 'bg') {
+                document.getElementById('colorBg').value = document.getElementById('textBg').value;
+            }
+            updateThemePreview();
+        }
+
+        // Hàm cập nhật xem trước hóa đơn
+        function updateReceiptPreview() {
+            // 1. Cập nhật khổ giấy (Width)
+            const size = document.getElementById('paperSize').value;
+            const paper = document.getElementById('receiptPaper');
+
+            // Xóa các class khổ giấy cũ
+            paper.classList.remove('paper-k80', 'paper-k57', 'paper-a5');
+
+            // Thêm class khổ giấy mới
+            paper.classList.add('paper-' + size);
+
+            // 2. Ẩn/Hiện Logo
+            const showLogo = document.getElementById('showLogoCheck').checked;
+            const logoImg = document.getElementById('recLogo');
+            logoImg.style.display = showLogo ? 'inline-block' : 'none';
+
+            // 3. Cập nhật lời chào footer
+            const footerText = document.getElementById('footerNoteInput').value;
+            // Chuyển xuống dòng (\n) thành thẻ <br> để hiển thị đúng HTML
+            document.getElementById('recFooter').innerHTML = footerText.replace(/\n/g, '<br>');
+        }
+    </script>
+</body>
+
+</html>

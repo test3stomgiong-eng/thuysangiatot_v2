@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Danh mục - Admin CP</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="stylesheet" href="css/admin-style.css">
+
+</head>
+
+<body>
+
+    <aside class="sidebar">
+        <div class="brand">
+            <i class="fas fa-leaf"></i> <span>ADMIN CP</span>
+        </div>
+
+        <ul class="side-menu">
+            <li><a href="index.html"><i class="fas fa-th-large"></i> Tổng quan</a></li>
+
+            <li class="dropdown active" id="prod-menu">
+                <a href="javascript:void(0)" class="dropdown-btn" onclick="toggleDropdown('prod-menu')">
+                    <div style="display:flex; align-items:center; gap:10px;">
+                        <i class="fas fa-box"></i> <span>QL Sản phẩm</span>
+                    </div>
+                    <i class="fas fa-chevron-right arrow-icon"></i>
+                </a>
+                <ul class="sub-menu">
+                    <li><a href="products.html">◦ Danh sách sản phẩm</a></li>
+                    <li class="active-sub"><a href="categories.html">◦ Danh mục</a></li>
+                </ul>
+            </li>
+
+            <li><a href="orders.html"><i class="fas fa-shopping-cart"></i> Đơn hàng <span class="badge">3</span></a>
+            </li>
+            <li><a href="customers.html"><i class="fas fa-users"></i> Khách hàng</a></li>
+            <li><a href="settings.html"><i class="fas fa-cog"></i> Cấu hình</a></li>
+        </ul>
+
+        <div class="logout-box">
+            <a href="../index.html"><i class="fas fa-sign-out-alt"></i> Về trang chủ</a>
+        </div>
+    </aside>
+
+    <div class="main-content">
+        <header class="top-header">
+            <div class="menu-toggle" onclick="toggleSidebar()">
+                <i class="fas fa-bars"></i>
+            </div>
+
+            <div class="header-user" style="margin-left: auto;">
+                <div class="notif-btn"><i class="fas fa-bell"></i><span class="dot"></span></div>
+                <div class="user-info">
+                    <img src="https://placehold.co/40x40" alt="Admin">
+                    <span><strong>Admin</strong></span>
+                </div>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            <div class="page-header-group">
+                <h2>Danh mục sản phẩm</h2>
+                <p>Quản lý phân loại hàng hóa trên website</p>
+            </div>
+
+            <div class="toolbar">
+                <div class="filter-group">
+                    <div class="input-icon-wrapper">
+                        <i class="fas fa-search"></i>
+                        <input type="text" class="custom-input" placeholder="Tìm kiếm danh mục...">
+                    </div>
+
+                    <select class="custom-select">
+                        <option value="">Tất cả trạng thái</option>
+                        <option value="active">Đang hiển thị</option>
+                        <option value="hidden">Đang ẩn</option>
+                    </select>
+                </div>
+
+                <button class="btn-add" onclick="openCategoryModal()">
+                    <i class="fas fa-plus"></i> Thêm danh mục
+                </button>
+            </div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th width="50px">ID</th>
+                            <th width="80px">Hình ảnh</th>
+                            <th width="30%">Tên danh mục</th>
+                            <th>Mô tả ngắn</th>
+                            <th>Trạng thái</th>
+                            <th class="text-right">Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#1</td>
+                            <td><img src="https://placehold.co/40x40" class="category-img"></td>
+                            <td><span class="parent-cat">Thuốc không kê đơn</span></td>
+                            <td style="color:#64748b; font-size:13px;">Thuốc trị đau đầu, cảm cúm...</td>
+                            <td><span class="status-badge status-active">Hiển thị</span></td>
+                            <td>
+                                <a href="javascript:void(0)" class="action-btn btn-edit" onclick="openCategoryModal()"
+                                    title="Sửa"><i class="fas fa-pen"></i></a>
+                                <a href="javascript:void(0)" class="action-btn btn-delete" onclick="deleteCategory()"
+                                    title="Xóa"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>#2</td>
+                            <td><img src="https://placehold.co/40x40" class="category-img"></td>
+                            <td>
+                                <div class="sub-cat">Thuốc giảm đau</div>
+                            </td>
+                            <td style="color:#64748b; font-size:13px;">Paracetamol, Ibuprofen...</td>
+                            <td><span class="status-badge status-active">Hiển thị</span></td>
+                            <td>
+                                <a href="javascript:void(0)" class="action-btn btn-edit" onclick="openCategoryModal()"
+                                    title="Sửa"><i class="fas fa-pen"></i></a>
+                                <a href="javascript:void(0)" class="action-btn btn-delete" onclick="deleteCategory()"
+                                    title="Xóa"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>#3</td>
+                            <td><img src="https://placehold.co/40x40" class="category-img"></td>
+                            <td><span class="parent-cat">Thực phẩm chức năng</span></td>
+                            <td style="color:#64748b; font-size:13px;">Vitamin, khoáng chất...</td>
+                            <td><span class="status-badge status-hidden">Đang ẩn</span></td>
+                            <td>
+                                <a href="javascript:void(0)" class="action-btn btn-edit" onclick="openCategoryModal()"
+                                    title="Sửa"><i class="fas fa-pen"></i></a>
+                                <a href="javascript:void(0)" class="action-btn btn-delete" onclick="deleteCategory()"
+                                    title="Xóa"><i class="fas fa-trash"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="overlay" onclick="closeCategoryModal()"></div>
+
+    <div class="modal-box" id="categoryModal" style="max-width: 500px; height: auto; max-height: 90vh;">
+        <div class="modal-header">
+            <h3>Thêm danh mục mới</h3>
+            <span onclick="closeCategoryModal()" style="font-size:24px; cursor:pointer;">&times;</span>
+        </div>
+
+        <form onsubmit="event.preventDefault(); saveCategory();">
+            <div class="form-grid" style="grid-template-columns: 1fr;">
+                <div class="form-group">
+                    <label>Tên danh mục <span style="color:red">*</span></label>
+                    <input type="text" class="form-input" placeholder="VD: Thuốc tim mạch" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Danh mục cha</label>
+                    <select class="custom-select" style="width:100%; margin-top:5px;">
+                        <option value="0">-- Không có (Là danh mục gốc) --</option>
+                        <option value="1">Thuốc không kê đơn</option>
+                        <option value="3">Thực phẩm chức năng</option>
+                        <option value="4">Dụng cụ y tế</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Ảnh đại diện</label>
+                    <div class="image-preview-box" style="height: 150px;"
+                        onclick="document.getElementById('catImgInput').click()">
+                        <i class="fas fa-camera"></i>
+                        <p style="margin-top:5px;">Chọn ảnh minh họa</p>
+                        <img id="catImgShow" src="" style="display:none; width:100%; height:100%; object-fit:contain;">
+                    </div>
+                    <input type="file" id="catImgInput" hidden onchange="previewCatImg(this)">
+                </div>
+
+                <div class="form-group">
+                    <label>Mô tả ngắn</label>
+                    <textarea class="form-input" style="height: 80px;"
+                        placeholder="Mô tả sơ lược về nhóm sản phẩm này..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Trạng thái</label>
+                    <select class="custom-select" style="width:100%; margin-top:5px;">
+                        <option value="active">Hiển thị</option>
+                        <option value="hidden">Tạm ẩn</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="modal-footer-actions">
+                <button class="btn-submit">Lưu danh mục</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="js/admin-script.js"></script>
+
+    <script>
+        // --- 1. MỞ/ĐÓNG MODAL ---
+        function openCategoryModal() {
+            // Reset form (đơn giản)
+            document.getElementById('catImgShow').style.display = 'none';
+            document.querySelector('.image-preview-box i').style.display = 'block';
+            document.querySelector('.image-preview-box p').style.display = 'block';
+
+            // Mở modal (Hàm openModal trong admin-script.js)
+            openModal('categoryModal');
+        }
+
+        function closeCategoryModal() {
+            closeModal('categoryModal');
+        }
+
+        // --- 2. XEM TRƯỚC ẢNH ---
+        function previewCatImg(input) {
+            const imgShow = document.getElementById('catImgShow');
+            const icon = document.querySelector('.image-preview-box i');
+            const text = document.querySelector('.image-preview-box p');
+
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imgShow.src = e.target.result;
+                    imgShow.style.display = 'block';
+                    icon.style.display = 'none';
+                    text.style.display = 'none';
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        // --- 3. LƯU DANH MỤC ---
+        function saveCategory() {
+            closeCategoryModal();
+            Swal.fire({
+                icon: 'success',
+                title: 'Thành công',
+                text: 'Danh mục đã được lưu!',
+                showConfirmButton: false,
+                timer: 1500
+            });
+        }
+
+        // --- 4. XÓA DANH MỤC ---
+        function deleteCategory() {
+            Swal.fire({
+                title: 'Bạn chắc chắn chứ?',
+                text: "Xóa danh mục này có thể ảnh hưởng đến các sản phẩm bên trong!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'Xóa luôn',
+                cancelButtonText: 'Hủy'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire('Đã xóa!', '', 'success');
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>
